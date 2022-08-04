@@ -1,0 +1,109 @@
+<?php $today = date("Y-m-d H:i:s"); ?>
+<?php LoadTemplate("tour/template_sections/header.tpl", ["pagename" => "trailer"]); ?>
+<div class="main">
+	<section class="container">
+		<div class="trailer">
+			<div class="trailer-video">
+				<?php
+				$my_trailer_url = custom_get_trailer_url($tour['Id'], $set['Id']);
+				LoadTemplate("tour/template_sections/video.tpl", ["pagename" => "trailers", "trailer_url" => $my_trailer_url]);
+				?>
+			</div>
+			<div class="trailer-details">
+				<div class="info">
+					<span class="date"><?php echo date("j F Y", strtotime($set['date'])); ?></span>
+					<span class="length"><?php LoadTemplate("components/info_length_short.tpl", ["set" => $set]); ?></span>
+				</div>
+				<div class="title">
+					<h2><?php echo $set["Title"]; ?></h2>
+				</div>
+				<div class="starring">
+					<span><?php echo $templatefields["txtstarring"]; ?>: </span>
+					<span><?php LoadTemplate("components/list_models.tpl", ["set" => $set, "modellimit" => "999", "today" => $today]); ?></span>
+				</div>
+				<div class="rating">
+					<span><?php LoadTemplate("components/info_rating.tpl", ["id" => $set["Id"], "type" => "set", "rating" => $set["plg_ratings_rank"] / (($set["plg_ratings_total"]) ? $set["plg_ratings_total"] : 1) * 10]); ?></span>
+				</div>
+				<div class="description">
+					<p><?php echo $set["Description"]; ?></p>
+				</div>
+			</div>
+			<div class="trailer-buttons">
+				<a href="<?php echo $tour["JoinUrl"]; ?>" class="active"><i class="fa-regular fa-circle-play fa-2x" aria-hidden="true"></i><span><?php echo $templatefields["txtmovies"]; ?></span></a>
+				<a href="<?php echo $tour["JoinUrl"]; ?>"><i class="fa-solid fa-images fa-2x" aria-hidden="true"></i><span><?php echo $templatefields["txtphotos"]; ?></span></a>
+				<a href="<?php echo $tour["JoinUrl"]; ?>"><i class="fa-solid fa-film fa-2x" aria-hidden="true"></i><span><?php echo $templatefields["txtcaps"]; ?></span></a>
+				<a href="<?php echo $tour["JoinUrl"]; ?>"><i class="fa-solid fa-comments fa-2x" aria-hidden="true"></i><span><?php echo $templatefields["txtcomments"]; ?></span></a>
+				<a href="<?php echo $tour["JoinUrl"]; ?>"><i class="fa-solid fa-download fa-2x" aria-hidden="true"></i><span><?php echo $templatefields["txtdownload"]; ?></span></a>
+				<a href="#favorite" onclick="javascript:Swal.fire({icon:'error', text:'<?php echo $templatefields['txtmembersonly']; ?>'}); return false;"><i class="fa-solid fa-heart-circle-check fa-2x" aria-hidden="true"></i><span><span><?php echo $templatefields["txtaddtofavorites"]; ?></span></a>
+			</div>
+			<div class="trailer-cats genres">
+				<?php LoadTemplate("components/list_genres.tpl"); ?>
+			</div>
+			<div class="trailer-cats tags">
+				<div class="list tags-list"><i class="fa-solid fa-hashtag" aria-hidden="true"><span><?php echo $templatefields["txttags"]; ?></span></i><?php LoadTemplate("components/list_tags.tpl"); ?></div>
+			</div>
+		</div>
+	</section>
+	<section class="container">
+		<div class="main-header-title">
+			<div class="holder">
+				<h2><?php echo $templatefields["txtmoreupdates"]; ?></h2>
+				<a href="<?php echo $GLOBALS["areaurl"]; ?>categories/movies/1/latest/"><?php echo $templatefields["txtviewall"]; ?>&nbsp;<i class="fa-solid fa-arrow-right-long"></i></a>
+			</div>
+		</div>
+		<div class="grid grid-videos">
+			<?php
+			if ($tour['PaginateTourThumbs'] == 1) {
+				$layout = [
+					"skeleton",
+					"duration",
+					"title",
+					"info" => [
+						"model",
+						"date",
+						"stars",
+						"title"
+					]
+				];
+				shuffle($tourthumbs);
+				foreach ($tourthumbs as $key => $set) :
+					if ($tour['NumPerPageThumb'] > $i) {
+						LoadTemplate("components/thumb_video.tpl", ["set" => $set, "prefer" => 'vids', "counter" => $i, "layout" => $layout]);
+					}
+					$i++;
+				endforeach;
+			?>
+		</div>
+		<a href="<?php echo $GLOBALS["areaurl"]; ?>models/1/latest/" class="button button-load-more button-outline"><?php echo $templatefields["txtviewall"]; ?></a>
+	<?php
+			} else {
+				$layout = [
+					"skeleton",
+					"duration",
+					"title",
+					"info" => [
+						"model",
+						"date",
+						"stars",
+						"title"
+					]
+				];
+				shuffle($tourthumbs);
+				foreach ($tourthumbs as $key => $set) :
+					if ($tour['NumPerPageThumb'] > $i) {
+						LoadTemplate("components/thumb_video.tpl", ["set" => $set, "prefer" => 'vids', "counter" => $i, "layout" => $layout]);
+					}
+					$i++;
+					// Show 8 videos in 'More updates'. The total is set to 24 from the admin dashboard, this cuts it to 8.
+					if ($i >= 8) {
+						break;
+					}
+				endforeach;
+			}
+	?>
+	<?php if ($tour['PaginateTourThumbs'] !== 1) { ?>
+</div>
+<?php } ?>
+</section>
+</div>
+<?php LoadTemplate("tour/template_sections/footer.tpl"); ?>

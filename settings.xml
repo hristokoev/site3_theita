@@ -1,0 +1,304 @@
+<?xml version="1.0"?>
+<settings>
+	<tour>
+		<setting name="Name">Episode Style Tour</setting>
+		<setting name="xsl">tour1.tpl</setting>
+		<setting name="ThumbQ">100</setting>
+		<setting name="WaterLoc"></setting>
+		<setting name="WaterHPos">center</setting>
+		<setting name="WaterVPos">middle</setting>
+		<setting name="NumPerPage">3</setting>
+		<setting name="NumPerPageThumb">24</setting>
+		<setting name="MaxPages">3</setting>
+		<setting name="OrderBy">rank asc</setting>
+		<setting name="OrderByThumbs">rank asc</setting>
+		<setting name="JoinUrl">join.php</setting>
+		<setting name="JoinUrlMobile">join.html</setting>
+		<setting name="MembersURL">/members/</setting>
+		<setting name="MembersURLMobile">/members/</setting>
+		<setting name="ShowFuture">1</setting>
+		<setting name="ShowFutureNum">20</setting>
+		<setting name="CropConfig">1328-936-1-,594-460-0-,594-460-0-,594-460-0-,594-460-0-,468-352-0-,380-284-0-,600-430-0-</setting>
+		<setting name="NumClickLimit">200</setting>
+		<setting name="PaginateRecentUpdates">1</setting>
+		<setting name="LimitMisc">1</setting>
+		<setting name="seo_urls">1</setting>
+		<setting name="NumDVDs">0</setting>
+		<setting name="NumPopularModels">8</setting>
+		<setting name="NumFacebookPosts">0</setting>
+		<setting name="NumTwitterPosts">0</setting>
+		<setting name="NumNews">0</setting>
+		<setting name="NumPerPage_Mobile">3</setting>
+		<setting name="NumPerPageThumb_Mobile">24</setting>
+		<setting name="MaxPages_Mobile">3</setting>
+		<setting name="PaginateTourThumbs_Mobile">0</setting>
+		<setting name="PaginateRecentUpdates_Mobile">1</setting>
+		<setting name="MaxRecentUpdates_Mobile">0</setting>
+	</tour>
+	<defaults>
+		<members>
+			<LatestDVDs>5</LatestDVDs>
+			<ModelsPerPage>16</ModelsPerPage>
+			<DVDsPerPage>16</DVDsPerPage>
+			<SearchSetsPerPage>16</SearchSetsPerPage>
+			<WhatsHotSets>3</WhatsHotSets>
+			<MostPopularModels>6</MostPopularModels>
+			<InlineOffers>1</InlineOffers>
+		</members>
+		<tour>
+			<ModelsPerPage>16</ModelsPerPage>
+			<SearchSetsPerPage>16</SearchSetsPerPage>
+			<InlineOffers>0</InlineOffers>
+		</tour>
+		<trial>
+			<LatestDVDs>5</LatestDVDs>
+			<ModelsPerPage>16</ModelsPerPage>
+			<DVDsPerPage>16</DVDsPerPage>
+			<SearchSetsPerPage>16</SearchSetsPerPage>
+			<WhatsHotSets>3</WhatsHotSets>
+			<MostPopularModels>6</MostPopularModels>
+			<InlineOffers>1</InlineOffers>
+		</trial>
+		<transtour>
+			<LatestDVDs>5</LatestDVDs>
+			<ModelsPerPage>16</ModelsPerPage>
+			<DVDsPerPage>16</DVDsPerPage>
+			<SearchSetsPerPage>16</SearchSetsPerPage>
+			<WhatsHotSets>3</WhatsHotSets>
+			<MostPopularModels>6</MostPopularModels>
+			<InlineOffers>1</InlineOffers>
+		</transtour>
+	</defaults>
+	<text>
+		<category name="Main">
+			<item name="sitename">TheItalianPorn</item>
+			<item name="title_site">Long keywords</item>
+			<item name="title_videos">HD Porn Videos Sex Videos</item>
+			<item name="title_photos">Porn Photos Exclusive Sex Photos</item>
+			<item name="title_model">Porn model</item>
+			<item name="title_models">Full list of pornstars</item>
+			<item name="title_genre">Top Porn Categories</item>
+			<item name="title_genres">Genres Top Porn Categories</item>
+			<item name="title_favorites">Favorites</item>
+			<item name="title_messages">Messages</item>
+			<item name="title_caps">Caps</item>
+			<item name="title_tag">Top Porn Categories</item>
+			<item name="title_tags">Exclusive Porn Tags List</item>
+		</category>
+		<category name="H1 Titles">
+			<item name="h1_site">Best Pornstars, Porn Videos and Anal Sex</item>
+			<item name="h1_videos">HD Porn Videos</item>
+			<item name="h1_photos">Photos</item>
+			<item name="h1_models">Models</item>
+			<item name="h1_genre">Genre:</item>
+			<item name="h1_genres">Top Porn Categories</item>
+			<item name="h1_favorites">Favorites</item>
+			<item name="h1_messages">Messages</item>
+			<item name="h1_caps">Caps</item>
+			<item name="h1_tag">Tag:</item>
+			<item name="h1_tags">Tags from our porn movies</item>			
+		</category>
+		<category name="H2 Subtitles">
+			<item name="h2_site">Porn Videos and Anal Sex</item>
+			<item name="h2_videos">Only the best</item>
+			<item name="h2_photos">Our finest collection</item>
+			<item name="h2_models">Our sexiest models</item>
+			<item name="h2_genres">All genres</item>
+			<item name="h2_favorites">Your favories</item>
+			<item name="h2_messages">Your messages</item>
+			<item name="h2_caps">Snippets from the movie</item>
+			<item name="h2_tags">All our XXX porn tags in one single page</item>	
+		</category>
+		<category name="Comments">
+			<item name="txtwriteacomment">Write a comment...</item>
+			<item name="txtcomment">Comment</item>
+			<item name="txtcomments">Comments</item>
+			<item name="txtreply">Reply</item>
+			<item name="txtreplies">Replies</item>			
+			<item name="txtnocomments">There are no comments. Why don't you write something?</item>
+			<item name="txtcharactersremaining">characters remaining.</item>
+			<item name="txtcommentthankyouajax">Thank you for submitting your comment.</item>
+			<item name="txtcommenterrorajax">#error#</item>
+			<item name="txtcommenterror">There has been an error submitting your comment.\nPlease contact support if you continue to see this message.\n\nMessage:\n</item>
+		</category>
+		<category name="Dates, Days and Months">
+			<item name="txtdate">Date:</item>
+			<item name="txtdateadded">Date added</item>
+			<item name="txtdatereceived">Date received</item>
+			<item name="txtdatesent">Date sent</item>
+			<item name="txt3days">3 days</item>
+			<item name="txt7days">7 days</item>
+			<item name="txt14days">14 days</item>
+			<item name="txt30days">30 days</item>
+			<item name="txt60days">60 days</item>
+			<item name="txt90days">90 days</item>
+			<item name="txtmonday">Monday</item>
+			<item name="txttuesday">Tuesday</item>
+			<item name="txtwednesday">Wednesday</item>
+			<item name="txtthursday">Thursday</item>
+			<item name="txtfriday">Friday</item>
+			<item name="txtsaturday">Saturday</item>
+			<item name="txtsunday">Sunday</item>
+			<item name="txtjanuary">January</item>
+			<item name="txtfebruary">February</item>
+			<item name="txtmarch">March</item>
+			<item name="txtapril">April</item>
+			<item name="txtmay">May</item>
+			<item name="txtjune">June</item>
+			<item name="txtjuly">July</item>
+			<item name="txtaugust">August</item>
+			<item name="txtseptember">September</item>
+			<item name="txtoctober">October</item>
+			<item name="txtnovember">November</item>
+			<item name="txtdecember">December</item>
+		</category>
+		<category name="Favorites">
+			<item name="txtaddtofavorites">Add to favorites</item>
+			<item name="txtaddedtofavorites">Added to favorites</item>
+			<item name="txtremovefromfavorites">Remove from favorites</item>
+			<item name="txtremovedfromfavorites">Removed from favorites</item>
+		</category>
+		<category name="Error Messages and Info Text">
+			<item name="txtoops">Oops...</item>
+			<item name="txterror">Error</item>
+			<item name="txtconfirmdelete">Are you sure you want to delete this?</item>
+			<item name="txtnolistings">Sorry, there are currently no entries for this.</item>
+			<item name="txtnopermission">Sorry, but you do not have permission to view this.</item>
+			<item name="txtnosearchresults">Sorry, there are no results matching your search criteria.</item>
+			<item name="txtmembersonly">Members only feature.</item>
+			<item name="txtgoback">Click here to go back.</item>
+			<item name="txtjserror">Javascript must be enabled to view this area.</item>
+		</category>
+		<category name="Footer">
+			<item name="contactemail">youremail@yoursite.com</item>
+			<item name="contactemailurl">mailto:youremail@yoursite.com</item>
+			<item name="contacttext">To contact us email</item>
+			<item name="usc2257">&lt;a href="/2257.html"&gt;18 U.S.C. 2257 Compliance statement&lt;/a&gt;</item>.
+			<item name="txtcontacts">Contacts</item>
+			<item name="txtallrightsreserved">All Rights Reserved.</item>
+			<item name="txtfooter"></item>
+		</category>
+		<category name="Google Analytics Code">
+			<item name="googleanalyticscode"></item>
+		</category>
+		<category name="Navigation">
+			<item name="txtsites">Vangoren NETWORK</item>
+			<item name="txttrialarea">Trial Area</item>
+			<item name="txtmembersarea">Members Area</item>
+			<item name="txtvideos">Videos</item>
+			<item name="txtphotos">Photos</item>
+			<item name="txtmodels">Models</item>
+			<item name="txtcategories">Categories</item>
+			<item name="txtgenres">Genres</item>
+			<item name="txttags">Tags</item>
+			<item name="txtfavorites">Favorites</item>
+			<item name="txtmessages">Messages</item>			
+			<item name="txtsearch">Search</item>
+			<item name="txtfaq">FAQ</item>
+			<item name="txtmovies">Movies</item>
+			<item name="txtcaps">Caps</item>			
+			<item name="txtlogout">Log out</item>
+			<item name="txtlostpassword">Lost password?</item>
+		</category>
+		<category name="Messaging">
+			<item name="txtinbox">Inbox</item>
+			<item name="txtsent">Sent</item>
+			<item name="txtnew">New</item>
+			<item name="txtemail">Email</item>
+			<item name="txtfrom">From</item>
+			<item name="txtmailjsbody">Please enter a message body.</item>
+			<item name="txtmailjssubj">Please enter a message subject.</item>
+			<item name="txtmessage">Message</item>
+			<item name="txtreply">Reply</item>
+			<item name="txtsend">Send</item>
+			<item name="txtsubject">Subject</item>
+			<item name="txtto">To</item>
+			<item name="txtwrote">Wrote:</item>
+			<item name="txtyourname">Your Name</item>
+		</category>
+		<category name="Miscellaneous/General Navigation Items">
+			<item name="txtnext">Next</item>
+			<item name="txtpage">Page</item>
+			<item name="txtprevious">Previous</item>
+			<item name="txtsubmit">Submit</item>
+			<item name="txtcancel">Cancel</item>
+			<item name="txtok">OK</item>			
+			<item name="defaultmetadescription"/>
+			<item name="defaultmetakeywords"/>
+		</category>
+		<category name="Model">
+			<item name="txtage">Age:</item>
+			<item name="txtheight">Height:</item>
+			<item name="txtnationality">Country:</item>
+			<item name="txtmeasurements">Measurements:</item>
+			<item name="txtastrologicalsign">Astrological Sign:</item>
+			<item name="txtfunfact">Fun Fact:</item>
+			<item name="txtturnons">What turns me on:</item>
+			<item name="txtall">All</item>
+			<item name="txtfemale">Female</item>
+			<item name="txtmale">Male</item>
+			<item name="txtstarring">Starring:</item>
+			<item name="txtmodelkeywords">porno, porn, legal, model</item>
+		</category>
+		<category name="Photos and Movies">
+			<item name="txtseconds">second(s)</item>
+			<item name="txtminutes">minute(s)</item>
+			<item name="txtofvideo">of video</item>
+			<item name="txtphotos">Photos</item>
+			<item name="txtratevideo">Rate the video:</item>
+			<item name="txtdownload">Download</item>
+			<item name="txtdownloadphotos">Download photos</item>
+			<item name="txtdownloadmovie">Download movie</item>
+			<item name="txtzip">Zip</item>
+			<item name="txtreport">Report a problem</item>
+			<item name="txttypereport">Please describe the problem here</item>
+			<item name="txtphotodownload">Picture/Video does not download</item>
+			<item name="txtphotonotavailable">Picture/Video is not available</item>
+			<item name="txtphotosmissing">Pictures are missing</item>
+			<item name="txtslowdownload">Slow playback/download</item>
+			<item name="txtother">Other</item>
+		</category>
+		<category name="Search and Sorting">
+			<item name="txtnametitle">Name/Title</item>
+			<item name="txtmostrecent">Most recent</item>
+			<item name="txtmostpopular">Most popular</item>
+			<item name="txtsearchresults">Search results</item>
+		</category>
+		<category name="Section Titles">
+			<item name="txtmoreupdates">More updates</item>
+			<item name="txtloadmore">Load more</item>
+			<item name="txtviewall">View all</item>
+			<item name="txtourmodels">Our models</item>
+			<item name="txtlatestvideos">Latest videos</item>
+			<item name="txtmostpopularvideos">Most popular videos</item>
+			<item name="txtpopulargenres">Popular genres</item>
+			<item name="txtfeaturing">Porn movies featuring</item>
+			<item name="txtupcoming">Upcoming</item>
+		</category>
+		<category name="Tour">
+			<item name="tourtxtjoin">Join now</item>
+			<item name="tourtxtjoinshort">Join</item>
+			<item name="tourtxtlogin">Log in</item>
+			<item name="tourtxtmemberarea">Member area</item>
+			<item name="tourdefaultmetadescription"/>
+			<item name="tourdefaultmetakeywords"/>
+		</category>
+		<category name="Updates and Set/Update Info">
+			<item name="txtcoming">Coming</item>
+			<item name="txtin">in</item>
+			<item name="txtof">of</item>
+			<item name="txtupdates">Updates</item>
+		</category>
+		<category name="Splash Page - Age Warning Popup">
+			<item name="splashtxtenter">I AGREE - ENTER</item>
+			<item name="splashtxtdisagree">I DISAGREE - </item>
+			<item name="splashtxtexit">EXIT</item>
+			<item name="splashtxtmessage">PASTE YOUR AGE CONSENT AGREEMENT TEXT HERE.</item>
+			<item name="splashtxtwarning">WARNING</item>
+		</category>
+		<category name="FAQ">
+			<item name="txtanswers">Answers</item>
+			<item name="txtquestions">Questions</item>
+		</category>
+	</text>
+</settings>
