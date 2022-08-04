@@ -1,10 +1,4 @@
-<?php
-
-$arr = json_decode($arr, true);
-$images = array();
-
-?>
-
+<?php $arr = json_decode($arr, true); ?>
 <section class="container">
 	<div class="grid grid-deals">
 		<?php foreach ($arr as $deal) { ?>
@@ -12,7 +6,7 @@ $images = array();
 			<div class="thumb">
 				<div class="thumb-holder">
 					<a href="<?php echo $deal["redirect"]; ?>">
-						<img src="<?php echo $GLOBALS["areaurl"] . $deal["images"][array_rand($deal["images"])]; ?>" alt="">						
+						<img src="<?php echo $GLOBALS["areaurl"] . $deal["images"][array_rand($images)]; ?>" alt="">						
 					</a>
 				</div>
 				<div class="secondary">
