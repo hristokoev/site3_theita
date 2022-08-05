@@ -13,8 +13,8 @@ $textMaxLength = 250;
 				<input type="hidden" name="contenttype" value="<?php echo $contenttype; ?>" />
 				<input type="hidden" name="itemid" value="<?php echo $itemid; ?>" />
 				<input type="hidden" name="displayname" type="text" value="<?php echo $_SERVER['PHP_AUTH_USER']; ?>" />
-				<textarea maxlength="<?= $textMaxLength ?>" id="commentbox" name="commenttxt" onfocus="expand(this)" placeholder="<?= $templatefields["txtwriteacomment"]; ?>"></textarea>
-				<span class="characters"><span class="remaining"><?= $textMaxLength ?></span><?php echo ' ' . $templatefields["txtcharactersremaining"]; ?></span>
+				<textarea maxlength="<?php echo $textMaxLength; ?>" id="commentbox" name="commenttxt" onfocus="expand(this)" placeholder="<?php echo $templatefields["txtwriteacomment"]; ?>"></textarea>
+				<span class="characters"><span class="remaining"><?php echo $textMaxLength; ?></span><?php echo ' ' . $templatefields["txtcharactersremaining"]; ?></span>
 				<div class="comment-buttons">
 					<a onclick="clearCommentbox()" class="button button-cancel"><?php echo $templatefields["txtcancel"]; ?></a>
 					<a onclick="$(this).next().click()" class="button button-submit"><?php echo $templatefields["txtsubmit"]; ?></a>
@@ -58,7 +58,7 @@ $textMaxLength = 250;
 			inHeight = 18;
 			$("#commentbox").on("input", function() {
 				$(this).val($(this).val().replace(/[\r\n\v]+/g, ''));
-				charLimit = <?= $textMaxLength ?>;
+				charLimit = <?php echo $textMaxLength; ?>;
 				length = $(this).val().length;
 				remaining = charLimit - length;
 				if (length > 0) {
@@ -82,7 +82,7 @@ $textMaxLength = 250;
 
 			function clearCommentbox() {
 				$("#commentbox").val("");
-				$(".remaining").text("<?= $textMaxLength ?>");
+				$(".remaining").text("<?php echo $textMaxLength; ?>");
 				$(".comment-buttons .button-active").addClass("button-submit");
 				$(".comment-buttons .button-active").removeClass("button-active");
 				$("#commentbox").height(inHeight);

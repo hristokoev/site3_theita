@@ -280,7 +280,7 @@ if (isset($GLOBALS["trial"]) && $trial['allowzips'] == 0) {
 				<?php } ?>
 			</div>
 			<div class="container-inner container-photos">
-				<div class="gallery-block <?php echo ($settype == "highres") ? "photos" : "caps" ?>" id="photoswipe">
+				<div class="gallery-block <?php echo ($settype == "highres") ? "photos" : "caps"; ?>" id="photoswipe">
 					<?php $cnt = 0; ?>
 					<?php foreach ($media[$settype] as $k => $photo) { ?>
 						<?php if (($cnt + 1) >= $startpos && ($cnt + 1) < $endpos) { ?>

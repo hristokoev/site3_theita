@@ -17,8 +17,7 @@ $footerBanners = array_filter($banners, function (array $banner) use ($current_l
 						<?php if (!empty($banner['URL'])) : ?>
 							<a href="<?php echo $banner['URL']; ?>">
 							<?php endif ?>
-							<?php /* src="<?php echo cdn_hook($GLOBALS["contentdir"] . "/contentthumbs/" . $banner["Id"] . "-banner." . $banner["FileExt"]) ?>" */ ?>
-							<img src="https://via.placeholder.com/1920x480" alt="Banner" class="" data-remote="bannerload.php?zone=<?php echo $banner['ZoneId']; ?>">
+							<img src="<?php echo cdn_hook($GLOBALS["contentdir"] . "/contentthumbs/" . $banner["Id"] . "-banner." . $banner["FileExt"]) ?>" alt="Banner" class="" data-remote="bannerload.php?zone=<?php echo $banner['ZoneId']; ?>">
 							<?php if (!empty($banner['URL'])) : $i++; ?>
 							</a>
 						<?php endif ?>

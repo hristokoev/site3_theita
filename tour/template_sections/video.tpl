@@ -12,7 +12,7 @@ if (isset($set['info']['thumbs'][14]["1x_filename"])) {
 	$imageHighRes = cdn_hook($GLOBALS["contentdir"] . "/contentthumbs/" . $set['info']['thumbs'][14]["3x_filename"]);
 }
 ?>
-<video id="trailer" class="video-js vjs-theme-dt" controls preload="auto" poster="<?php echo $imageHighRes; ?>" data-setup="{}">
+<video id="trailer" class="video-js vjs-theme-dt" controls preload="auto" poster="<?php echo $imageHighRes; ?>">
 	<source src="<?php echo $trailer_url; ?>" type="video/mp4" data-fake="<?php echo $fake; ?>" />
 </video>
 <div class="promo" style="opacity: 0; pointer-events: none;">

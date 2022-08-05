@@ -10,4 +10,4 @@
 		</section>
 	<?php } ?>
 </div>
-<?php LoadTemplate("tour/template_sections/footer.tpl"); ?>
+<?php LoadTemplate("template_sections/footer.tpl"); ?>

@@ -13,7 +13,7 @@
 		?>
 		<?php foreach ($messages as $message) { ?>
 			<div class="message" id="<?php echo $message["Id"]; ?>">
-				<div class="message-content title<?php echo ($message["New"]) ? ' unread' : '' ?>">
+				<div class="message-content title<?php echo ($message["New"]) ? ' unread' : ''; ?>">
 					<?php if ($message["New"]) { ?>
 						<strong><?php if ($message["Answered"]) { ?><i class="fa-solid fa-reply"></i><?php } ?><?php echo $message["Subject"]; ?></strong>
 					<?php } else { ?>

@@ -47,7 +47,7 @@ if (isset($set['info']['thumbs'][14]["1x_filename"])) {
 }
 ?>
 <?php if (!empty($vidarr)) { ?>
-<video id="trailer" class="video-js vjs-theme-dt" controls preload="auto" poster="<?php echo $imageHighRes; ?>" data-setup="{}">
+<video id="trailer" class="video-js vjs-theme-dt" controls preload="auto" poster="<?php echo $imageHighRes; ?>">
 	<?php foreach ($mediatypes as $mediatype) {
 		if ($mediatype["FullVideo"] == 2 && ($mediatype["ShowPlay"] != 2 || in_array($set["Id"], $trial["allowrecent"]))) {
 			if ($mediatype["Type"] == "vids") {

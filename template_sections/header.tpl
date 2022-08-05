@@ -1,8 +1,11 @@
-<?php include "globals/globals.tpl"; ?>
+<?php 
+include "globals/globals.tpl"; 
+$detect = new Mobile_Detect;
+?>
 <header>
 	<div class="header-top <?php echo (isset($GLOBALS["trial"])) ? 'trial-area' : 'member-area'; ?>">
 	<div class="header-wrapper">
-		<span><?php echo (isset($GLOBALS["trial"])) ? $templatefields["txttrialarea"] . 'You have ' . ' videos left to watch.' : $templatefields["txtmembersarea"]; ?></span>
+		<span><?php echo (isset($GLOBALS["trial"])) ? $templatefields["txttrialarea"] : $templatefields["txtmembersarea"]; ?></span>
 	</div>		
 	</div>
 	<div class="header-bottom header">
@@ -23,28 +26,30 @@
 						</div>
 					</form>
 					<ul>
-						<li><a href="<?php echo $GLOBALS["areaurl"] . 'categories/movies/1/latest/' ?>"><i class="fa-solid fa-video"></i><?php echo $templatefields["txtvideos"]; ?></a></li>
-						<li><a href="<?php echo $GLOBALS["areaurl"] . 'categories/photos.html' ?>"><i class="fa-solid fa-camera"></i><?php echo $templatefields["txtphotos"]; ?></a></li>
+						<li><a href="<?php echo $GLOBALS["areaurl"]; ?>"><i class="fa-solid fa-house"></i><?php echo $templatefields["txthome"]; ?></a></li>
+						<li><a href="<?php echo $GLOBALS["areaurl"] . 'categories/movies/1/latest/'; ?>"><i class="fa-solid fa-video"></i><?php echo $templatefields["txtvideos"]; ?></a></li>
+						<li><a href="<?php echo $GLOBALS["areaurl"] . 'categories/photos.html'; ?>"><i class="fa-solid fa-camera"></i><?php echo $templatefields["txtphotos"]; ?></a></li>
 						<li><a href="<?php echo $GLOBALS["areaurl"]; ?>models/1/latest/"><i class="fa-solid fa-face-grin-tongue-wink"></i><?php echo $templatefields["txtmodels"]; ?></a></li>
-						<li><a href="<?php echo $GLOBALS["areaurl"] . 'categories/categories.html' ?>"><i class="fa-solid fa-boxes-stacked"></i><?php echo $templatefields["txtgenres"]; ?></a></li>
-						<li><a href="<?php echo $GLOBALS["areaurl"] . 'categories/tags.html' ?>"><i class="fa-solid fa-hashtag"></i><?php echo $templatefields["txttags"]; ?></a></li>
+						<li><a href="<?php echo $GLOBALS["areaurl"] . 'categories/categories.html'; ?>"><i class="fa-solid fa-boxes-stacked"></i><?php echo $templatefields["txtgenres"]; ?></a></li>
+						<li><a href="<?php echo $GLOBALS["areaurl"] . 'categories/tags.html'; ?>"><i class="fa-solid fa-hashtag"></i><?php echo $templatefields["txttags"]; ?></a></li>
 					</ul>
 				</div>
 				<div class="mobile-close"></div>
 			</div>
-			<div id="logo" class="header-start nav-item sub">
-				<a href="<?php echo Index_URL(); ?>" title="<?php echo $templatefields["sitename"]; ?>"><img src="https://theitalianporn.com/images/logo.png" alt="<?php echo $templatefields["sitename"]; ?>"></a>
+			<div id="logo" onclick="blockReveal()" class="header-start nav-item sub">
+				<a title="<?php echo $templatefields["sitename"]; ?>"><img src="https://theitalianporn.com/images/logo.png" alt="<?php echo $templatefields["sitename"]; ?>"></a>
 				<?php if (isset($sites) && !empty($sites)) { ?>
 					<span class="menu-down"></span>
 				<?php } ?>
 			</div>
 			<div class="header-middle">
 				<ul class="nav-wrapper">
-					<li class="nav-item"><a href="<?php echo $GLOBALS["areaurl"] . 'categories/movies/1/latest/' ?>"><?php echo $templatefields["txtvideos"]; ?></a></li>
-					<li class="nav-item"><a href="<?php echo $GLOBALS["areaurl"] . 'categories/photos.html' ?>"><?php echo $templatefields["txtphotos"]; ?></a></li>
+					<li class="nav-item"><a href="<?php echo $GLOBALS["areaurl"]; ?>"><?php echo $templatefields["txthome"]; ?></a></li>
+					<li class="nav-item"><a href="<?php echo $GLOBALS["areaurl"] . 'categories/movies/1/latest/'; ?>"><?php echo $templatefields["txtvideos"]; ?></a></li>
+					<li class="nav-item"><a href="<?php echo $GLOBALS["areaurl"] . 'categories/photos.html'; ?>"><?php echo $templatefields["txtphotos"]; ?></a></li>
 					<li class="nav-item"><a href="<?php echo $GLOBALS["areaurl"]; ?>models/1/latest/"><?php echo $templatefields["txtmodels"]; ?></a></li>
-					<li class="nav-item"><a href="<?php echo $GLOBALS["areaurl"] . 'categories/categories.html' ?>"><?php echo $templatefields["txtgenres"]; ?></a></li>
-					<li class="nav-item"><a href="<?php echo $GLOBALS["areaurl"] . 'categories/tags.html' ?>"><?php echo $templatefields["txttags"]; ?></a></li>
+					<li class="nav-item"><a href="<?php echo $GLOBALS["areaurl"] . 'categories/categories.html'; ?>"><?php echo $templatefields["txtgenres"]; ?></a></li>
+					<li class="nav-item"><a href="<?php echo $GLOBALS["areaurl"] . 'categories/tags.html'; ?>"><?php echo $templatefields["txttags"]; ?></a></li>
 				</ul>
 			</div>
 			<div class="header-end bottom">
@@ -67,7 +72,7 @@
 						</ul>
 					</div>
 					<div class="nav-block-main">
-						<div class="sub-image"><img id="banner" src="https://via.placeholder.com/991x120/a1acc0/FFFFFF" alt=""></div>
+						<div class="sub-image"><img id="banner" src="https://dummyimage.com/992x120/000/fff&text=Banner" alt=""></div>
 						<h3 class="subsite-title"><span><?php echo $templatefields["txtmostpopular"]; ?>&nbsp;from&nbsp;</span><span class="sitename"><?php echo $site_name; ?></span></h3>
 						<?php
 						$layout = [
@@ -95,14 +100,28 @@
 		</div>
 	</div>
 	<script>
+		<?php if (!$detect->isMobile()) { ?>
+		function blockReveal() {
+			$("#block").toggle();
+			$(".menu-down").toggleClass("pressed");
+		}
+		<?php } ?>
+
 		$(".subsite").hover(function() {
 			$(".sub-videos").hide();
 			$(".subsite.active").removeClass("active");
 			$(".sitename").text($(this).text());
-			//$("#banner").attr("src", `https://${$(this).text()}.com/images/banner_header.jpg`)
+			$("#banner").attr("src", `https://dummyimage.com/992x120/000/fff&text=${$(this).text()}`);
 			$(this).toggleClass("active");
 			let last = $(this).text();
 			$("#site-" + last).show();
+		});
+
+		$(document).on("click", function(e) {
+			if ($(e.target).closest("#logo").length === 0 && $(e.target).closest("#block").length === 0) {
+				$("#block").hide();
+				$(".menu-down").removeClass("pressed");
+			}
 		});
 	</script>
 </header>

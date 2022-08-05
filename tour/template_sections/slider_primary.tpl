@@ -1,5 +1,4 @@
 <?php
-$detect = new Mobile_Detect;
 if ($set || $individual_update || $pagename !== 'tour' || !isset($banners) || !empty($banners) < 1) {
 	return;
 }
@@ -22,13 +21,8 @@ $headerBanners = array_filter($banners, function (array $banner) use ($current_l
 						<?php if (!empty($banner['URL'])) : ?>
 							<a href="<?php echo $banner['URL']; ?>">
 							<?php endif ?>
-							<?php /* src="<?php echo cdn_hook($GLOBALS["contentdir"] . "/contentthumbs/" . $banner["Id"] . "-banner." . $banner["FileExt"]) ?>" */ ?>
 							<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-							<?php if (!$detect->isMobile()) { ?>
-								<img src="https://via.placeholder.com/1920x560/a1acc0/FFFFFF" alt="Banner" data-remote="bannerload.php?zone=<?php echo $banner['ZoneId']; ?>" class="swiper-lazy">
-							<?php } else { ?>
-								<img src="https://via.placeholder.com/576x230/a1acc0/FFFFFF" alt="Banner" data-remote="bannerload.php?zone=<?php echo $banner['ZoneId']; ?>" class="swiper-lazy">
-							<?php } ?>
+							<img src="<?php echo cdn_hook($GLOBALS["contentdir"] . "/contentthumbs/" . $banner["Id"] . "-banner." . $banner["FileExt"]) ?>" alt="Banner" data-remote="bannerload.php?zone=<?php echo $banner['ZoneId']; ?>" class="swiper-lazy">
 							<?php if (!empty($banner['URL'])) : $i++; ?>
 							</a>
 						<?php endif ?>

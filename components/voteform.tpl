@@ -31,8 +31,8 @@ $starclass = ($has_username) ? "rating-voteable" : "rating-nonvoteable";
 				} else {
 					$rated = $$type["PointsRank"] / ($$type["PointsTot"] > 0 ? $$type["PointsTot"] : 1) * 10;
 					for ($pos = 5; $pos >= 1; $pos--) { ?>
-						<input class="star star-<?php echo $pos; ?><?php if ($pos == $rated / 2 + 0.5) echo ' half' ?>" id="star-<?php echo $pos; ?>" type="radio" name="star" <?php if ($pos == $rated / 2 || $pos == $rated / 2 + 0.5) echo 'checked'; ?> />
-						<label data-pos="<?php echo $pos; ?>" class="star star-<?php echo $pos . ' ' . $starclass; ?><?php if ($pos == $rated / 2 + 0.5) echo ' half' ?>" for="star-<?php echo $pos; ?>"></label>
+						<input class="star star-<?php echo $pos; ?><?php if ($pos == $rated / 2 + 0.5) echo ' half'; ?>" id="star-<?php echo $pos; ?>" type="radio" name="star" <?php if ($pos == $rated / 2 || $pos == $rated / 2 + 0.5) echo 'checked'; ?> />
+						<label data-pos="<?php echo $pos; ?>" class="star star-<?php echo $pos . ' ' . $starclass; ?><?php if ($pos == $rated / 2 + 0.5) echo ' half'; ?>" for="star-<?php echo $pos; ?>"></label>
 				<?php
 					}
 				}
@@ -40,8 +40,8 @@ $starclass = ($has_username) ? "rating-voteable" : "rating-nonvoteable";
 		} else {
 			$rated = $$type["PointsRank"] / ($$type["PointsTot"] > 0 ? $$type["PointsTot"] : 1) * 10;
 			for ($pos = 5; $pos >= 1; $pos--) { ?>
-				<input class="star star-<?php echo $pos; ?><?php if ($pos == $rated / 2 + 0.5) echo ' half' ?>" id="star-<?php echo $pos; ?>" type="radio" name="star" <?php if ($pos == $rated / 2 || $pos == $rated / 2 + 0.5) echo 'checked'; ?> disabled />
-				<label data-pos="<?php echo $pos; ?>" class="star star-<?php echo $pos . ' ' . $starclass; ?><?php if ($pos == $rated / 2 + 0.5) echo ' half' ?>" for="star-<?php echo $pos; ?>"></label>
+				<input class="star star-<?php echo $pos; ?><?php if ($pos == $rated / 2 + 0.5) echo ' half'; ?>" id="star-<?php echo $pos; ?>" type="radio" name="star" <?php if ($pos == $rated / 2 || $pos == $rated / 2 + 0.5) echo 'checked'; ?> disabled />
+				<label data-pos="<?php echo $pos; ?>" class="star star-<?php echo $pos . ' ' . $starclass; ?><?php if ($pos == $rated / 2 + 0.5) echo ' half'; ?>" for="star-<?php echo $pos; ?>"></label>
 		<?php
 			}
 		}

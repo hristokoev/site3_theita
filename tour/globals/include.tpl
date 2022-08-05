@@ -9,8 +9,8 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery-ui-dist@1.13.1/jquery-ui.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-ui-dist@1.13.1/jquery-ui.min.css">
 
-<!-- CDN --------- Plugins\VideoJS -->
 <?php if ($pagename == "trailer") { ?>
+<!-- CDN --------- Plugins\VideoJS -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7/dist/video-js.min.css">
 <?php } ?>
 
@@ -32,6 +32,10 @@
 <script type="text/javascript" defer src="<?php echo $GLOBALS["areaurl"]; ?>js/custom.js"></script>
 <script type="text/javascript" defer src="<?php echo $GLOBALS["areaurl"]; ?>js/tour.js"></script>
 <script type="text/javascript" defer src="<?php echo $GLOBALS["areaurl"]; ?>js/videohandler.js"></script>
+
+<?php if ($pagename == "pages" && $_GET["id"] == "contacts") { ?>
+<script type="text/javascript" defer src="<?php echo $GLOBALS["areaurl"]; ?>contact-form/form.js"></script>
+<?php } ?>
 
 <!-- Style -->
 <link href="<?php echo $GLOBALS["areaurl"]; ?>css/main.css" rel="stylesheet" />

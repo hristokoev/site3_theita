@@ -11,9 +11,9 @@ LoadTemplate("template_sections/header.tpl", ["pagename" => "messaging", "title"
 		</div>
 		<div class="mailbox">
 			<div class="mailbox-menu">
-				<a href="<<?php echo $GLOBALS["areaurl"]; ?>mailbox.php?inbox=1" class="button-message <?php echo ($inbox == 1 && $compose == 0) ? 'active' : '' ?>"><span><?php echo $templatefields["txtinbox"]; ?></span></a>
-				<a href="<<?php echo $GLOBALS["areaurl"]; ?>mailbox.php?inbox=0" class="button-message <?php echo ($inbox == 0 && $compose == 0) ? 'active' : '' ?>"><span><?php echo $templatefields["txtsent"]; ?></span></a>
-				<a href="<<?php echo $GLOBALS["areaurl"]; ?>mailbox.php?compose=1" class="button-message <?php echo ($compose == 1) ? 'active' : '' ?>"><span><?php echo $templatefields["txtnew"]; ?><i class="fa-solid fa-plus"></i></span></a>
+				<a href="<<?php echo $GLOBALS["areaurl"]; ?>mailbox.php?inbox=1" class="button-message <?php echo ($inbox == 1 && $compose == 0) ? 'active' : ''; ?>"><span><?php echo $templatefields["txtinbox"]; ?></span></a>
+				<a href="<<?php echo $GLOBALS["areaurl"]; ?>mailbox.php?inbox=0" class="button-message <?php echo ($inbox == 0 && $compose == 0) ? 'active' : ''; ?>"><span><?php echo $templatefields["txtsent"]; ?></span></a>
+				<a href="<<?php echo $GLOBALS["areaurl"]; ?>mailbox.php?compose=1" class="button-message <?php echo ($compose == 1) ? 'active' : ''; ?>"><span><?php echo $templatefields["txtnew"]; ?><i class="fa-solid fa-plus"></i></span></a>
 			</div>
 			<?php
 			if ($compose) {

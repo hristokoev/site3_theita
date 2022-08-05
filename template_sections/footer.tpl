@@ -9,8 +9,8 @@
 			</div>
 			<div class="footer-column flex-column">
 				<div class="footer-title">Account</div>
-				<a href="#">Hot deals</a>
-				<a href="<?php echo $GLOBALS["areaurl"]; ?>logout"><?php echo $templatefields["txtlogout"]; ?></a>
+				<a href="<?php echo $GLOBALS["areaurl"]; ?>pages.php?id=hot-deals">Hot deals</a>
+				<a href="<?php echo 'https://members.' . str_replace("/", "", $area["AreaURL"]) . '.com' . '/logout'; ?>"><?php echo $templatefields["txtlogout"]; ?></a>
 			</div>
 			<div class="footer-column flex-column">
 				<div class="footer-title">Partners</div>

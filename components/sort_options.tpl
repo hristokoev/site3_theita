@@ -45,15 +45,15 @@ if ($pagename == "category") {
 	<ul class="menu">
 		<?php if (!isset($favorites_flag)) { ?>
 			<?php $args["s"] = "d"; ?>
-			<li><a href="<?php echo $func($args); ?>" class="<?php echo ($sort == "d") ? "active" : "" ?>"><?php echo $templatefields["txtmostrecent"]; ?></a></li>
+			<li><a href="<?php echo $func($args); ?>" class="<?php echo ($sort == "d") ? "active" : ""; ?>"><?php echo $templatefields["txtmostrecent"]; ?></a></li>
 			<?php $args["s"] = "p"; ?>
-			<li><a href="<?php echo $func($args); ?>" class="<?php echo ($sort == "p") ? "active" : "" ?>"><?php echo $templatefields["txtmostpopular"]; ?></a></li>
+			<li><a href="<?php echo $func($args); ?>" class="<?php echo ($sort == "p") ? "active" : ""; ?>"><?php echo $templatefields["txtmostpopular"]; ?></a></li>
 			<?php $args["s"] = "n"; ?>
-			<li><a href="<?php echo $func($args); ?>" class="<?php echo ($sort == "n") ? "active" : "" ?>"><?php echo $templatefields["txtnametitle"]; ?></a></li>
+			<li><a href="<?php echo $func($args); ?>" class="<?php echo ($sort == "n") ? "active" : ""; ?>"><?php echo $templatefields["txtnametitle"]; ?></a></li>
 		<?php } else { ?>
-			<li><a href="<?php echo $GLOBALS["areaurl"]; ?>favorites.php?s=d" class="<?php echo ($sort == "d") ? "active" : "" ?>"><?php echo $templatefields["txtmostrecent"]; ?></a></li>
-			<li><a href="<?php echo $GLOBALS["areaurl"]; ?>favorites.php?s=p" class="<?php echo ($sort == "p") ? "active" : "" ?>"><?php echo $templatefields["txtmostpopular"]; ?></a></li>
-			<li><a href="<?php echo $GLOBALS["areaurl"]; ?>favorites.php?s=n" class="<?php echo ($sort == "n") ? "active" : "" ?>"><?php echo $templatefields["txtnametitle"]; ?></a></li>
+			<li><a href="<?php echo $GLOBALS["areaurl"]; ?>favorites.php?s=d" class="<?php echo ($sort == "d") ? "active" : ""; ?>"><?php echo $templatefields["txtmostrecent"]; ?></a></li>
+			<li><a href="<?php echo $GLOBALS["areaurl"]; ?>favorites.php?s=p" class="<?php echo ($sort == "p") ? "active" : ""; ?>"><?php echo $templatefields["txtmostpopular"]; ?></a></li>
+			<li><a href="<?php echo $GLOBALS["areaurl"]; ?>favorites.php?s=n" class="<?php echo ($sort == "n") ? "active" : ""; ?>"><?php echo $templatefields["txtnametitle"]; ?></a></li>
 		<?php } ?>
 	</ul>
 </div>

@@ -56,11 +56,11 @@ $sitename = str_replace(".com", "", $url['host']);
 						</div>
 					</form>
 					<ul>
-						<li><a href="<?php echo $GLOBALS["areaurl"] . 'categories/movies.html' ?>"><i class="fa-solid fa-video"></i><?php echo $templatefields["txtvideos"]; ?></a></li>
-						<li><a href="<?php echo $GLOBALS["areaurl"] . 'categories/photos.html' ?>"><i class="fa-solid fa-camera"></i><?php echo $templatefields["txtphotos"]; ?></a></li>
+						<li><a href="<?php echo $GLOBALS["areaurl"] . 'categories/movies.html'; ?>"><i class="fa-solid fa-video"></i><?php echo $templatefields["txtvideos"]; ?></a></li>
+						<li><a href="<?php echo $GLOBALS["areaurl"] . 'categories/photos.html'; ?>"><i class="fa-solid fa-camera"></i><?php echo $templatefields["txtphotos"]; ?></a></li>
 						<li><a href="<?php echo $GLOBALS["areaurl"]; ?>models/1/latest/"><i class="fa-solid fa-face-grin-tongue-wink"></i><?php echo $templatefields["txtmodels"]; ?></a></li>
-						<li><a href="<?php echo $GLOBALS["areaurl"] . 'categories/categories.html' ?>"><i class="fa-solid fa-boxes-stacked"></i><?php echo $templatefields["txtgenres"]; ?></a></li>
-						<li><a href="<?php echo $GLOBALS["areaurl"] . 'categories/tags.html' ?>"><i class="fa-solid fa-hashtag"></i><?php echo $templatefields["txttags"]; ?></a></li>
+						<li><a href="<?php echo $GLOBALS["areaurl"] . 'categories/categories.html'; ?>"><i class="fa-solid fa-boxes-stacked"></i><?php echo $templatefields["txtgenres"]; ?></a></li>
+						<li><a href="<?php echo $GLOBALS["areaurl"] . 'categories/tags.html'; ?>"><i class="fa-solid fa-hashtag"></i><?php echo $templatefields["txttags"]; ?></a></li>
 					</ul>
 				</div>
 				<div class="mobile-close"></div>
@@ -70,11 +70,11 @@ $sitename = str_replace(".com", "", $url['host']);
 			</div>
 			<div class="header-middle">
 				<ul class="nav-wrapper">
-					<li class="nav-item"><a href="<?php echo $GLOBALS["areaurl"] . 'categories/movies.html' ?>"><?php echo $templatefields["txtvideos"]; ?></a></li>
-					<li class="nav-item"><a href="<?php echo $GLOBALS["areaurl"] . 'categories/photos.html' ?>"><?php echo $templatefields["txtphotos"]; ?></a></li>
+					<li class="nav-item"><a href="<?php echo $GLOBALS["areaurl"] . 'categories/movies.html'; ?>"><?php echo $templatefields["txtvideos"]; ?></a></li>
+					<li class="nav-item"><a href="<?php echo $GLOBALS["areaurl"] . 'categories/photos.html'; ?>"><?php echo $templatefields["txtphotos"]; ?></a></li>
 					<li class="nav-item"><a href="<?php echo $GLOBALS["areaurl"]; ?>models/1/latest/"><?php echo $templatefields["txtmodels"]; ?></a></li>
-					<li class="nav-item"><a href="<?php echo $GLOBALS["areaurl"] . 'categories/categories.html' ?>"><?php echo $templatefields["txtgenres"]; ?></a></li>
-					<li class="nav-item"><a href="<?php echo $GLOBALS["areaurl"] . 'categories/tags.html' ?>"><?php echo $templatefields["txttags"]; ?></a></li>
+					<li class="nav-item"><a href="<?php echo $GLOBALS["areaurl"] . 'categories/categories.html'; ?>"><?php echo $templatefields["txtgenres"]; ?></a></li>
+					<li class="nav-item"><a href="<?php echo $GLOBALS["areaurl"] . 'categories/tags.html'; ?>"><?php echo $templatefields["txttags"]; ?></a></li>
 				</ul>
 			</div>
 			<div class="header-end">
@@ -92,4 +92,4 @@ $sitename = str_replace(".com", "", $url['host']);
 	include "tour/splash.tpl";
 	exit();
 } ?>
-<?php include "tour/template_sections/slider_primary.tpl" ?>
+<?php include "tour/template_sections/slider_primary.tpl"; ?>
