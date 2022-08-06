@@ -17,7 +17,7 @@
 					li = that._renderItemData(ul, item);
 					if (item.category) {
 						if (item.scenes >= 1) {
-							li.html(`<span>${item.value}</span> <span class="ui-menu-item-sub">(${item.scenes} ${item.scenes == 1 ? "scene" : "scenes"})</span>`);
+							li.html(`<span>${item.value}</span> <span class="ui-menu-item-sub">(${item.scenes} ${item.scenes == 1 ? "<?php echo $templatefields["txtscene"]; ?>" : "<?php echo $templatefields["txtscenes"]; ?>"})</span>`);
 						}
 						li.attr("aria-label", item.category + ":" + item.label);
 					}
@@ -27,7 +27,7 @@
 		$("#autosuggest").catcomplete({
 			delay: 0,
 			source: function(req, add) {
-				$.get('<?php echo $GLOBALS["areaurl"]; ?>advancedsearch.php?q=' + req.term, function(data) {
+				$.get('<?php echo $areaurl; ?>advancedsearch.php?q=' + req.term, function(data) {
 					let foundObj = JSON.parse(data);
 					let resultObj = [];
 					let counter = 0;
@@ -53,7 +53,9 @@
 										break;
 								}
 								resultObj[counter].category = key;
-								if (key == "categories") resultObj[counter].category = "genres";
+								if (key == "models") resultObj[counter].category = "<?php echo $templatefields["txtmodels"]; ?>";
+								if (key == "categories") resultObj[counter].category = "<?php echo $templatefields["txtgenres"]; ?>";
+								if (key == "tags") resultObj[counter].category = "<?php echo $templatefields["txttags"]; ?>";
 								unique++;
 							}
 							counter++;

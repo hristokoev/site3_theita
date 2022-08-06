@@ -42,7 +42,7 @@ foreach ($photo as $k => $tmp) {
 	<?php echo $templatefields["txtcoming"]; ?><?php echo current($photo)["date"]; ?>
 <?php } else { ?>
 
-<a <?php if (isset($GLOBALS["trial"])) { if (in_array($onpage, $trial["accesspages"]) || $trial["accesspages"][0] == 0 || in_array($set["Id"], $trial["allowrecent"])) { ?> onclick="pswpLightbox.loadAndOpen(<?php echo $n; ?>); return false;" data-id="<?php echo $n; ?>" href="<?php if (in_array($n+1, $trial["clickpages"])) { echo cdn_hook('https://members.vangoren.com' . $GLOBALS["contentdir"] . "upload/" . $set["Directory"] . $source); } else { echo $trial["photourl"]; } ?>" target="_blank"><?php } else { ?>
+<a <?php if (isset($trial)) { if (in_array($onpage, $trial["accesspages"]) || $trial["accesspages"][0] == 0 || in_array($set["Id"], $trial["allowrecent"])) { ?> onclick="pswpLightbox.loadAndOpen(<?php echo $n; ?>); return false;" data-id="<?php echo $n; ?>" href="<?php if (in_array($n+1, $trial["clickpages"])) { echo cdn_hook('https://members.vangoren.com' . $GLOBALS["contentdir"] . "upload/" . $set["Directory"] . $source); } else { echo $trial["photourl"]; } ?>" target="_blank"><?php } else { ?>
 	href="<?php echo $trial["photourl"]; ?>"><?php } } else { ?>
 	onclick="pswpLightbox.loadAndOpen(<?php echo $n; ?>); return false;" data-id="<?php echo $n; ?>" href="<?php echo cdn_hook('https://members.vangoren.com' . $GLOBALS["contentdir"] . "upload/" . $set["Directory"] . $source) ?>" target="_blank"><?php } ?>
 		<img <?php if ($thumb_w) { ?>width="<?php echo $thumb_w; ?>" <?php } ?><?php if ($thumb_h) { ?>height="<?php echo $thumb_h ?>" <?php } ?>src="<?php echo cdn_hook('https://members.vangoren.com' . $GLOBALS["contentdir"] . "upload/" . $set["Directory"] . $thumb) ?>" />

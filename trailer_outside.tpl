@@ -40,7 +40,7 @@
 				<?php LoadTemplate("components/list_genres.tpl"); ?>
 			</div>
 			<div class="trailer-cats tags">
-				<div class="list tags-list"><i class="fa-solid fa-hashtag" aria-hidden="true"><span><?php echo $templatefields["txttags"]; ?></span></i><?php LoadTemplate("components/list_tags.tpl"); ?></div>
+				<div class="list tags-list"><i class="fa-solid fa-hashtag" aria-hidden="true"><span><?php echo $templatefields["txttags"]; ?></span></i><?php LoadTemplate("components/list_tags.tpl", ["class" => "rounded"]); ?></div>
 			</div>
 		</div>
 	</section>
@@ -48,7 +48,7 @@
 		<div class="main-header-title">
 			<div class="holder">
 				<h2><?php echo $templatefields["txtmoreupdates"]; ?></h2>
-				<a href="<?php echo $GLOBALS["areaurl"]; ?>categories/movies/1/latest/"><?php echo $templatefields["txtviewall"]; ?>&nbsp;<i class="fa-solid fa-arrow-right-long"></i></a>
+				<a href="<?php echo $areaurl; ?>categories/movies/1/latest/"><?php echo $templatefields["txtviewall"]; ?>&nbsp;<i class="fa-solid fa-arrow-right-long"></i></a>
 			</div>
 		</div>
 		<div class="grid grid-videos">
@@ -74,7 +74,7 @@
 				endforeach;
 			?>
 		</div>
-		<a href="<?php echo $GLOBALS["areaurl"]; ?>models/1/latest/" class="button button-load-more button-outline"><?php echo $templatefields["txtviewall"]; ?></a>
+		<a href="<?php echo $areaurl; ?>models/1/latest/" class="button button-load-more button-outline"><?php echo $templatefields["txtviewall"]; ?></a>
 	<?php
 			} else {
 				$layout = [

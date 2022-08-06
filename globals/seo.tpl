@@ -14,6 +14,14 @@ if ($pagename == "tour") {
 	}
 } 
 
+if ($pagename == "index") {
+	if (isset($trial)) {
+		$title = $templatefields["txttrialarea"] . ' | ' .  $templatefields["sitename"];
+	} else {
+		$title = $templatefields["txtmembersarea"] . ' | ' .  $templatefields["sitename"];
+	}
+}
+
 // VIDEOS PAGE
 else if ($pagename == "movies" || $pagename == "vids") {
 	$title = $templatefields["title_videos"] . ' | ' . $templatefields["sitename"];

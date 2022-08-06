@@ -7,7 +7,7 @@ $textMaxLength = 250;
 			<h3 class="page-title"><?php echo $templatefields["txtcomments"]; ?></h3>
 		</div>
 	<?php } ?>
-	<?php if ($has_username && !isset($GLOBALS["trial"])) { ?>
+	<?php if ($has_username && !isset($trial)) { ?>
 		<div class="comments-box">
 			<form id="cmnt" method="post" action="commentpost.php" onsubmit="return commentvalidate(this)">
 				<input type="hidden" name="contenttype" value="<?php echo $contenttype; ?>" />
@@ -54,7 +54,7 @@ $textMaxLength = 250;
 		</div>
 	<?php } ?>
 	<script>
-		<?php if ($has_username && !isset($GLOBALS["trial"])) { ?>
+		<?php if ($has_username && !isset($trial)) { ?>
 			inHeight = 18;
 			$("#commentbox").on("input", function() {
 				$(this).val($(this).val().replace(/[\r\n\v]+/g, ''));

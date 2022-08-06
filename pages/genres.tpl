@@ -18,13 +18,13 @@
 								</a>
 							</div>
 							<div class="secondary">
-								<h4><?php echo $cat["Title"]; ?></h4>
+								<h4><a href="<?php echo custom_Category_Landing_URL(["id" => $cat["Id"], "seoname" => $cat["SEOname"], "s" => "d", "category" => $cat]) ?>"><?php echo $cat["Title"]; ?></a></h4>
 								<span>
 									<?php
 									if ($setobj->settotal == 1) {
-										echo $setobj->settotal . ' scene';
+										echo $setobj->settotal . ' ' . $templatefields["txtscene"];
 									} else {
-										echo $setobj->settotal . ' scenes';
+										echo $setobj->settotal . ' ' . $templatefields["txtscenes"];
 									}
 									?>
 								</span>

@@ -75,6 +75,11 @@ if ($category_selected["Title"] == "Categories") {
 				}
 				?>
 			</div>
+			<?php if ($category_selected['Title'] == "Movies") { ?>
+			<div class="tags">
+				<div class="list tags-list"><?php LoadTemplate("components/list_tags.tpl"); ?></div>
+			</div>
+			<?php } ?>
 			<div class="grid <?php if ($prefer == 'highres') { ?>grid-photos<?php } else { ?>grid-videos<?php } ?>">
 				<?php
 				$subsiteid = $_REQUEST['subsiteid'];

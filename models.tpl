@@ -18,11 +18,11 @@ if (isset($_REQUEST['s']) && $_REQUEST['s'] != '') {
 		<div class="pagination pagination-top">
 			<div class="sort-options">
 				<div class="sorting">
-					<a href="<?php echo $GLOBALS["areaurl"]; ?>models/1/latest/" class="button <?php if (!isset($_REQUEST['g'])) { echo "button-active"; } ?>"><?php echo $templatefields["txtall"]; ?></a>
+					<a href="<?php echo $areaurl; ?>models/1/latest/" class="button <?php if (!isset($_REQUEST['g'])) { echo "button-active"; } ?>"><?php echo $templatefields["txtall"]; ?></a>
 					<?php $args["g"] = "f"; ?>
-					<a href="<?php echo $GLOBALS["areaurl"]; ?><?php echo $func($args); ?>" class="button <?php if (isset($_REQUEST['g']) && $_REQUEST['g'] == 'f') { echo "button-active"; } ?>"><?php echo $templatefields["txtfemale"]; ?></a>
+					<a href="<?php echo $func($args); ?>" class="button <?php if (isset($_REQUEST['g']) && $_REQUEST['g'] == 'f') { echo "button-active"; } ?>"><?php echo $templatefields["txtfemale"]; ?></a>
 					<?php $args["g"] = "m"; ?>
-					<a href="<?php echo $GLOBALS["areaurl"]; ?><?php echo $func($args); ?>" class="button <?php if (isset($_REQUEST['g']) && $_REQUEST['g'] == 'm') { echo "button-active"; } ?>"><?php echo $templatefields["txtmale"]; ?></a>
+					<a href="<?php echo $func($args); ?>" class="button <?php if (isset($_REQUEST['g']) && $_REQUEST['g'] == 'm') { echo "button-active"; } ?>"><?php echo $templatefields["txtmale"]; ?></a>
 				</div>
 			</div>
 		</div>

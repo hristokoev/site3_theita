@@ -71,8 +71,8 @@
 	</defaults>
 	<text>
 		<category name="Main">
-			<item name="sitename">TheItalianPorn</item>
-			<item name="title_site">Long keywords</item>
+			<item name="sitename">VANGOREN</item>
+			<item name="title_site">Vangoren is a Collection of Pornstars, Porn Videos &amp; Anal Sex</item>
 			<item name="title_videos">HD Porn Videos Sex Videos</item>
 			<item name="title_photos">Porn Photos Exclusive Sex Photos</item>
 			<item name="title_model">Porn model</item>
@@ -157,6 +157,7 @@
 			<item name="txtaddedtofavorites">Added to favorites</item>
 			<item name="txtremovefromfavorites">Remove from favorites</item>
 			<item name="txtremovedfromfavorites">Removed from favorites</item>
+			<item name="txtnofavorites">You don't have anything in favorites yet. Why don't you check our latest collection?</item>
 		</category>
 		<category name="Error Messages and Info Text">
 			<item name="txtoops">Oops...</item>
@@ -164,19 +165,24 @@
 			<item name="txtconfirmdelete">Are you sure you want to delete this?</item>
 			<item name="txtnolistings">Sorry, there are currently no entries for this.</item>
 			<item name="txtnopermission">Sorry, but you do not have permission to view this.</item>
+			<item name="txtnomessages">You don't have any messages.</item>
 			<item name="txtnosearchresults">Sorry, there are no results matching your search criteria.</item>
 			<item name="txtmembersonly">Members only feature.</item>
 			<item name="txtgoback">Click here to go back.</item>
 			<item name="txtjserror">Javascript must be enabled to view this area.</item>
 		</category>
 		<category name="Footer">
-			<item name="contactemail">youremail@yoursite.com</item>
-			<item name="contactemailurl">mailto:youremail@yoursite.com</item>
+			<item name="contactemail">info@vangoren.com</item>
+			<item name="contactemailurl">mailto:info@vangoren.com</item>
 			<item name="contacttext">To contact us email</item>
 			<item name="usc2257">&lt;a href="/2257.html"&gt;18 U.S.C. 2257 Compliance statement&lt;/a&gt;</item>.
 			<item name="txtcontacts">Contacts</item>
 			<item name="txtallrightsreserved">All Rights Reserved.</item>
-			<item name="txtfooter"></item>
+			<item name="txtfooter">&lt;h3&gt;Porn Videos and Anal Sex&lt;/h3&gt;&lt;h4&gt;MVG Productions - Svetova 523/1, Liben, 180 00, Praha - Czech Republic&lt;/h4&gt;&lt;p&gt;For billing support please visit &lt;a href=&quot;https://epoch.com/&quot; target=&quot;_blank&quot;&gt;Epoch Billing Support&lt;/a&gt;, our authorized sales agents.&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://vangoren.com/custodian/&quot;&gt;18 U.S.C. 2257 Record-Keeping Requirements Compliance Statement&lt;/a&gt;&lt;/p&gt;</item>
+			<item name="txtfootercol1">Information</item>			
+			<item name="txtfootercol2">Account</item>
+			<item name="txtfootercol3">Partners</item>
+			<item name="txtfootercol4">Follow Us</item>			
 		</category>
 		<category name="Google Analytics Code">
 			<item name="googleanalyticscode"></item>
@@ -223,7 +229,7 @@
 			<item name="txtprevious">Previous</item>
 			<item name="txtsubmit">Submit</item>
 			<item name="txtcancel">Cancel</item>
-			<item name="txtok">OK</item>			
+			<item name="txtok">OK</item>		
 			<item name="defaultmetadescription"/>
 			<item name="defaultmetakeywords"/>
 		</category>
@@ -284,17 +290,23 @@
 			<item name="tourdefaultmetadescription"/>
 			<item name="tourdefaultmetakeywords"/>
 		</category>
+		<category name="Trial">
+			<item name="trialtxtupgrade">Get full access</item>
+			<item name="trialtxtupgradeshort">Upgrade</item>
+		</category>		
 		<category name="Updates and Set/Update Info">
 			<item name="txtcoming">Coming</item>
 			<item name="txtin">in</item>
 			<item name="txtof">of</item>
 			<item name="txtupdates">Updates</item>
+			<item name="txtscene">scene</item>
+			<item name="txtscenes">scenes</item>
 		</category>
 		<category name="Splash Page - Age Warning Popup">
 			<item name="splashtxtenter">I AGREE - ENTER</item>
 			<item name="splashtxtdisagree">I DISAGREE - </item>
 			<item name="splashtxtexit">EXIT</item>
-			<item name="splashtxtmessage">PASTE YOUR AGE CONSENT AGREEMENT TEXT HERE.</item>
+			<item name="splashtxtmessage">&lt;p&gt;If you are under the age of 18, please click the &quot;I DISAGREE&quot; button. &lt;br&gt; This website uses cookies. We use cookies to personalize content and ads, to provide social media features and to analyze our traffic. You consent to our cookies if you continue to use our website. &lt;br&gt; This website contains sexually explicit material, and is for adult viewing only. If you are under the age of 18, please click the &quot;I DISAGREE - EXIT&quot; button below. By clicking the &quot;I AGREE - ENTER&quot; button, you agree that you are at least 18 years of age, you are of legal age in your area to view sexually explicit material, you will not expose the contents of this web site to minors, you are wholly liable for any legal ramifications that may arise from your viewing or downloading material from this website, and you will subject yourself to the jurisdiction of the State of California should any dispute arise between yourself and the operators of this website.&lt;/p&gt;</item>
 			<item name="splashtxtwarning">WARNING</item>
 		</category>
 		<category name="FAQ">

@@ -31,8 +31,8 @@ LoadTemplate("template_sections/header.tpl", ["pagename" => "index", "title" => 
 	<section class="container">
 		<div class="main-header-title">
 			<div class="holder">
-				<h2><a href="<?php echo $GLOBALS["areaurl"] . 'categories/categories.html'; ?>"><?php echo $templatefields["txtpopulargenres"]; ?></a></h2>
-				<a href="<?php echo $GLOBALS["areaurl"] . 'categories/categories.html'; ?>"><?php echo $templatefields["txtviewall"]; ?>&nbsp;<i class="fa-solid fa-arrow-right-long"></i></a>
+				<h2><a href="<?php echo $areaurl . 'categories/categories.html'; ?>"><?php echo $templatefields["txtpopulargenres"]; ?></a></h2>
+				<a href="<?php echo $areaurl . 'categories/categories.html'; ?>"><?php echo $templatefields["txtviewall"]; ?>&nbsp;<i class="fa-solid fa-arrow-right-long"></i></a>
 			</div>
 		</div>
 		<div class="grid grid-genres">
@@ -65,7 +65,7 @@ LoadTemplate("template_sections/header.tpl", ["pagename" => "index", "title" => 
 		<div class="main-header-title">
 			<div class="holder">
 				<h2><?php echo $templatefields["txtupcoming"]; ?></h2>
-				<a href="<?php echo $GLOBALS["areaurl"] . 'categories/movies/1/latest/'; ?>"><?php echo $templatefields["txtviewall"]; ?>&nbsp;<i class="fa-solid fa-arrow-right-long"></i></a>
+				<a href="<?php echo $areaurl . 'categories/movies/1/latest/'; ?>"><?php echo $templatefields["txtviewall"]; ?>&nbsp;<i class="fa-solid fa-arrow-right-long"></i></a>
 			</div>
 		</div>
 		<div class="grid grid-videos">
@@ -78,8 +78,8 @@ LoadTemplate("template_sections/header.tpl", ["pagename" => "index", "title" => 
 		<?php } ?>
 		<div class="main-header-title">
 			<div class="holder">
-				<h2><a href="<?php echo $GLOBALS["areaurl"] . 'categories/movies/1/latest/'; ?>"><?php echo $templatefields["txtlatestvideos"]; ?></a></h2>
-				<a href="<?php echo $GLOBALS["areaurl"] . 'categories/movies/1/latest/'; ?>"><?php echo $templatefields["txtviewall"]; ?>&nbsp;<i class="fa-solid fa-arrow-right-long"></i></a>
+				<h2><a href="<?php echo $areaurl . 'categories/movies/1/latest/'; ?>"><?php echo $templatefields["txtlatestvideos"]; ?></a></h2>
+				<a href="<?php echo $areaurl . 'categories/movies/1/latest/'; ?>"><?php echo $templatefields["txtviewall"]; ?>&nbsp;<i class="fa-solid fa-arrow-right-long"></i></a>
 			</div>
 		</div>
 		<div class="grid grid-videos">
@@ -93,8 +93,8 @@ LoadTemplate("template_sections/header.tpl", ["pagename" => "index", "title" => 
 			?>
 		</div>
 	</section>
-	<div class="button-lined">
-		<a href="<?php echo $GLOBALS["areaurl"]; ?>categories/movies.html" class="button button-load-more button-outline"><?php echo $templatefields["txtloadmore"]; ?></a>
+	<div class="button-centered">
+		<a href="<?php echo $areaurl; ?>categories/movies/1/latest/" class="button button-load-more button-outline"><?php echo $templatefields["txtloadmore"]; ?></a>
 	</div>
 </div>
 <?php LoadTemplate("template_sections/footer.tpl"); ?>

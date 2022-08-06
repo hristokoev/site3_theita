@@ -15,13 +15,13 @@
 					</a>
 				</div>
 				<div class="secondary">
-					<h4><?php echo $model["ModelName"]; ?></h4>
+					<h4><a href="<?php echo Sets_URL(["id" => $model["Id"], "seoname" => $model["SEOname"], "model" => $model]); ?>" title="<?php echo $model["ModelName"]; ?>"><?php echo $model["ModelName"]; ?></a></h4>
 					<span>
 						<?php
 						if ($model["setcount"] == 1) {
-							echo $model["setcount"] . ' scene';
+							echo $model["setcount"] . ' ' . $templatefields["txtscene"];
 						} else {
-							echo $model["setcount"] . ' scenes';
+							echo $model["setcount"] . ' ' . $templatefields["txtscenes"];
 						}
 						?>
 					</span>

@@ -17,7 +17,7 @@ if (isset($set['info']['thumbs'][14]["1x_filename"])) {
 </video>
 <div class="promo" style="opacity: 0; pointer-events: none;">
 	<a href="<?php echo $tour['JoinUrl']; ?>">
-		<img src="<?php echo $GLOBALS["areaurl"] . 'images/promo_tour.png'; ?>" alt="">
+		<img src="<?php echo $areaurl . 'images/promo_tour.png'; ?>" alt="">
 	</a>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/video.js@7/dist/video.min.js"></script>

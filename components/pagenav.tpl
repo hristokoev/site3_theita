@@ -81,7 +81,7 @@ $templatefields = $GLOBALS["templatefields"];
 					echo '<a href="' . call_user_func($funcname, $args) . '" class="button button-active">' . $page . '</a>';
 				} else {
 					// In trial area limit access to gallery pages
-					if ($GLOBALS["pagename"] == "gallery" && isset($GLOBALS["trial"]) && in_array($page, $trial["accesspages"])) {
+					if ($GLOBALS["pagename"] == "gallery" && isset($trial) && in_array($page, $trial["accesspages"])) {
 						echo '<a href="' . $trial['photourl'] . '" class="button button-outline">' . $page . '</a>';
 					} else {
 						echo '<a href="' . call_user_func($funcname, $args) . '" class="button button-outline">' . $page . '</a>';

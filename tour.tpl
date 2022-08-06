@@ -66,8 +66,8 @@ if (isset($p['cat']) && $p['n'] && $p["s"] && $p["p"]) {
 	<section class="container">
 		<div class="main-header-title">
 			<div class="holder">
-				<h2><a href="<?php echo $GLOBALS["areaurl"]; ?>categories/movies/1/latest/"><?php echo $templatefields["txtlatestvideos"]; ?></a></h2>
-				<a href="<?php echo $GLOBALS["areaurl"]; ?>categories/movies/1/latest/"><?php echo $templatefields["txtviewall"]; ?>&nbsp;<i class="fa-solid fa-arrow-right-long"></i></a>
+				<h2><a href="<?php echo $areaurl; ?>categories/movies/1/latest/"><?php echo $templatefields["txtlatestvideos"]; ?></a></h2>
+				<a href="<?php echo $areaurl; ?>categories/movies/1/latest/"><?php echo $templatefields["txtviewall"]; ?>&nbsp;<i class="fa-solid fa-arrow-right-long"></i></a>
 			</div>
 		</div>
 		<div class="swiper myCarousel">
@@ -101,8 +101,8 @@ if (isset($p['cat']) && $p['n'] && $p["s"] && $p["p"]) {
 	<section class="container">
 		<div class="main-header-title">
 			<div class="holder">
-				<h2><a href="<?php echo $GLOBALS["areaurl"] . 'categories/movies/1/popular/'; ?>"><?php echo $templatefields["txtmostpopular"]; ?></a></h2>
-				<a href="<?php echo $GLOBALS["areaurl"] . 'categories/movies/1/popular/'; ?>"><?php echo $templatefields["txtviewall"]; ?>&nbsp;<i class="fa-solid fa-arrow-right-long"></i></a>
+				<h2><a href="<?php echo $areaurl . 'categories/movies/1/popular/'; ?>"><?php echo $templatefields["txtmostpopular"]; ?></a></h2>
+				<a href="<?php echo $areaurl . 'categories/movies/1/popular/'; ?>"><?php echo $templatefields["txtviewall"]; ?>&nbsp;<i class="fa-solid fa-arrow-right-long"></i></a>
 			</div>
 		</div>
 		<div class="grid grid-videos" id="req">
@@ -128,7 +128,7 @@ if (isset($p['cat']) && $p['n'] && $p["s"] && $p["p"]) {
 		</div>
 	</section>
 	<div class="button-lined">
-		<a href="<?php echo $GLOBALS["areaurl"]; ?>categories/movies/1/latest/" id="loadmore" class="button button-load-more button-outline"><?php echo $templatefields["txtloadmore"]; ?></a>
+		<a href="<?php echo $areaurl; ?>categories/movies/1/latest/" id="loadmore" class="button button-load-more button-outline"><?php echo $templatefields["txtloadmore"]; ?></a>
 	</div>
 	<section class="container">
 		<?php include "tour/template_sections/slider_secondary.tpl"; ?>
@@ -137,7 +137,7 @@ if (isset($p['cat']) && $p['n'] && $p["s"] && $p["p"]) {
 		<div class="main-header-title">
 			<div class="holder">
 				<h2><?php echo $templatefields["txtourmodels"]; ?></h2>
-				<a href="<?php echo $GLOBALS["areaurl"]; ?>models/1/latest/"><?php echo $templatefields["txtviewall"]; ?>&nbsp;<i class="fa-solid fa-arrow-right-long"></i></a>
+				<a href="<?php echo $areaurl; ?>models/1/latest/"><?php echo $templatefields["txtviewall"]; ?>&nbsp;<i class="fa-solid fa-arrow-right-long"></i></a>
 			</div>
 		</div>
 		<div class="grid grid-models-main">
@@ -145,7 +145,7 @@ if (isset($p['cat']) && $p['n'] && $p["s"] && $p["p"]) {
 		</div>
 	</section>
 	<div class="button-lined">
-		<a href="<?php echo $GLOBALS["areaurl"]; ?>models/1/latest/" class="button button-load-more button-outline"><?php echo $templatefields["txtloadmore"]; ?></a>
+		<a href="<?php echo $areaurl; ?>models/1/latest/" class="button button-load-more button-outline"><?php echo $templatefields["txtloadmore"]; ?></a>
 	</div>
 	<div class="content">
 		<h1><?php echo $templatefields["h1_site"]; ?></h1>

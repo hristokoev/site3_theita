@@ -5,11 +5,11 @@ LoadTemplate("template_sections/header.tpl", ["pagename" => "gallery", "title" =
 <?php
 $startpos = (($onpage - 1) * $numperpage + 1);
 $endpos   = (($onpage) * $numperpage + 1);
-if (isset($GLOBALS["trial"]) && !in_array($onpage, $trial['accesspages'])) {
+if (isset($trial) && !in_array($onpage, $trial['accesspages'])) {
 	header("Location: " . $trial['photourl']);
 	die();
 }
-if (isset($GLOBALS["trial"]) && !in_array($set["Id"], $trial['allowrecent']) && !empty($trial['allowrecent']) && $settype == "vids") {
+if (isset($trial) && !in_array($set["Id"], $trial['allowrecent']) && !empty($trial['allowrecent']) && $settype == "vids") {
 	header("Location: " . $trial['videourl']);
 	die();
 }
@@ -22,7 +22,7 @@ $showbar_watermark = 0;
 if (!empty($set["info"]["zips"])) {
 	$showbar_zip = 1;
 }
-if (isset($GLOBALS["trial"]) && $trial['allowzips'] == 0) {
+if (isset($trial) && $trial['allowzips'] == 0) {
 	$showbar_zip = 0;
 }
 ?>
@@ -77,7 +77,7 @@ if (isset($GLOBALS["trial"]) && $trial['allowzips'] == 0) {
 							<?php LoadTemplate("components/list_genres.tpl"); ?>
 						</div>
 						<div class="tags">
-							<span class="tags-title"><?php echo $templatefields["txttags"]; ?>:&nbsp;</span><span class="tags-list"><?php LoadTemplate("components/list_tags.tpl"); ?></span>
+							<span class="tags-title"><?php echo $templatefields["txttags"]; ?>:&nbsp;</span><span class="tags-list"><?php LoadTemplate("components/list_tags.tpl", ["class" => "rounded"]); ?></span>
 						</div>
 						<div class="description">
 							<p><?php echo $set["Description"]; ?></p>
@@ -110,8 +110,8 @@ if (isset($GLOBALS["trial"]) && $trial['allowzips'] == 0) {
 								];
 								?>
 								<?php $i = 0;
-								foreach ($relevant as $kex => $set) { ?>
-									<?php LoadTemplate("components/thumb_video.tpl", ["set" => $set, "prefer" => 'vids', "counter" => $i, "layout" => $layout]); ?>
+								foreach ($relevant as $kex => $relset) { ?>
+									<?php LoadTemplate("components/thumb_video.tpl", ["set" => $relset, "prefer" => 'vids', "counter" => $i, "layout" => $layout]); ?>
 								<?php $i++;
 								} ?>
 							</div>
@@ -129,7 +129,7 @@ if (isset($GLOBALS["trial"]) && $trial['allowzips'] == 0) {
 				}
 
 				function showdownload() {
-					<?php if (!isset($GLOBALS["trial"])) { ?>
+					<?php if (!isset($trial)) { ?>
 						Swal.fire({
 							html: `<div class="download-box"><?php
 																$usetype = "vids";
@@ -138,7 +138,7 @@ if (isset($GLOBALS["trial"]) && $trial['allowzips'] == 0) {
 																foreach ($mediatypes as $mediatype) {
 																	foreach ($media->content[$usetype] as $tmp1) {
 																		if (isset($tmp1[$mediatype["Name"] . ":" . $mediatype["Type"]]) && ($mediatype["ShowDownload"] >= 1) && ($mediatype["FullVideo"] >= 1)) {
-																?><a href="<?php echo $GLOBALS["areaurl"]; ?>?action=download&file=<?php echo $tmp1[$mediatype["Name"] . ":" . $mediatype["Type"]]["fullpath"]; ?>"><?php echo $mediatype["Format"] . ' ' . $mediatype["Label"] .  ' <span>(' . sprintf("%.1f", $tmp1[$mediatype["Name"] . ":" . $mediatype["Type"]]["filesize"] / 1024 / 1024) . ' MB)</span>'; ?></a><?php }
+																?><a href="<?php echo $areaurl; ?>?action=download&file=<?php echo $tmp1[$mediatype["Name"] . ":" . $mediatype["Type"]]["fullpath"]; ?>"><?php echo $mediatype["Format"] . ' ' . $mediatype["Label"] .  ' <span>(' . sprintf("%.1f", $tmp1[$mediatype["Name"] . ":" . $mediatype["Type"]]["filesize"] / 1024 / 1024) . ' MB)</span>'; ?></a><?php }
 																																																																																											}
 																																																																																										} ?></div>`,
 							showCloseButton: true,
@@ -146,7 +146,7 @@ if (isset($GLOBALS["trial"]) && $trial['allowzips'] == 0) {
 							backdrop: 'rgba(0,0,0,0.9)',
 							width: '240px'
 						})
-					<?php } else if (isset($GLOBALS["trial"])) { ?>
+					<?php } else if (isset($trial)) { ?>
 						let timerInterval;
 						Swal.fire({
 							icon: 'error',
@@ -323,7 +323,7 @@ if (isset($GLOBALS["trial"]) && $trial['allowzips'] == 0) {
 				});
 				lightbox.init();
 				window.pswpLightbox = lightbox;
-				<?php if (isset($GLOBALS["trial"]) && $trial["clickpages"][0] !== 0) { ?>
+				<?php if (isset($trial) && $trial["clickpages"][0] !== 0) { ?>
 					lightbox.on('change', () => {
 						if (jQuery.inArray(pswp.currSlide.index + 1, clickpages) == -1) {
 							window.location.href = "<?php echo $trial['photourl']; ?>";

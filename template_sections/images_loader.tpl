@@ -3,7 +3,7 @@ $usetype = ($settype) ? $settype : key($media);
 $size = "1024";
 ?>
 <script>
-	<?php if (!isset($GLOBALS["trial"])) { ?>
+	<?php if (!isset($trial)) { ?>
 		const images = [<?php foreach ($media[$usetype] as $k => $photogroup) {
 							if ($photogroup["watermark:$usetype:$size"]) { ?> {
 						src: "<?php echo cdn_hook('https://members.vangoren.com' . $GLOBALS["contentdir"] . "upload/" . $photogroup["watermark:$usetype:$size"]["fullpath"]) ?>",
@@ -23,7 +23,7 @@ $size = "1024";
 		];
 	<?php } ?>
 
-	<?php if (isset($GLOBALS["trial"])) { ?>
+	<?php if (isset($trial)) { ?>
 		const images = [
 			<?php
 			$cnt = 1;

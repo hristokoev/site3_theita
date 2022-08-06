@@ -191,7 +191,7 @@ function custom_get_category_tags($wid = 0, $subsite_id = 'all') {
 	return $r->categories;
 }
 function custom_Category_URL($arr = array()) {
-	$ret = $GLOBALS["areaurl"];
+	$ret = $areaurl;
 	$seo_urls = $GLOBALS["seo_urls"];
 	if ($arr["seoname"] != "" && $seo_urls) {
 		$ret .= "categories/" . $arr["seoname"];
@@ -238,7 +238,7 @@ function custom_Category_URL($arr = array()) {
 	return $ret;
 }
 function custom_Category_Landing_URL($arr = array()) {
-	$ret = $GLOBALS["areaurl"];
+	$ret = $areaurl;
 	$seo_urls = $GLOBALS["seo_urls"];
 	if ($arr["seoname"] != "" && $seo_urls) {
 		$ret .= "categories/" . $arr["seoname"];
@@ -258,7 +258,7 @@ function custom_Category_Landing_URL($arr = array()) {
 	return $ret;
 }
 function custom_Sets_URL($arr = array()) {
-	$ret = $GLOBALS["areaurl"];
+	$ret = $areaurl;
 	$seo_urls = $GLOBALS["seo_urls"];
 	if ((!$arr["id"] || $arr["seoname"] != "") && $seo_urls) {
 		if ($arr["id"]) {
@@ -328,7 +328,7 @@ function tourCurrentUrl($lang = 'en') {
 	if ($lang === 'en' && strpos($currentUrl, '/it/') !== false) {
 		$currentUrl = str_replace('/it/', '/', $currentUrl);
 	} else if ($lang === 'it' && strpos($currentUrl, '/it/') === false) {
-		$currentUrl = str_replace($GLOBALS["areaurl"], $GLOBALS["areaurl"] . "it/", $currentUrl);
+		$currentUrl = str_replace($areaurl, $areaurl . "it/", $currentUrl);
 	}
 	return $currentUrl;
 }

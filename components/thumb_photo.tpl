@@ -10,7 +10,7 @@ if (!isset($usepriority)) {
 if (isset($GLOBALS["tour"])) {
 	$ahref = $tour["JoinUrl"];
 } else {
-	if (isset($GLOBALS["trial"])) {
+	if (isset($trial)) {
 		if (in_array($set["Id"], $trial['allowrecent']) || empty($trial['allowrecent'])) {
 			$ahref = Gallery_URL(["type" => "highres", "id" => $set["Id"], "seoname" => $set["SEOname"], "set" => $set]);
 		} else {
@@ -32,7 +32,7 @@ if (isset($GLOBALS["tour"])) {
 			<h4><?php echo $set["Title"]; ?></h4>
 			<div>
 				<span class="count"><?php echo $set['info']['totals']['types']['highres']['count']; ?></span>
-				<span>Photos</span>
+				<span><?php echo $templatefields["txtphotos"]; ?></span>
 			</div>
 		</div>
 	</div>

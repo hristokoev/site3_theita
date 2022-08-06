@@ -111,7 +111,7 @@ if (isset($set['info']['thumbs'][14]["1x_filename"])) {
 		started = 0;
 	});
 	<?php } ?>
-	<?php if (empty($vidarr) && !empty($GLOBALS["trial"])) { ?>
+	<?php if (empty($vidarr) && !empty($trial)) { ?>
 		$("#promo").ready(function() {
 			$("#promo").show();
 		});

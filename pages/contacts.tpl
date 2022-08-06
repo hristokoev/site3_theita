@@ -29,7 +29,7 @@
 				</div>
 				<div class="captcha">
 					<div class="captcha-image">
-						<img src="<?php echo $GLOBALS["areaurl"] . 'contact-form/captcha.php'; ?>" id="captcha_image"/>
+						<img src="<?php echo $areaurl . 'contact-form/captcha.php'; ?>" id="captcha_image"/>
 						<a id="captcha_reload" href="#">reload</a>
 					</div>
 					<div class="captcha-input">

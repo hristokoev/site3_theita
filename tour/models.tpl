@@ -18,7 +18,7 @@ if (isset($_REQUEST['s']) && $_REQUEST['s'] != '') {
 		<div class="pagination pagination-top">
 			<div class="sort-options">
 				<div class="sorting">
-					<a href="<?php echo $GLOBALS["areaurl"]; ?>models/1/latest/" class="button <?php if (!isset($_REQUEST['g'])) {
+					<a href="<?php echo $areaurl; ?>models/1/latest/" class="button <?php if (!isset($_REQUEST['g'])) {
 																	echo "button-active";
 																} ?>"><?php echo $templatefields["txtall"]; ?></a>
 					<?php $args["g"] = "f"; ?>

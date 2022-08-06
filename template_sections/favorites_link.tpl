@@ -6,6 +6,7 @@ $icon_class = ($isFav) ? "heart_pink" : "heart_grey";
 $favtxt = ($isFav) ? "txtremovefromfavorites" : "txtaddtofavorites";
 ?>
 <script>
+	<?php if (!isset($trial)) { ?>
 	function toggleFavorites(vx, setid) {
 		let currstatus = (vx.data("fav") == "1") ? "1" : "0";
 		let newstatus = (vx.data("fav") == "1") ? "0" : "1";
@@ -49,6 +50,24 @@ $favtxt = ($isFav) ? "txtremovefromfavorites" : "txtaddtofavorites";
 		})
 		return false;
 	}
+	<?php } else if (isset($trial)) { ?>
+		function toggleFavorites()	{
+			Swal.fire({
+				icon: 'error',
+				title: '<?php echo $templatefields["txtmembersonly"]; ?>',
+				showCloseButton: true,
+				backdrop: 'rgba(0,0,0,0.9)',
+				timer: 2000,
+				timerProgressBar: true,
+				didOpen: () => {
+					timerInterval = setInterval(() => { window.location.href = "<?php echo $trial['videourl']; ?>" }, 2000);
+				},
+				didDestroy: () => {
+					clearInterval(timerInterval);
+				}
+			})
+		}
+	<?php } ?>
 </script>
 <a data-fav="<?php echo $isFav ?>" onclick="return toggleFavorites($(this), '<?php echo $set["Id"]; ?>')">
 	<?php if ($show_favtxt || 1) { ?>

@@ -26,7 +26,7 @@ if (isset($GLOBALS["tour"])) {
 	$ahref = Trailer_URL(["id" => $set["Id"], "seoname" => $set["SEOname"], "set" => $set]);
 } else {	
 	if ($today > $set["AppearDate"]) {
-		if (isset($GLOBALS["trial"])) {
+		if (isset($trial)) {
 			if (in_array($set["Id"], $trial['allowrecent']) || empty($trial['allowrecent'])) {
 				$ahref = Gallery_URL(["type" => $usetype, "id" => $set["Id"], "seoname" => $set["SEOname"], "set" => $set]);
 			} else {

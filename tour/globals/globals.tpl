@@ -1,15 +1,12 @@
 <?php include "globals/seo.tpl"; ?>
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-	<?php
-	if (isset($title)) { echo '<title>' .  $title . '</title>'; }
-	else { echo '<title>' .  $templatefields["sitename"] . '</title>'; }
-	include "globals/meta.tpl";
-	include "tour/globals/include.tpl";
-	include "globals/social_headers.tpl";
-	include "tour/splashcss.tpl";
-	?>
+<?php
+if (isset($title)) { echo '<title>' .  $title . '</title>'; echo "\n"; }
+else { echo '<title>' .  $templatefields["sitename"] . '</title>'; echo "\n"; }
+include "globals/meta.tpl"; echo "\n";
+include "globals/social_headers.tpl"; echo "\n";
+include "tour/globals/include.tpl"; echo "\n";
+?>
 </head>

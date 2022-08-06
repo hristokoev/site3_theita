@@ -15,7 +15,7 @@ function LoadTemplate($file, $vars = array()) {
 }
 function Trailer_URL($arr = array()) {
 	$useseo = $GLOBALS["seo_urls"];
-	$areaurl = $GLOBALS["areaurl"];
+	$areaurl = $areaurl;
 	if ($useseo) {
 		if ($arr["id"] && $arr["set"]["SEOname"]) {
 			$seoname = "trailers/" . $arr["set"]["SEOname"] . ".html";
@@ -24,7 +24,7 @@ function Trailer_URL($arr = array()) {
 		}
 	}
 	if ($useseo) {
-		$ret = $GLOBALS["areaurl"];
+		$ret = $areaurl;
 		if ($seoname) $ret .= $seoname;
 	} else {
 		$ret = "trailer.php";
@@ -39,7 +39,7 @@ function Gallery_URL($arr = array()) {
 	$ret = "";
 	if (isset($GLOBALS["tour"])) {
 		$useseo = $GLOBALS["seo_urls"];
-		$areaurl = $GLOBALS["areaurl"];
+		$areaurl = $areaurl;
 		if ($GLOBALS["tour"]["LinkThumb"] == 0) {
 			// Update Page: Use Logic below
 		}
@@ -65,11 +65,11 @@ function Gallery_URL($arr = array()) {
 			}
 		}
 		if ($useseo) {
-			$ret = $GLOBALS["areaurl"];
+			$ret = $areaurl;
 			if ($seoname) $ret .= $seoname;
 		} else {
 			$arrpush = [];
-			$ret = $GLOBALS["areaurl"] . "index.php";
+			$ret = $areaurl . "index.php";
 			if ($arr["id"]) $arrpush[] = "id=" . $arr["id"];
 			if ($arr["page"] > 1) $arrpush[] = "page=" . $arr["page"];
 			if ($arr["template"]) $arrpush[] = "template=" . $arr["template"];
@@ -83,7 +83,7 @@ function Gallery_URL($arr = array()) {
 	}
 	$seo_urls = $GLOBALS["seo_urls"];
 	if ($arr["seoname"] != "" && $seo_urls) {
-		$ret .= $GLOBALS["areaurl"] . "scenes/" . $arr["seoname"];
+		$ret .= $areaurl . "scenes/" . $arr["seoname"];
 		if ($arr["type"]) {
 			$ret .= "_" . $arr["type"];
 		}
@@ -131,7 +131,7 @@ function Index_URL($arr = array()) {
 	$ret = "";
 	if (isset($GLOBALS["tour"])) {
 		$useseo = $GLOBALS["seo_urls"];
-		$areaurl = $GLOBALS["areaurl"];
+		$areaurl = $areaurl;
 		if ($useseo) {
 			if ($arr["id"] && !empty($arr["set"]["SEOname"])) {
 				$seoname = "updates/" . $arr["set"]["SEOname"] . ".html";
@@ -146,11 +146,11 @@ function Index_URL($arr = array()) {
 			}
 		}
 		if ($useseo) {
-			$ret = $GLOBALS["areaurl"];
+			$ret = $areaurl;
 			if ($seoname) $ret .= $seoname;
 		} else {
 			$arrpush = [];
-			$ret = $GLOBALS["areaurl"] . "index.php";
+			$ret = $areaurl . "index.php";
 			if ($arr["id"]) $arrpush[] = "id=" . $arr["id"];
 			if ($arr["page"] > 1) $arrpush[] = "page=" . $arr["page"];
 			if ($arr["template"]) $arrpush[] = "template=" . $arr["template"];
@@ -165,7 +165,7 @@ function Index_URL($arr = array()) {
 	$seo_urls = $GLOBALS["seo_urls"];
 	if ($seo_urls) {
 		$seoname = ($arr["page"] > 1) ? "updates/page_$arr[page].html" : "";
-		$ret .= $GLOBALS["areaurl"] . $seoname;
+		$ret .= $areaurl . $seoname;
 		if ($arr["mobile"]) $ret .= "?mobile=1";
 	} else {
 		$arrpush = array();
@@ -183,7 +183,7 @@ function Sets_URL($arr = array()) {
 	$ret = "";
 	$seo_urls = $GLOBALS["seo_urls"];
 	if ((!$arr["id"] || $arr["seoname"] != "") && $seo_urls) {
-		$ret = $GLOBALS["areaurl"];
+		$ret = $areaurl;
 		$ret .=  "models/";
 		if ($arr["id"]) {
 			$ret .= $arr["seoname"];
@@ -230,7 +230,7 @@ function DVDS_URL($arr = array()) {
 	if ($arr["sid"]) $arrpush[] = "sid=$arr[sid]";
 	if ($arr["s"] != "" && $arr["s"] != "n") $arrpush[] = "s=$arr[s]";
 	if ($seo_urls) {
-		$ret .= $GLOBALS["areaurl"] . "dvds/" . $seoname;
+		$ret .= $areaurl . "dvds/" . $seoname;
 	} else {
 		$ret .= "dvds.php";
 		if ($arr["page"] > 1) $arrpush[] = "page=$arr[page]";
@@ -267,7 +267,7 @@ function Bonus_URL($arr = array()) {
 		$seo_urls = 0;
 	}
 	if ($seo_urls) {
-		$ret .= $GLOBALS["areaurl"];
+		$ret .= $areaurl;
 		if ($seon) $ret .= $seon;
 	} else {
 		$ret .= "bonus.php";
@@ -285,7 +285,7 @@ function News_URL($arr = array()) {
 	$ret = "";
 	$seo_urls = $GLOBALS["seo_urls"];
 	if ($seo_urls) {
-		$ret .= $GLOBALS["areaurl"];
+		$ret .= $areaurl;
 		if ($arr["tag"]) {
 			if ($arr["page"] > 1) {
 				$seoname = "tags/" . $arr["tag"] . "-page" . $arr["page"] . ".html";
@@ -323,7 +323,7 @@ function FAQ_URL($arr = array()) {
 	$ret = "";
 	$seo_urls = $GLOBALS["seo_urls"];
 	if ($seo_urls) {
-		$ret .= $GLOBALS["areaurl"] . "faq/faq.html";
+		$ret .= $areaurl . "faq/faq.html";
 	} else {
 		$ret .= "faq.php";
 	}
@@ -345,7 +345,7 @@ function Calendar_URL($arr = array()) {
 		}
 	}
 	if ($seo_urls) {
-		$ret .= $GLOBALS["areaurl"];
+		$ret .= $areaurl;
 		if ($seon) $ret .= $seon;
 	} else {
 		$ret .= "calendar.php";
@@ -362,7 +362,7 @@ function Category_URL($arr = array()) {
 	$ret = "";
 	$seo_urls = $GLOBALS["seo_urls"];
 	if ($arr["seoname"] != "" && $seo_urls) {
-		$ret = $GLOBALS["areaurl"];
+		$ret = $areaurl;
 		$ret .= "categories/" . $arr["seoname"];
 		if ($arr["page"] > 1) {
 			$ret .= "_" . $arr["page"];

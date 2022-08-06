@@ -28,7 +28,9 @@
 				<div class="message-content brief"><?php echo $message["Body"]; ?></div>
 			</div>
 		<?php } ?>
-		<?php // TO DO: If no messages in inbox ?>
+		<?php if (empty($messages)) { ?>
+		<div class="content" style="padding: 32px; margin: 32px"><?php echo $templatefields["txtnomessages"]; ?></div>
+		<?php } ?>
 		<?php ?>
 	</div>
 </div>

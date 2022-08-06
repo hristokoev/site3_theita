@@ -1,11 +1,11 @@
 <?php
-include "globals/globals.tpl";
+include "globals/globals.tpl"; echo "\n";
 $detect = new Mobile_Detect;
 ?>
 <header>
-	<div class="header-top <?php echo (isset($GLOBALS["trial"])) ? 'trial-area' : 'member-area'; ?>">
+	<div class="header-top <?php echo (isset($trial)) ? 'trial-area' : 'member-area'; ?>">
 		<div class="header-wrapper">
-			<span><?php echo (isset($GLOBALS["trial"])) ? $templatefields["txttrialarea"] : $templatefields["txtmembersarea"]; ?></span>
+			<span><?php echo (isset($trial)) ? $templatefields["txttrialarea"] : $templatefields["txtmembersarea"]; ?></span>
 		</div>
 	</div>
 	<div class="header-bottom header">
@@ -17,6 +17,14 @@ $detect = new Mobile_Detect;
 					<div class="bar3"></div>
 				</div>
 				<div class="sidebar-menu">
+					<div class="buttons">
+						<?php if (!empty($plugins["privatemessage"]) && $has_username) { ?>
+						<a href="<?php echo $tour['JoinUrl']; ?>" class="button button-outline"><i class="fa-solid fa-envelope"></i><?php echo $templatefields["txtmessages"]; ?></a>
+						<?php } ?>
+						<?php if (!empty($plugins["favorites"]) && $has_username && !isset($trial)) { ?>
+						<a href="<?php echo $tour['JoinUrl']; ?>" class="button button-outline"><i class="fa-solid fa-star"></i><?php echo $templatefields["txtfavorites"]; ?></a>
+						<?php } ?>	
+					</div>
 					<form class="search-form" action="search.php" method="get">
 						<div class="search-input">
 							<input type="search" name="query" autocomplete="off" placeholder="Type to search...">
@@ -26,11 +34,11 @@ $detect = new Mobile_Detect;
 						</div>
 					</form>
 					<ul>
-						<li><a href="<?php echo $GLOBALS["areaurl"] . 'categories/movies/1/latest/'; ?>"><i class="fa-solid fa-video"></i><?php echo $templatefields["txtvideos"]; ?></a></li>
-						<li><a href="<?php echo $GLOBALS["areaurl"] . 'categories/photos.html'; ?>"><i class="fa-solid fa-camera"></i><?php echo $templatefields["txtphotos"]; ?></a></li>
-						<li><a href="<?php echo $GLOBALS["areaurl"]; ?>models/1/latest/"><i class="fa-solid fa-face-grin-tongue-wink"></i><?php echo $templatefields["txtmodels"]; ?></a></li>
-						<li><a href="<?php echo $GLOBALS["areaurl"] . 'categories/categories.html'; ?>"><i class="fa-solid fa-boxes-stacked"></i><?php echo $templatefields["txtgenres"]; ?></a></li>
-						<li><a href="<?php echo $GLOBALS["areaurl"] . 'categories/tags.html'; ?>"><i class="fa-solid fa-hashtag"></i><?php echo $templatefields["txttags"]; ?></a></li>
+						<li><a href="<?php echo $areaurl . 'categories/movies/1/latest/'; ?>"><i class="fa-solid fa-video"></i><?php echo $templatefields["txtvideos"]; ?></a></li>
+						<li><a href="<?php echo $areaurl . 'categories/photos/1/latest/'; ?>"><i class="fa-solid fa-camera"></i><?php echo $templatefields["txtphotos"]; ?></a></li>
+						<li><a href="<?php echo $areaurl; ?>models/1/latest/"><i class="fa-solid fa-face-grin-tongue-wink"></i><?php echo $templatefields["txtmodels"]; ?></a></li>
+						<li><a href="<?php echo $areaurl . 'categories/categories.html'; ?>"><i class="fa-solid fa-boxes-stacked"></i><?php echo $templatefields["txtgenres"]; ?></a></li>
+						<li><a href="<?php echo $areaurl . 'categories/tags.html'; ?>"><i class="fa-solid fa-hashtag"></i><?php echo $templatefields["txttags"]; ?></a></li>
 					</ul>
 					<h6><?php echo $templatefields["txtsites"]; ?></h6>
 					<ul class="sites">
@@ -46,28 +54,28 @@ $detect = new Mobile_Detect;
 				<?php if (isset($sites) && !empty($sites)) { ?>
 					<span onclick="blockReveal()" class="menu-down"></span>
 				<?php } ?>
-				<a href="<?php echo $GLOBALS["areaurl"]; ?>" title="<?php echo $templatefields["sitename"]; ?>"><img src="https://theitalianporn.com/images/logo.png" alt="<?php echo $templatefields["sitename"]; ?>"></a>
+				<a href="<?php echo $areaurl; ?>" title="<?php echo $templatefields["sitename"]; ?>"><img src="<?php echo $areaurl; ?>images/logo.png" alt="<?php echo $templatefields["sitename"]; ?>"></a>
 			</div>
 			<div class="header-middle">
 				<ul class="nav-wrapper">
-					<li class="nav-item"><a href="<?php echo $GLOBALS["areaurl"] . 'categories/movies/1/latest/'; ?>"><?php echo $templatefields["txtvideos"]; ?></a></li>
-					<li class="nav-item"><a href="<?php echo $GLOBALS["areaurl"] . 'categories/photos.html'; ?>"><?php echo $templatefields["txtphotos"]; ?></a></li>
-					<li class="nav-item"><a href="<?php echo $GLOBALS["areaurl"]; ?>models/1/latest/"><?php echo $templatefields["txtmodels"]; ?></a></li>
-					<li class="nav-item"><a href="<?php echo $GLOBALS["areaurl"] . 'categories/categories.html'; ?>"><?php echo $templatefields["txtgenres"]; ?></a></li>
-					<li class="nav-item"><a href="<?php echo $GLOBALS["areaurl"] . 'categories/tags.html'; ?>"><?php echo $templatefields["txttags"]; ?></a></li>
+					<li class="nav-item"><a href="<?php echo $areaurl . 'categories/movies/1/latest/'; ?>"><?php echo $templatefields["txtvideos"]; ?></a></li>
+					<li class="nav-item"><a href="<?php echo $areaurl . 'categories/photos/1/latest/'; ?>"><?php echo $templatefields["txtphotos"]; ?></a></li>
+					<li class="nav-item"><a href="<?php echo $areaurl; ?>models/1/latest/"><?php echo $templatefields["txtmodels"]; ?></a></li>
+					<li class="nav-item"><a href="<?php echo $areaurl . 'categories/categories.html'; ?>"><?php echo $templatefields["txtgenres"]; ?></a></li>
+					<li class="nav-item"><a href="<?php echo $areaurl . 'categories/tags.html'; ?>"><?php echo $templatefields["txttags"]; ?></a></li>
 				</ul>
 			</div>
 			<div class="header-end bottom">
 				<a onclick="$('.searchbar').toggleClass('on');" class="button button-icon search"><i class="fa-solid fa-magnifying-glass"></i></a>
 				<?php if (!empty($plugins["privatemessage"]) && $has_username) { ?>
-					<a href="<?php echo $GLOBALS["areaurl"]; ?>mailbox.php" class="button button-icon"><i class="fa-solid fa-envelope <?php if ($new_privatemessage) { ?>dot<?php } ?>" aria-hidden="true"></i></a>
+					<a href="<?php echo $areaurl; ?>mailbox.php" class="button button-icon"><i class="fa-solid fa-envelope <?php if ($new_privatemessage) { ?>dot<?php } ?>" aria-hidden="true"></i></a>
 				<?php } ?>
-				<?php if (!empty($plugins["favorites"]) && $has_username && !isset($GLOBALS["trial"])) { ?>
-					<a href="<?php echo $GLOBALS["areaurl"]; ?>favorites.php" class="button button-icon"><i class="fa-solid fa-star"></i></a>
+				<?php if (!empty($plugins["favorites"]) && $has_username && !isset($trial)) { ?>
+					<a href="<?php echo $areaurl; ?>favorites.php" class="button button-icon"><i class="fa-solid fa-star"></i></a>
 				<?php } ?>
-				<?php if (isset($GLOBALS["trial"])) { ?>
-					<a href="<?php echo $tour['JoinUrl']; ?>" class="button button-join">Upgrade</a>
-					<a href="<?php echo $tour['JoinUrl']; ?>" class="button button-join-short">Upgrade</a>
+				<?php if (isset($trial)) { ?>
+					<a href="<?php echo $tour['JoinUrl']; ?>" class="button button-join"><?php echo $templatefields["trialtxtupgrade"]; ?></a>
+					<a href="<?php echo $tour['JoinUrl']; ?>" class="button button-join-short"><?php echo $templatefields["trialtxtupgradeshort"]; ?></a>
 				<?php } ?>
 			</div>
 			<div id="block" class="nav-block">

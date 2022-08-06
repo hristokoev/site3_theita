@@ -29,5 +29,5 @@
 	</div>
 </section>
 <div>
-	<a href="<?php echo $GLOBALS["areaurl"]; ?>categories/movies.html" class="button button-load-more button-outline"><?php echo $templatefields["txtloadmore"]; ?></a>
+	<a href="<?php echo $areaurl; ?>categories/movies/1/latest/" class="button button-load-more button-outline"><?php echo $templatefields["txtloadmore"]; ?></a>
 </div>
