@@ -63,5 +63,6 @@ $footerBanners = array_filter($banners, function (array $banner) use ($current_l
 		</div>
 	</section>
 </div>
+</div>
 </body>
 </html>

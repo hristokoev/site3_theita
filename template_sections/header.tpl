@@ -1,12 +1,12 @@
-<?php 
-include "globals/globals.tpl"; 
+<?php
+include "globals/globals.tpl";
 $detect = new Mobile_Detect;
 ?>
 <header>
 	<div class="header-top <?php echo (isset($GLOBALS["trial"])) ? 'trial-area' : 'member-area'; ?>">
-	<div class="header-wrapper">
-		<span><?php echo (isset($GLOBALS["trial"])) ? $templatefields["txttrialarea"] : $templatefields["txtmembersarea"]; ?></span>
-	</div>		
+		<div class="header-wrapper">
+			<span><?php echo (isset($GLOBALS["trial"])) ? $templatefields["txttrialarea"] : $templatefields["txtmembersarea"]; ?></span>
+		</div>
 	</div>
 	<div class="header-bottom header">
 		<div class="wrapper header-wrapper">
@@ -26,25 +26,30 @@ $detect = new Mobile_Detect;
 						</div>
 					</form>
 					<ul>
-						<li><a href="<?php echo $GLOBALS["areaurl"]; ?>"><i class="fa-solid fa-house"></i><?php echo $templatefields["txthome"]; ?></a></li>
 						<li><a href="<?php echo $GLOBALS["areaurl"] . 'categories/movies/1/latest/'; ?>"><i class="fa-solid fa-video"></i><?php echo $templatefields["txtvideos"]; ?></a></li>
 						<li><a href="<?php echo $GLOBALS["areaurl"] . 'categories/photos.html'; ?>"><i class="fa-solid fa-camera"></i><?php echo $templatefields["txtphotos"]; ?></a></li>
 						<li><a href="<?php echo $GLOBALS["areaurl"]; ?>models/1/latest/"><i class="fa-solid fa-face-grin-tongue-wink"></i><?php echo $templatefields["txtmodels"]; ?></a></li>
 						<li><a href="<?php echo $GLOBALS["areaurl"] . 'categories/categories.html'; ?>"><i class="fa-solid fa-boxes-stacked"></i><?php echo $templatefields["txtgenres"]; ?></a></li>
 						<li><a href="<?php echo $GLOBALS["areaurl"] . 'categories/tags.html'; ?>"><i class="fa-solid fa-hashtag"></i><?php echo $templatefields["txttags"]; ?></a></li>
 					</ul>
+					<h6><?php echo $templatefields["txtsites"]; ?></h6>
+					<ul class="sites">
+						<?php $site_name = explode('/', $_SERVER['REQUEST_URI'])[1]; ?>
+						<?php foreach ($sites as $site) { ?>
+							<li class="subsite <?php echo ($site["Name"] == $site_name) ? 'active' : ''; ?>"><a href="<?php echo 'https://members.vangoren.com/' . $site["Name"]; ?>"><?php echo $site["Name"]; ?></a></li>
+						<?php } ?>
+					</ul>
 				</div>
 				<div class="mobile-close"></div>
 			</div>
-			<div id="logo" onclick="blockReveal()" class="header-start nav-item sub">
-				<a title="<?php echo $templatefields["sitename"]; ?>"><img src="https://theitalianporn.com/images/logo.png" alt="<?php echo $templatefields["sitename"]; ?>"></a>
+			<div id="logo" class="header-start nav-item sub">
 				<?php if (isset($sites) && !empty($sites)) { ?>
-					<span class="menu-down"></span>
+					<span onclick="blockReveal()" class="menu-down"></span>
 				<?php } ?>
+				<a href="<?php echo $GLOBALS["areaurl"]; ?>" title="<?php echo $templatefields["sitename"]; ?>"><img src="https://theitalianporn.com/images/logo.png" alt="<?php echo $templatefields["sitename"]; ?>"></a>
 			</div>
 			<div class="header-middle">
 				<ul class="nav-wrapper">
-					<li class="nav-item"><a href="<?php echo $GLOBALS["areaurl"]; ?>"><?php echo $templatefields["txthome"]; ?></a></li>
 					<li class="nav-item"><a href="<?php echo $GLOBALS["areaurl"] . 'categories/movies/1/latest/'; ?>"><?php echo $templatefields["txtvideos"]; ?></a></li>
 					<li class="nav-item"><a href="<?php echo $GLOBALS["areaurl"] . 'categories/photos.html'; ?>"><?php echo $templatefields["txtphotos"]; ?></a></li>
 					<li class="nav-item"><a href="<?php echo $GLOBALS["areaurl"]; ?>models/1/latest/"><?php echo $templatefields["txtmodels"]; ?></a></li>
@@ -53,12 +58,16 @@ $detect = new Mobile_Detect;
 				</ul>
 			</div>
 			<div class="header-end bottom">
-				<?php include "components/searchbar.tpl"; ?>
+				<a onclick="$('.searchbar').toggleClass('on');" class="button button-icon search"><i class="fa-solid fa-magnifying-glass"></i></a>
 				<?php if (!empty($plugins["privatemessage"]) && $has_username) { ?>
-					<a href="<?php echo $GLOBALS["areaurl"]; ?>mailbox.php" class="button button-icon button-circle"><i class="fa-solid fa-envelope <?php if ($new_privatemessage) { ?>dot<?php } ?>" aria-hidden="true"></i></a>
+					<a href="<?php echo $GLOBALS["areaurl"]; ?>mailbox.php" class="button button-icon"><i class="fa-solid fa-envelope <?php if ($new_privatemessage) { ?>dot<?php } ?>" aria-hidden="true"></i></a>
 				<?php } ?>
-				<?php if (!empty($plugins["favorites"]) && $has_username) { ?>
-					<a href="<?php echo $GLOBALS["areaurl"]; ?>favorites.php" class="button button-icon button-circle"><i class="fa-solid fa-star"></i></a>
+				<?php if (!empty($plugins["favorites"]) && $has_username && !isset($GLOBALS["trial"])) { ?>
+					<a href="<?php echo $GLOBALS["areaurl"]; ?>favorites.php" class="button button-icon"><i class="fa-solid fa-star"></i></a>
+				<?php } ?>
+				<?php if (isset($GLOBALS["trial"])) { ?>
+					<a href="<?php echo $tour['JoinUrl']; ?>" class="button button-join">Upgrade</a>
+					<a href="<?php echo $tour['JoinUrl']; ?>" class="button button-join-short">Upgrade</a>
 				<?php } ?>
 			</div>
 			<div id="block" class="nav-block">
@@ -87,25 +96,27 @@ $detect = new Mobile_Detect;
 						// TO DO: Get videos via AJAX, currently they're pre-loaded into the HTML and then hidden
 						foreach ($sites as $site) {
 						?><div class="sub-videos" id="site-<?php echo $site["Name"]; ?>" <?php if ($site["Name"] !== $site_name) { ?>style="display: none;" <?php } ?>><?php
-						$$site = get_from_scheduled_updates(5, 4, 'DESC', 1, false, false, $site["Id"]);
-						$i = 0;
-						foreach ($$site as $set) {
-							LoadTemplate("components/thumb_video.tpl", ["set" => $set, "prefer" => 'vids', "counter" => $i, "layout" => $layout]);
-							$i++;
-						}
-						?></div><?php } 
-					?></div>
+																																										$$site = get_from_scheduled_updates(5, 4, 'DESC', 1, false, false, $site["Id"]);
+																																										$i = 0;
+																																										foreach ($$site as $set) {
+																																											LoadTemplate("components/thumb_video.tpl", ["set" => $set, "prefer" => 'vids', "counter" => $i, "layout" => $layout]);
+																																											$i++;
+																																										}
+																																										?></div><?php }
+								?>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<div class="header-search">
+		<?php include "components/searchbar.tpl"; ?>
+	</div>
 	<script>
-		<?php if (!$detect->isMobile()) { ?>
 		function blockReveal() {
 			$("#block").toggle();
 			$(".menu-down").toggleClass("pressed");
 		}
-		<?php } ?>
 
 		$(".subsite").hover(function() {
 			$(".sub-videos").hide();
@@ -125,3 +136,4 @@ $detect = new Mobile_Detect;
 		});
 	</script>
 </header>
+<div class="body">

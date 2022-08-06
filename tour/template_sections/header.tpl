@@ -62,6 +62,14 @@ $sitename = str_replace(".com", "", $url['host']);
 						<li><a href="<?php echo $GLOBALS["areaurl"] . 'categories/categories.html'; ?>"><i class="fa-solid fa-boxes-stacked"></i><?php echo $templatefields["txtgenres"]; ?></a></li>
 						<li><a href="<?php echo $GLOBALS["areaurl"] . 'categories/tags.html'; ?>"><i class="fa-solid fa-hashtag"></i><?php echo $templatefields["txttags"]; ?></a></li>
 					</ul>
+					<h6><?php echo $templatefields["txtsites"]; ?></h6>
+					<ul class="sites">
+						<?php foreach ($sites as $site) { ?>
+							<?php if (array_key_exists($site["Name"], $stracks) && $sitename !== $site["Name"]) { ?>
+								<li><a href="<?php echo 'https://joins.' . $site["Name"] . '.com/strack/' . $stracks[$site["Name"]]; ?>"><?php echo $site["Name"]; ?></a></li>
+							<?php } ?>
+						<?php } ?>
+					</ul>
 				</div>
 				<div class="mobile-close"></div>
 			</div>
@@ -78,7 +86,7 @@ $sitename = str_replace(".com", "", $url['host']);
 				</ul>
 			</div>
 			<div class="header-end">
-				<?php include "components/searchbar.tpl"; ?>
+				<a onclick="$('.searchbar').toggleClass('on')" class="button button-icon search"><i class="fa-solid fa-magnifying-glass"></i></a>
 				<a href="<?php echo $tour['MembersURL']; ?>" class="button button-log-in button-outline"><?php echo $templatefields["tourtxtlogin"]; ?></a>
 				<a href="<?php echo $tour['MembersURL']; ?>" class="button button-icon"><i class="fa-solid fa-user dot" aria-hidden="true"></i></a>
 				<a href="<?php echo $tour['MembersURL']; ?>" class="button button-outline splash"><?php echo $templatefields["tourtxtmemberarea"]; ?></a>
@@ -87,7 +95,11 @@ $sitename = str_replace(".com", "", $url['host']);
 			</div>
 		</div>
 	</div>
+	<div class="header-search">
+		<?php include "components/searchbar.tpl"; ?>
+	</div>
 </header>
+<div class="body">
 <?php if ($nocookie) {
 	include "tour/splash.tpl";
 	exit();

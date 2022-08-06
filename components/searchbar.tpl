@@ -92,14 +92,15 @@
 		});
 	});
 </script>
-<form id="searchform" action="search.php" method="get">
-	<div class="search-input">
-		<input id="autosuggest" placeholder="Search..." autocomplete="off" class="input" name="query" />
-		<span class="close"><i class="fa-solid fa-xmark"></i></span>
-	</div>
-	<div class="search-icon">
-		<button class="search-toggle" aria-label="Open search"><i class="fa-solid fa-magnifying-glass"></i></button>
-	</div>
-</form>
-<div class="search-close">
+<div class="searchbar">
+	<form id="searchform" action="search.php" method="get">
+		<div class="search-input">
+			<input id="autosuggest" placeholder="Search..." autocomplete="off" class="input" name="query" />
+			<span class="close"><i class="fa-solid fa-xmark"></i></span>
+		</div>
+		<div class="search-icon">
+			<button class="search-toggle" aria-label="Open search"><i class="fa-solid fa-magnifying-glass"></i><?php echo $templatefields["txtsearch"]; ?></button>
+		</div>
+	</form>
+	<div class="search-close"></div>
 </div>
