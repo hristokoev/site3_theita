@@ -35,7 +35,7 @@ if (isset($trial) && $trial['allowzips'] == 0) {
 						<?php LoadTemplate("template_sections/video.tpl"); ?>
 					</div>
 					<div class="header">
-						<h1><?php echo $set["Title"]; ?></h1>
+						<h1><?php echo $set["Title"]; ?><?php LoadTemplate("components/bitrate.tpl"); ?></h1>
 					</div>
 					<div class="info">
 						<div class="buttons">
