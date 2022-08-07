@@ -31,7 +31,7 @@
 <script type="text/javascript" defer src="<?php echo $areaurl; ?>contact-form/form.js"></script>
 <?php } ?>
 <!-- Style -->
-<link href="<?php echo $areaurl; ?>css/main.min.css" rel="stylesheet" />
+<link href="<?php echo $areaurl; ?>css/main.css" rel="stylesheet" />
 <?php if ($templatefields["googleanalyticscode"] != '') { ?>
 <script type="text/javascript">
 	(function(i, s, o, g, r, a, m) {
