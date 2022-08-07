@@ -1,7 +1,7 @@
 <?php
 $title = $templatefields["txtsearch"];
-// Header
 LoadTemplate("tour/template_sections/header.tpl", ["title" => $title]);
+$bitrates = array();
 ?>
 <?php if (isset($sets)) { ?>
 	<div class="main">
@@ -71,6 +71,7 @@ LoadTemplate("tour/template_sections/header.tpl", ["title" => $title]);
 					}
 					$layout = [
 						"skeleton",
+						"bitrate",
 						"duration",
 						"title",
 						"info" => [
@@ -80,7 +81,15 @@ LoadTemplate("tour/template_sections/header.tpl", ["title" => $title]);
 							"title"
 						]
 					];
-					LoadTemplate("components/thumb_video.tpl", ["set" => $set, "layout" => $layout]);
+					$media = $api->getContent(["id" => $set["Id"]]);
+					foreach ($media->content['vids'] as $k => $l) {
+						foreach ($l as $m => $n) {
+							if ($n['name'] == '720p' || $n['name'] == '1080p') $bitrates[] = "HD";
+							if ($n['name'] == '4K') $bitrates[] = "4K";
+						}
+					}
+					LoadTemplate("components/thumb_video.tpl", ["set" => $set, "layout" => $layout, "bitrates" => $bitrates]);
+					$bitrates = array();
 				} ?>
 			</div>
 			<?php if (!empty($models)) { ?>

@@ -48,12 +48,19 @@ if (isset($GLOBALS["tour"])) {
 					<!-- <div class="skeleton-thumb" style="width: 100%; height: 100%;"></div> -->
 				<?php } ?>
 				<?php StdImage(array("set" => $set, "usepriority" => $usepriority, "alt" => "", "class" => "thumbs")); ?>
-				<div class="videoloadline"></div>
-				<?php if (in_array("duration", $layout)) { ?>
-					<div class="overlay">
-						<span class="duration"><?php LoadTemplate("components/info_length_short.tpl", ["set" => $set]); ?></span>
-					</div>
-				<?php } ?>
+				<div class="videoloadline"></div>				
+				<div class="overlay">
+					<span class="bitrate">
+					<?php 
+					if (in_array("bitrate", $layout)) {
+						LoadTemplate("components/bitrate.tpl", ["icons" => $bitrates]); 
+					}
+					?>
+					</span>				
+					<?php if (in_array("duration", $layout)) { ?>
+					<span class="duration"><?php LoadTemplate("components/info_length_short.tpl", ["set" => $set]); ?></span>
+					<?php } ?>
+				</div>				
 			</a>
 		</div>
 		<?php if (isset($layout["info"])) { ?>

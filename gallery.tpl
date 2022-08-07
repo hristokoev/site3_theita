@@ -13,6 +13,7 @@ if (isset($trial) && !in_array($set["Id"], $trial['allowrecent']) && !empty($tri
 	header("Location: " . $trial['videourl']);
 	die();
 }
+$bitrates = array();
 ?>
 <?php
 // $usetype = ($settype) ? $settype : key($media);
@@ -35,7 +36,7 @@ if (isset($trial) && $trial['allowzips'] == 0) {
 						<?php LoadTemplate("template_sections/video.tpl"); ?>
 					</div>
 					<div class="header">
-						<h1><?php echo $set["Title"]; ?><?php LoadTemplate("components/bitrate.tpl"); ?></h1>
+						<h1><?php echo $set["Title"]; ?><?php LoadTemplate("components/bitrate.tpl", ["title" => true]); ?></h1>
 					</div>
 					<div class="info">
 						<div class="buttons">
@@ -99,6 +100,7 @@ if (isset($trial) && $trial['allowzips'] == 0) {
 								<?php
 								$layout = [
 									"skeleton",
+									"bitrate",
 									"duration",
 									"title",
 									"info" => [
@@ -111,8 +113,17 @@ if (isset($trial) && $trial['allowzips'] == 0) {
 								?>
 								<?php $i = 0;
 								foreach ($relevant as $kex => $relset) { ?>
-									<?php LoadTemplate("components/thumb_video.tpl", ["set" => $relset, "prefer" => 'vids', "counter" => $i, "layout" => $layout]); ?>
-								<?php $i++;
+									<?php
+									$media = $api->getContent(["id" => $relset["Id"]]);
+									foreach ($media->content['vids'] as $k => $l) {
+										foreach ($l as $m => $n) {
+											if ($n['name'] == '720p' || $n['name'] == '1080p') $bitrates[] = "HD";
+											if ($n['name'] == '4K') $bitrates[] = "4K";
+										}
+									}
+									LoadTemplate("components/thumb_video.tpl", ["set" => $relset, "prefer" => 'vids', "counter" => $i, "layout" => $layout, "bitrates" => $bitrates]);
+									$i++;
+									$bitrates = array();
 								} ?>
 							</div>
 						<?php } ?>
@@ -134,9 +145,8 @@ if (isset($trial) && $trial['allowzips'] == 0) {
 							html: `<div class="download-box"><?php
 																$usetype = "vids";
 																$settype = "vids";
-																$media = $api->getContent(["id" => $set["Id"]]);
 																foreach ($mediatypes as $mediatype) {
-																	foreach ($media->content[$usetype] as $tmp1) {
+																	foreach ($media[$usetype] as $tmp1) {
 																		if (isset($tmp1[$mediatype["Name"] . ":" . $mediatype["Type"]]) && ($mediatype["ShowDownload"] >= 1) && ($mediatype["FullVideo"] >= 1)) {
 																?><a href="<?php echo $areaurl; ?>?action=download&file=<?php echo $tmp1[$mediatype["Name"] . ":" . $mediatype["Type"]]["fullpath"]; ?>"><?php echo $mediatype["Format"] . ' ' . $mediatype["Label"] .  ' <span>(' . sprintf("%.1f", $tmp1[$mediatype["Name"] . ":" . $mediatype["Type"]]["filesize"] / 1024 / 1024) . ' MB)</span>'; ?></a><?php }
 																																																																																											}

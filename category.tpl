@@ -16,6 +16,7 @@ if ($onpage == $numberofpages && $numberofpages > 1) {
 } else {
 	$itemsPerPage = count($sets);
 }
+$bitrates = array();
 ?>
 
 <?php
@@ -80,6 +81,7 @@ if ($category_selected["Title"] == "Categories") {
 				$i = 0;
 				$layout = [
 					"skeleton",
+					"bitrate",
 					"duration",
 					"title",
 					"info" => [
@@ -92,12 +94,20 @@ if ($category_selected["Title"] == "Categories") {
 				try {
 					$videos_items = get_from_scheduled_updates($category_selected['Id'], $itemsPerPage, $_REQUEST['s'], $onpage, '', '', $subsiteid);
 					foreach ($videos_items as $set) {
+						$media = $api->getContent(["id" => $set["Id"]]);
+						foreach ($media->content['vids'] as $k => $l) {
+							foreach ($l as $m => $n) {
+								if ($n['name'] == '720p' || $n['name'] == '1080p') $bitrates[] = "HD";
+								if ($n['name'] == '4K') $bitrates[] = "4K";
+							}
+						}						
 						if ($prefer == 'highres') {
 							LoadTemplate("components/thumb_photo.tpl", ["set" => $set, "prefer" => $prefer, "counter" => $i]);
 						} else {
-							LoadTemplate("components/thumb_video.tpl", ["set" => $set, "prefer" => $prefer, "counter" => $i, "layout" => $layout]);
+							LoadTemplate("components/thumb_video.tpl", ["set" => $set, "prefer" => $prefer, "counter" => $i, "layout" => $layout, "bitrates" => $bitrates]);
 						}
 						$i++;
+						$bitrates = array();
 					}
 				} catch (Exception $e) {
 					echo '<div class="errorMsg"><h3>Nothing found here.</h3></div>';

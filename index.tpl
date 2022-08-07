@@ -16,6 +16,7 @@ $colors = array(
 );
 $layout = [
 	"skeleton",
+	"bitrate",
 	"duration",
 	"title",
 	"info" => [
@@ -25,6 +26,7 @@ $layout = [
 		"title"
 	]
 ];
+$bitrates = array();
 LoadTemplate("template_sections/header.tpl", ["pagename" => "index", "title" => $title]);
 ?>
 <div class="main">
@@ -69,10 +71,20 @@ LoadTemplate("template_sections/header.tpl", ["pagename" => "index", "title" => 
 			</div>
 		</div>
 		<div class="grid grid-videos">
-			<?php $i = 0;
+			<?php 
+			$i = 0;
 			foreach ($comingsoon[0]["sets"] as $set) { ?>
-				<?php LoadTemplate("components/thumb_video.tpl", ["set" => $set, "prefer" => 'vids', "counter" => $i, "layout" => $layout]); ?>
-			<?php $i++;
+				<?php 
+				$media = $api->getContent(["id" => $set["Id"]]);
+				foreach ($media->content['vids'] as $k => $l) {
+					foreach ($l as $m => $n) {
+						if ($n['name'] == '720p' || $n['name'] == '1080p') $bitrates[] = "HD";
+						if ($n['name'] == '4K') $bitrates[] = "4K";
+					}
+				}				
+				LoadTemplate("components/thumb_video.tpl", ["set" => $set, "prefer" => 'vids', "counter" => $i, "layout" => $layout, "bitrates" => $bitrates]); 
+				$i++;
+				$bitrates = array();
 			} ?>
 		</div>
 		<?php } ?>
@@ -87,8 +99,16 @@ LoadTemplate("template_sections/header.tpl", ["pagename" => "index", "title" => 
 			$videos = get_from_scheduled_updates(5, 12, 'DESC');
 			$i = 0;
 			foreach ($videos as $set) {
-				LoadTemplate("components/thumb_video.tpl", ["set" => $set, "prefer" => 'vids', "counter" => $i, "layout" => $layout]);
+				$media = $api->getContent(["id" => $set["Id"]]);
+				foreach ($media->content['vids'] as $k => $l) {
+					foreach ($l as $m => $n) {
+						if ($n['name'] == '720p' || $n['name'] == '1080p') $bitrates[] = "HD";
+						if ($n['name'] == '4K') $bitrates[] = "4K";
+					}
+				}
+				LoadTemplate("components/thumb_video.tpl", ["set" => $set, "prefer" => 'vids', "counter" => $i, "layout" => $layout, "bitrates" => $bitrates]);
 				$i++;
+				$bitrates = array();
 			}
 			?>
 		</div>

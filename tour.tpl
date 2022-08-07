@@ -21,6 +21,7 @@ if (isset($p['cat']) && $p['n'] && $p["s"] && $p["p"]) {
 	echo $data;
 	exit();
 }
+$bitrates = array();
 ?>
 <?php LoadTemplate("tour/template_sections/header.tpl", ["pagename" => "tour"]); ?>
 <script>
@@ -77,6 +78,7 @@ if (isset($p['cat']) && $p['n'] && $p["s"] && $p["p"]) {
 				$i = 0;
 				$layout = [
 					"skeleton",
+					"bitrate",
 					"duration",
 					"title",
 					"info" => [
@@ -87,8 +89,16 @@ if (isset($p['cat']) && $p['n'] && $p["s"] && $p["p"]) {
 					]
 				];
 				foreach ($videos as $set) {
-					LoadTemplate("components/thumb_video.tpl", ["set" => $set, "prefer" => 'vids', "class" => "swiper-slide", "counter" => $i, "layout" => $layout]);
+					$media = $api->getContent(["id" => $set["Id"]]);
+					foreach ($media->content['vids'] as $k => $l) {
+						foreach ($l as $m => $n) {
+							if ($n['name'] == '720p' || $n['name'] == '1080p') $bitrates[] = "HD";
+							if ($n['name'] == '4K') $bitrates[] = "4K";
+						}
+					}
+					LoadTemplate("components/thumb_video.tpl", ["set" => $set, "prefer" => 'vids', "class" => "swiper-slide", "counter" => $i, "layout" => $layout, "bitrates" => $bitrates]);
 					$i++;
+					$bitrates = array();
 				}
 				?>
 			</div>
@@ -111,6 +121,7 @@ if (isset($p['cat']) && $p['n'] && $p["s"] && $p["p"]) {
 			$i = 0;
 			$layout = [
 				"skeleton",
+				"bitrate",
 				"duration",
 				"title",
 				"info" => [
@@ -121,8 +132,16 @@ if (isset($p['cat']) && $p['n'] && $p["s"] && $p["p"]) {
 				]
 			];
 			foreach ($videos as $set) {
-				LoadTemplate("components/thumb_video.tpl", ["set" => $set, "prefer" => 'vids', "counter" => $i, "layout" => $layout]);
+				$media = $api->getContent(["id" => $set["Id"]]);
+				foreach ($media->content['vids'] as $k => $l) {
+					foreach ($l as $m => $n) {
+						if ($n['name'] == '720p' || $n['name'] == '1080p') $bitrates[] = "HD";
+						if ($n['name'] == '4K') $bitrates[] = "4K";
+					}
+				}
+				LoadTemplate("components/thumb_video.tpl", ["set" => $set, "prefer" => 'vids', "counter" => $i, "layout" => $layout, "bitrates" => $bitrates]);
 				$i++;
+				$bitrates = array();
 			}
 			?>
 		</div>

@@ -9,6 +9,7 @@ foreach ($modelSets->sets as $set) {
 		$mcats[] = $catitem;
 	}
 }
+$bitrates = array();
 ?>
 <div class="main">
 	<section class="container">
@@ -101,6 +102,7 @@ foreach ($modelSets->sets as $set) {
 			<?php
 			$layout = [
 				"skeleton",
+				"bitrate",
 				"duration",
 				"title",
 				"info" => [
@@ -112,10 +114,18 @@ foreach ($modelSets->sets as $set) {
 			];
 			$i = 0;
 			foreach ($sets as $k => $set) {
+				$media = $api->getContent(["id" => $set["Id"]]);
+				foreach ($media->content['vids'] as $k => $l) {
+					foreach ($l as $m => $n) {
+						if ($n['name'] == '720p' || $n['name'] == '1080p') $bitrates[] = "HD";
+						if ($n['name'] == '4K') $bitrates[] = "4K";
+					}
+				}
 				if (true || (($k) >= (($onpage - 1) * $numperpage) && ($k) < (($onpage) * $numperpage))) {
-					LoadTemplate("components/thumb_video.tpl", ["set" => $set, "counter" => $i, "layout" => $layout]);
+					LoadTemplate("components/thumb_video.tpl", ["set" => $set, "counter" => $i, "layout" => $layout, "bitrates" => $bitrates]);
 				}
 				$i++;
+				$bitrates = array();
 			}
 			?>
 		</div>

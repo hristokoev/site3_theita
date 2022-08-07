@@ -1,5 +1,8 @@
-<?php $today = date("Y-m-d H:i:s"); ?>
-<?php LoadTemplate("tour/template_sections/header.tpl", ["pagename" => "trailer"]); ?>
+<?php
+$today = date("Y-m-d H:i:s");
+LoadTemplate("tour/template_sections/header.tpl", ["pagename" => "trailer"]); 
+$bitrates = array(); 
+?>
 <div class="main">
 	<section class="container">
 		<div class="trailer">
@@ -56,6 +59,7 @@
 			if ($tour['PaginateTourThumbs'] == 1) {
 				$layout = [
 					"skeleton",
+					"bitrate",
 					"duration",
 					"title",
 					"info" => [
@@ -66,12 +70,20 @@
 					]
 				];
 				shuffle($tourthumbs);
-				foreach ($tourthumbs as $key => $set) :
+				foreach ($tourthumbs as $key => $set) {
+					$media = $api->getContent(["id" => $set["Id"]]);
+					foreach ($media->content['vids'] as $k => $l) {
+						foreach ($l as $m => $n) {
+							if ($n['name'] == '720p' || $n['name'] == '1080p') $bitrates[] = "HD";
+							if ($n['name'] == '4K') $bitrates[] = "4K";
+						}
+					}
 					if ($tour['NumPerPageThumb'] > $i) {
-						LoadTemplate("components/thumb_video.tpl", ["set" => $set, "prefer" => 'vids', "counter" => $i, "layout" => $layout]);
+						LoadTemplate("components/thumb_video.tpl", ["set" => $set, "prefer" => 'vids', "counter" => $i, "layout" => $layout, "bitrates" => $bitrates]);
 					}
 					$i++;
-				endforeach;
+					$bitrates = array();
+				}
 			?>
 		</div>
 		<a href="<?php echo $areaurl; ?>models/1/latest/" class="button button-load-more button-outline"><?php echo $templatefields["txtviewall"]; ?></a>
@@ -79,6 +91,7 @@
 			} else {
 				$layout = [
 					"skeleton",
+					"bitrate",
 					"duration",
 					"title",
 					"info" => [
@@ -89,16 +102,24 @@
 					]
 				];
 				shuffle($tourthumbs);
-				foreach ($tourthumbs as $key => $set) :
+				foreach ($tourthumbs as $key => $set) {
+					$media = $api->getContent(["id" => $set["Id"]]);
+					foreach ($media->content['vids'] as $k => $l) {
+						foreach ($l as $m => $n) {
+							if ($n['name'] == '720p' || $n['name'] == '1080p') $bitrates[] = "HD";
+							if ($n['name'] == '4K') $bitrates[] = "4K";
+						}
+					}
 					if ($tour['NumPerPageThumb'] > $i) {
-						LoadTemplate("components/thumb_video.tpl", ["set" => $set, "prefer" => 'vids', "counter" => $i, "layout" => $layout]);
+						LoadTemplate("components/thumb_video.tpl", ["set" => $set, "prefer" => 'vids', "counter" => $i, "layout" => $layout, "bitrates" => $bitrates]);
 					}
 					$i++;
 					// Show 8 videos in 'More updates'. The total is set to 24 from the admin dashboard, this cuts it to 8.
 					if ($i >= 8) {
 						break;
 					}
-				endforeach;
+					$bitrates = array(); 
+				}
 			}
 	?>
 	<?php if ($tour['PaginateTourThumbs'] !== 1) { ?>
