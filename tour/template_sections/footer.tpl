@@ -12,18 +12,18 @@ $footerBanners = array_filter($banners, function (array $banner) use ($current_l
 		<div class="footer-banner">
 			<?php
 			$i = 0;
-			foreach ($footerBanners as $footerBanner) : ?>
+			foreach ($footerBanners as $banner) : ?>
 				<div class="item <?php if ($i == 0) echo 'active'; ?>">
-					<?php if (!empty($footerBanner['FileExt'])) : ?>
-						<?php if (!empty($footerBanner['URL'])) : ?>
-							<a href="<?php echo $footerBanner['URL']; ?>">
+					<?php if (!empty($banner['FileExt'])) : ?>
+						<?php if (!empty($banner['URL'])) : ?>
+							<a href="<?php echo 'bannerload.php?track=' . $banner['Id']; ?>">
 							<?php endif ?>
-							<img src="<?php echo cdn_hook($GLOBALS["contentdir"] . "/contentthumbs/" . $footerBanner["Id"] . "-banner." . $footerBanner["FileExt"]) ?>" alt="Banner" class="" data-remote="bannerload.php?zone=<?php echo $footerBanner['ZoneId']; ?>">
-							<?php if (!empty($footerBanner['URL'])) : $i++; ?>
+							<img src="<?php echo cdn_hook($GLOBALS["contentdir"] . "/contentthumbs/" . $banner["Id"] . "-banner." . $banner["FileExt"]) ?>" alt="Banner" class="">
+							<?php if (!empty($banner['URL'])) : $i++; ?>
 							</a>
 						<?php endif ?>
 					<?php else : ?>
-						<p><?php echo $footerBanner['Description']; ?></p>
+						<p><?php echo $banner['Description']; ?></p>
 					<?php endif ?>
 				</div>
 			<?php endforeach ?>

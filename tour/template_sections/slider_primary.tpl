@@ -19,10 +19,10 @@ $headerBanners = array_filter($banners, function (array $banner) use ($current_l
 				foreach ($headerBanners as $banner) : ?>
 					<div class="swiper-slide">
 						<?php if (!empty($banner['URL'])) : ?>
-							<a href="<?php echo $banner['URL']; ?>">
+							<a href="<?php echo 'bannerload.php?track=' . $banner['Id']; ?>">
 							<?php endif ?>
 							<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-							<img src="<?php echo cdn_hook($GLOBALS["contentdir"] . "/contentthumbs/" . $banner["Id"] . "-banner." . $banner["FileExt"]) ?>" alt="Banner" data-remote="bannerload.php?zone=<?php echo $banner['ZoneId']; ?>" class="swiper-lazy">
+							<img src="<?php echo cdn_hook($GLOBALS["contentdir"] . "/contentthumbs/" . $banner["Id"] . "-banner." . $banner["FileExt"]) ?>" alt="Banner">
 							<?php if (!empty($banner['URL'])) : $i++; ?>
 							</a>
 						<?php endif ?>
