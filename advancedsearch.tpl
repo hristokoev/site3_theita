@@ -9,20 +9,24 @@
 	$object->models = array();
 	$object->categories = array();
 	$object->tags = array();
-	foreach($models->models as $model) {
-		if (preg_grep("/" . $p['q'] . "/i", [$model['ModelName']])) {
-			$object->models[] = $model['ModelName'] . '|' . $model['SEOname'] . '|' . $model['setcount']; 
-		}		   
-	}
-	foreach($categories->categories as $category) {
-		$setobj = $api->getSets(["category_filter" => [$category["Id"]]]);
-		if (preg_grep("/" . $p['q'] . "/i", [$category['Title']])) {
-			if ($category["Parent"] == "88") {
-				$object->categories[] = $category['Title'] . '|' . $category['SEOname'] . '|' . $setobj->setcount;
-			} else if ($category["Parent"] == "3") {
-				$object->tags[] = $category['Title'] . '|' . $category['SEOname'] . '|' . $setobj->setcount;
+	if ($p['q'] != "") {
+		foreach($models->models as $model) {
+			if (preg_grep("/" . $p['q'] . "/i", [$model['ModelName']])) {
+				$object->models[] = $model['ModelName'] . '|' . $model['SEOname'] . '|' . $model['setcount']; 
+			}		   
+		}
+		foreach($categories->categories as $category) {
+			$setobj = $api->getSets(["category_filter" => [$category["Id"]]]);
+			if (preg_grep("/" . $p['q'] . "/i", [$category['Title']])) {
+				if ($category["Parent"] == "88") {
+					$object->categories[] = $category['Title'] . '|' . $category['SEOname'] . '|' . $setobj->setcount;
+				} else if ($category["Parent"] == "3") {
+					$object->tags[] = $category['Title'] . '|' . $category['SEOname'] . '|' . $setobj->setcount;
+				}
 			}
 		}
+		
+		$data = json_encode($object, JSON_PRETTY_PRINT);
+		echo $data;
 	}
-	$data = json_encode($object, JSON_PRETTY_PRINT);
-	echo $data;
+	exit();
