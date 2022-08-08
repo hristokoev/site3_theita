@@ -1,9 +1,8 @@
-<section class="container content">
-	<div>
-		<h3>Ooops!</h3>
-		<h1>ERROR 404</h1>
+<section class="container">
+	<div style="display: flex; flex-direction: column; row-gap: 16px; place-items: center; padding: 48px 0;">
+		<h3>Oops!</h3>
+		<h1 style="font-weight: 700;">ERROR 404</h1>
 		<h4>We can't find the page you're looking for.</h4>
-		<h3>FUCK ME... RIGHT?</h3>
 		<h4 class="page-subtitle">Why don't you check out these videos instead?</h4>
 	</div>
 	<div class="grid grid-videos">
@@ -38,6 +37,6 @@
 		?>
 	</div>
 </section>
-<div>
+<div class="button-centered">
 	<a href="<?php echo $areaurl; ?>categories/movies/1/latest/" class="button button-load-more button-outline"><?php echo $templatefields["txtloadmore"]; ?></a>
 </div>

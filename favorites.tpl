@@ -46,7 +46,7 @@ $bitrates = array();
 			} ?>
 		</div>
 		<?php } else { ?>
-			<div class="content" style="padding: 32px; margin: 32px"><?php echo $templatefields["txtnofavorites"]; ?></div>
+			<div class="content"><?php echo $templatefields["txtnofavorites"]; ?></div>
 		<?php } ?>
 	</section>
 </div>

@@ -42,6 +42,6 @@
 				</div>
 			</div>
 		</form>
-		<div id="success_message" style="width:100%; height:100%; display:none; "> <h3>Sent your message successfully!</h3> </div>
+		<div id="success_message" style="display:none;"> <h3>Sent your message successfully!</h3> </div>
 	</div>
 </section>

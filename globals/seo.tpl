@@ -89,7 +89,7 @@ else if ($pagename == "trailer") {
 
 // CUSTOM PAGE
 else if ($pagename == "pages") {
-	$title = $content['Title'];
+	$title = $content['Title'] . " | " . $templatefields["sitename"];
 	$seokey = $set["SEOkey"];
 	$seodesc = $set["SEOdesc"];
 }

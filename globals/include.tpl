@@ -26,7 +26,7 @@
 <script type="text/javascript" defer src="<?php echo $areaurl; ?>js/custom.js"></script>
 <script type="text/javascript" defer src="<?php echo $areaurl; ?>js/videohandler.js"></script>
 <!-- Style -->
-<link href="<?php echo $areaurl; ?>css/main.css" rel="stylesheet" />
+<link href="https://theitalianporn.com/css/main.css" rel="stylesheet" />
 <?php if ($templatefields["googleanalyticscode"] != '') { ?>
 <script type="text/javascript">
 	(function(i, s, o, g, r, a, m) {

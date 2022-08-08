@@ -145,8 +145,9 @@ if (isset($trial) && $trial['allowzips'] == 0) {
 							html: `<div class="download-box"><?php
 																$usetype = "vids";
 																$settype = "vids";
+																$media = $api->getContent(["id" => $set["Id"]]);
 																foreach ($mediatypes as $mediatype) {
-																	foreach ($media[$usetype] as $tmp1) {
+																	foreach ($media->content[$usetype] as $tmp1) {
 																		if (isset($tmp1[$mediatype["Name"] . ":" . $mediatype["Type"]]) && ($mediatype["ShowDownload"] >= 1) && ($mediatype["FullVideo"] >= 1)) {
 																?><a href="<?php echo $areaurl; ?>?action=download&file=<?php echo $tmp1[$mediatype["Name"] . ":" . $mediatype["Type"]]["fullpath"]; ?>"><?php echo $mediatype["Format"] . ' ' . $mediatype["Label"] .  ' <span>(' . sprintf("%.1f", $tmp1[$mediatype["Name"] . ":" . $mediatype["Type"]]["filesize"] / 1024 / 1024) . ' MB)</span>'; ?></a><?php }
 																																																																																											}

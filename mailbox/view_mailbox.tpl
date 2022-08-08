@@ -29,7 +29,7 @@
 			</div>
 		<?php } ?>
 		<?php if (empty($messages)) { ?>
-		<div class="content" style="padding: 32px; margin: 32px"><?php echo $templatefields["txtnomessages"]; ?></div>
+		<div class="content"><?php echo $templatefields["txtnomessages"]; ?></div>
 		<?php } ?>
 		<?php ?>
 	</div>

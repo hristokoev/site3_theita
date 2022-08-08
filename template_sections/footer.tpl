@@ -15,7 +15,7 @@
 			<div class="footer-column flex-column">
 				<div class="footer-title"><?php echo $templatefields["txtfootercol3"]; ?></div>
 				<a href="<?php echo $areaurl; ?>become-a-model/">Become a model</a>
-				<a href="<?php echo $areaurl; ?>mailbox.php"><?php echo $templatefields["txtcontacts"]; ?></a>
+				<a href="<?php echo $areaurl; ?>mailbox.php?compose=1"><?php echo $templatefields["txtcontacts"]; ?></a>
 			</div>
 			<div class="footer-column flex-column">
 				<div class="footer-title"><?php echo $templatefields["txtfootercol4"]; ?></div>
