@@ -152,6 +152,13 @@ $bitrates = array();
 	<section class="container">
 		<?php include "tour/template_sections/slider_secondary.tpl"; ?>
 	</section>
+	<div class="button-lined">
+		<a href="<?php echo $areaurl; ?>models/1/latest/" class="button button-load-more button-outline"><?php echo $templatefields["txtloadmore"]; ?></a>
+	</div>
+	<div class="content cta">
+		<h1><?php echo $templatefields["h1_site"]; ?></h1>
+		<a href="<?php echo $tour['JoinUrl']; ?>" class="button button-active"><?php echo $templatefields["tourtxtjoin"]; ?></a>
+	</div>
 	<section class="container">
 		<div class="main-header-title">
 			<div class="holder">
@@ -163,13 +170,6 @@ $bitrates = array();
 			<?php LoadTemplate("tour/template_sections/our_models.tpl"); ?>
 		</div>
 	</section>
-	<div class="button-lined">
-		<a href="<?php echo $areaurl; ?>models/1/latest/" class="button button-load-more button-outline"><?php echo $templatefields["txtloadmore"]; ?></a>
-	</div>
-	<div class="content">
-		<h1><?php echo $templatefields["h1_site"]; ?></h1>
-		<a href="<?php echo $tour['JoinUrl']; ?>" class="button button-join"><?php echo $templatefields["tourtxtjoin"]; ?></a>
-	</div>
 </div>
 <script>
 	var carousel = new Swiper(".myCarousel", {

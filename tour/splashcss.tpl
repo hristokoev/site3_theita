@@ -1,7 +1,4 @@
 <style>
-	html {
-		overflow: hidden;
-	}
 	body {
 		background: #000;
 	}
