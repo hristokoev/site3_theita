@@ -12,7 +12,6 @@ if ($detect->isMobile() && !$detect->isTablet()) {
 		<a href="<?php echo $areaurl . 'network/'; ?>">
 			<img src="<?php echo $areaurl . 'images/banners/' . $src; ?>" alt="Banner" class="">
 		</a>
-		<p><?php echo $banner['Description']; ?></p>
 	</div>
 </div>
 <div class="footer">
