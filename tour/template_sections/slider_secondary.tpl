@@ -1,59 +1,63 @@
 <?php
-$headerBanners = array_filter($banners, function (array $banner) use ($current_language) {
-	if ($current_language == 2) {
-		return strpos($banner['ZoneId'], 'header_it_tour') !== false;
-	}
-	return strpos($banner['ZoneId'], 'header_en_tour') !== false;
-});
+$detect = new Mobile_Detect;
+$arr = array();
+$file = fopen('https://theitalianporn.com/images/banners/middle/middle.csv', 'r');
+while (($line = fgetcsv($file)) !== FALSE) {
+	$arr[] = $line;
+}
+fclose($file);
+array_shift($arr);
 ?>
-<?php if (!empty($headerBanners) > 0) :
-?>
-	<div data-ride="carousel">
-		<div class="swiper banner swiper-initialized swiper-horizontal swiper-pointer-events">
-			<div class="swiper-wrapper">
-				<?php
-				$i = 0;
-				foreach ($headerBanners as $banner) : ?>
-					<div class="swiper-slide">
-						<?php if (!empty($banner['URL'])) : ?>
-							<a href="<?php echo 'bannerload.php?track=' . $banner['Id']; ?>">
-							<?php endif ?>
-							<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-							<img src="<?php echo cdn_hook($GLOBALS["contentdir"] . "/contentthumbs/" . $banner["Id"] . "-banner." . $banner["FileExt"]) ?>" alt="Banner">
-							<?php if (!empty($banner['URL'])) : $i++; ?>
-							</a>
-						<?php endif ?>
-					</div>
-				<?php endforeach ?>
-			</div>
-		</div>
-		<div id="banner_button_prev" class="swiper-button-prev" aria-label="Previous banner"></div>
-		<div id="banner_button_next" class="swiper-button-next" aria-label="Next banner"></div>
-		<div class="banner-pagination swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal">
+<div data-ride="carousel">
+	<div class="swiper banner swiper-initialized swiper-horizontal swiper-pointer-events">
+		<div class="swiper-wrapper">
 			<?php
-			foreach ($headerBanners as $banner) : ?>
-				<span class="swiper-pagination-bullet"></span>
-			<?php endforeach ?>
+			$i = 0;
+			foreach ($arr as $banner) { ?>
+				<?php
+				$src = "";
+				if ($detect->isMobile() && !$detect->isTablet()) {
+					$src = $banner[1];
+				} else {
+					$src = $banner[0];
+				}
+				$i++;
+				?>
+				<div class="swiper-slide">
+					<a href="<?php echo $banner[2]; ?>">
+						<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+						<img src="<?php echo $areaurl . 'images/banners/middle/' . $src; ?>" alt="<?php echo $banner[3]; ?>" class="swiper-lazy">
+					</a>
+				</div>
+			<?php } ?>
 		</div>
-		<script>
-			var swiper = new Swiper(".banner", {
-				slidesPerView: 1,
-				spaceBetween: 16,
-				loop: true,
-				lazy: true,
-				autoplay: {
-					delay: 2500,
-					disableOnInteraction: false,
-				},
-				pagination: {
-					el: ".banner-pagination",
-					clickable: true,
-				},
-				navigation: {
-					nextEl: "#banner_button_next",
-					prevEl: "#banner_button_prev",
-				},
-			});
-		</script>
 	</div>
-<?php endif; ?>
+	<div id="banner_button_prev" class="swiper-button-prev" aria-label="Previous banner"></div>
+	<div id="banner_button_next" class="swiper-button-next" aria-label="Next banner"></div>
+	<div class="banner-pagination swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal">
+		<?php
+		foreach ($arr as $banner) : ?>
+			<span class="swiper-pagination-bullet"></span>
+		<?php endforeach ?>
+	</div>
+	<script>
+		let middleSwiper = new Swiper(".banner", {
+			slidesPerView: 1,
+			spaceBetween: 16,
+			loop: <?php echo $i <= 1 ? 'false' : 'true'; ?>,
+			lazy: true,
+			autoplay: {
+				delay: 5000,
+				disableOnInteraction: false,
+			},
+			pagination: {
+				el: ".banner-pagination",
+				clickable: true,
+			},
+			navigation: {
+				nextEl: "#banner_button_next",
+				prevEl: "#banner_button_prev",
+			},
+		});
+	</script>
+</div>

@@ -1,34 +1,21 @@
 <?php
-$footerBanners = array_filter($banners, function (array $banner) use ($current_language) {
-	if ($current_language == 2) {
-		return strpos($banner['ZoneId'], 'footer_it_tour') !== false;
-	}
-	return strpos($banner['ZoneId'], 'footer_en_tour') !== false;
-});
+$detect = new Mobile_Detect;
+$src = "";
+if ($detect->isMobile() && !$detect->isTablet()) {
+	$src = "banner_footer_mobile.jpg";
+} else {
+	$src = "banner_footer.jpg";
+}
 ?>
-
+<div class="footer-banner">
+	<div class="item">
+		<a href="<?php echo $areaurl . 'network/'; ?>">
+			<img src="<?php echo $areaurl . 'images/banners/' . $src; ?>" alt="Banner" class="">
+		</a>
+		<p><?php echo $banner['Description']; ?></p>
+	</div>
+</div>
 <div class="footer">
-	<?php if (!empty($footerBanners) > 0) : ?>
-		<div class="footer-banner">
-			<?php
-			$i = 0;
-			foreach ($footerBanners as $banner) : ?>
-				<div class="item <?php if ($i == 0) echo 'active'; ?>">
-					<?php if (!empty($banner['FileExt'])) : ?>
-						<?php if (!empty($banner['URL'])) : ?>
-							<a href="<?php echo 'bannerload.php?track=' . $banner['Id']; ?>">
-							<?php endif ?>
-							<img src="<?php echo cdn_hook($GLOBALS["contentdir"] . "/contentthumbs/" . $banner["Id"] . "-banner." . $banner["FileExt"]) ?>" alt="Banner" class="">
-							<?php if (!empty($banner['URL'])) : $i++; ?>
-							</a>
-						<?php endif ?>
-					<?php else : ?>
-						<p><?php echo $banner['Description']; ?></p>
-					<?php endif ?>
-				</div>
-			<?php endforeach ?>
-		</div>
-	<?php endif; ?>
 	<section class="container">
 		<div class="links">
 			<div class="footer-column flex-column">
@@ -62,10 +49,11 @@ $footerBanners = array_filter($banners, function (array $banner) use ($current_l
 		<div class="info">
 			<div class="footer-text"><?php echo $templatefields["txtfooter"]; ?></div>
 			<div class="footer-rta"><img src="<?php echo $areaurl; ?>rta.webp" alt="Restricted To Adults"></div>
-			<div class="footer-copyright">&copy; <?php echo date('Y'); ?>&nbsp;<?php echo $templatefields["sitename"]; ?> . <?php echo $templatefields["txtallrightsreserved"]; ?></div>
+			<div class="footer-copyright">&copy; <?php echo date('Y'); ?>&nbsp;<?php echo $templatefields["sitename"]; ?></br><?php echo $templatefields["txtallrightsreserved"]; ?></div>
 		</div>
 	</section>
 </div>
 </div>
 </body>
+
 </html>
