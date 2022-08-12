@@ -1,13 +1,13 @@
 <?php
 $detect = new Mobile_Detect;
-$arr = array();
-$file = fopen('https://theitalianporn.com/images/banners/middle/middle.csv', 'r');
-while (($line = fgetcsv($file)) !== FALSE) {
-	$arr[] = $line;
+$fileurl = $areaurl . 'images/banners/middle/middle.json';
+if (!URL_Exists($fileurl)) {
+	return;
 }
-fclose($file);
-array_shift($arr);
+$json = file_get_contents($fileurl);
+$arr = json_decode($json, true);
 ?>
+<section class="container">
 <div data-ride="carousel">
 	<div class="swiper banner swiper-initialized swiper-horizontal swiper-pointer-events">
 		<div class="swiper-wrapper">
@@ -17,16 +17,16 @@ array_shift($arr);
 				<?php
 				$src = "";
 				if ($detect->isMobile() && !$detect->isTablet()) {
-					$src = $banner[1];
+					$src = $banner["mobile"];
 				} else {
-					$src = $banner[0];
+					$src = $banner["desktop"];
 				}
 				$i++;
 				?>
 				<div class="swiper-slide">
-					<a href="<?php echo $banner[2]; ?>">
+					<a href="<?php echo $banner["url"]; ?>">
 						<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-						<img src="<?php echo $areaurl . 'images/banners/middle/' . $src; ?>" alt="<?php echo $banner[3]; ?>" class="swiper-lazy">
+						<img src="<?php echo $areaurl . 'images/banners/middle/' . $src; ?>" alt="<?php echo $banner["alt"]; ?>" class="swiper-lazy">
 					</a>
 				</div>
 			<?php } ?>
@@ -60,4 +60,8 @@ array_shift($arr);
 			},
 		});
 	</script>
+</div>
+</section>
+<div class="button-lined">
+	<a href="<?php echo $areaurl; ?>models/1/latest/" class="button button-load-more button-outline"><?php echo $templatefields["txtloadmore"]; ?></a>
 </div>

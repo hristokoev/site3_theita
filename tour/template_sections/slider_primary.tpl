@@ -1,15 +1,11 @@
 <?php
 $detect = new Mobile_Detect;
-if ($set || $individual_update || $pagename !== 'tour') {
+$fileurl = $areaurl . 'images/banners/header/header.json';
+if ($set || $individual_update || $pagename !== 'tour' || !URL_Exists($fileurl)) {
 	return;
 }
-$arr = array();
-$file = fopen('https://theitalianporn.com/images/banners/header/header.csv', 'r');
-while (($line = fgetcsv($file)) !== FALSE) {
-	$arr[] = $line;
-}
-fclose($file);
-array_shift($arr);
+$json = file_get_contents($fileurl);
+$arr = json_decode($json, true);
 ?>
 <div data-ride="carousel" style="position: relative">
 	<div class="swiper mySwiper swiper-initialized swiper-horizontal swiper-pointer-events">
@@ -20,16 +16,16 @@ array_shift($arr);
 				<?php
 				$src = "";
 				if ($detect->isMobile() && !$detect->isTablet()) {
-					$src = $banner[1];
+					$src = $banner["mobile"];
 				} else {
-					$src = $banner[0];
+					$src = $banner["desktop"];
 				}
 				$i++;
 				?>
 				<div class="swiper-slide">
-					<a href="<?php echo $banner[2]; ?>">
+					<a href="<?php echo $banner["url"]; ?>">
 						<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-						<img src="<?php echo $areaurl . 'images/banners/header/' . $src; ?>" alt="<?php echo $banner[3]; ?>" class="swiper-lazy">
+						<img src="<?php echo $areaurl . 'images/banners/header/' . $src; ?>" alt="<?php echo $banner["alt"]; ?>" class="swiper-lazy">
 					</a>
 				</div>
 			<?php } ?>
@@ -39,7 +35,7 @@ array_shift($arr);
 	<div id="swiper_button_next" class="swiper-button-next" aria-label="Next slide"></div>
 	<div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal">
 		<?php
-		foreach ($headerBanners as $banner) : ?>
+		foreach ($arr as $banner) : ?>
 			<span class="swiper-pagination-bullet"></span>
 		<?php endforeach ?>
 	</div>
