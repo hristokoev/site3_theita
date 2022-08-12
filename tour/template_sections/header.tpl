@@ -18,7 +18,6 @@ $stracks = array(
 	"oblowjobs"			=>	"MC4wLjIyLjMxLjAuMC4wLjAuMA/22:31/0/1/",
 	"pornlandvideos"	=>	"MC4wLjQuNC4wLjAuMC4wLjA/4:4/0/1/",
 	"sologirlsmania"	=>	"MC4wLjIuMi4wLjAuMC4wLjA/2:2/0/1/",
-	"theitalianporn"	=>	"",
 	"vangoren"			=>	"MC4wLjUuNS4wLjAuMC4wLjA/5:5/0/1/"
 );
 $url = parse_url($areaurl);
@@ -31,7 +30,7 @@ $sitename = str_replace(".com", "", $url['host']);
 			<span><?php echo $templatefields["txtsites"]; ?></span>
 			<ul>
 				<?php foreach ($sites as $site) { ?>
-					<?php if (array_key_exists($site["Name"], $stracks) && $sitename !== $site["Name"]) { ?>
+					<?php if (array_key_exists($site["Name"], $stracks)) { ?>
 						<li><a href="<?php echo 'https://joins.' . $site["Name"] . '.com/strack/' . $stracks[$site["Name"]]; ?>"><?php echo $site["Name"]; ?></a></li>
 					<?php } ?>
 				<?php } ?>
@@ -66,7 +65,7 @@ $sitename = str_replace(".com", "", $url['host']);
 					<h6><?php echo $templatefields["txtsites"]; ?></h6>
 					<ul class="sites">
 						<?php foreach ($sites as $site) { ?>
-							<?php if (array_key_exists($site["Name"], $stracks) && $sitename !== $site["Name"]) { ?>
+							<?php if (array_key_exists($site["Name"], $stracks)) { ?>
 								<li><a href="<?php echo 'https://joins.' . $site["Name"] . '.com/strack/' . $stracks[$site["Name"]]; ?>"><?php echo $site["Name"]; ?></a></li>
 							<?php } ?>
 						<?php } ?>

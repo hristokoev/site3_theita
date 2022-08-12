@@ -1,6 +1,9 @@
 <?php
-include "globals/globals.tpl"; echo "\n";
+include "globals/globals.tpl";
+echo "\n";
 $detect = new Mobile_Detect;
+$parse = parse_url($areaurl);
+$url = "https://" . $parse['host'] . '/';
 ?>
 <header>
 	<div class="header-top <?php echo (isset($trial)) ? 'trial-area' : 'member-area'; ?>">
@@ -19,11 +22,11 @@ $detect = new Mobile_Detect;
 				<div class="sidebar-menu">
 					<div class="buttons">
 						<?php if (!empty($plugins["privatemessage"]) && $has_username) { ?>
-						<a href="<?php echo $tour['JoinUrl']; ?>" class="button button-outline"><i class="fa-solid fa-envelope"></i><?php echo $templatefields["txtmessages"]; ?></a>
+							<a href="<?php echo $tour['JoinUrl']; ?>" class="button button-outline"><i class="fa-solid fa-envelope"></i><?php echo $templatefields["txtmessages"]; ?></a>
 						<?php } ?>
 						<?php if (!empty($plugins["favorites"]) && $has_username && !isset($trial)) { ?>
-						<a href="<?php echo $tour['JoinUrl']; ?>" class="button button-outline"><i class="fa-solid fa-star"></i><?php echo $templatefields["txtfavorites"]; ?></a>
-						<?php } ?>	
+							<a href="<?php echo $tour['JoinUrl']; ?>" class="button button-outline"><i class="fa-solid fa-star"></i><?php echo $templatefields["txtfavorites"]; ?></a>
+						<?php } ?>
 					</div>
 					<form class="search-form" action="search.php" method="get">
 						<div class="search-input">
@@ -44,7 +47,7 @@ $detect = new Mobile_Detect;
 					<ul class="sites">
 						<?php $site_name = explode('/', $_SERVER['REQUEST_URI'])[1]; ?>
 						<?php foreach ($sites as $site) { ?>
-							<li class="subsite <?php echo ($site["Name"] == $site_name) ? 'active' : ''; ?>"><a href="<?php echo 'https://members.vangoren.com/' . $site["Name"]; ?>"><?php echo $site["Name"]; ?></a></li>
+							<li class="subsite <?php echo ($site["Name"] == $site_name) ? 'active' : ''; ?>"><a href="<?php echo $url .  $site["Name"]; ?>"><?php echo $site["Name"]; ?></a></li>
 						<?php } ?>
 					</ul>
 				</div>
@@ -74,7 +77,7 @@ $detect = new Mobile_Detect;
 					<a href="<?php echo $areaurl; ?>favorites.php" class="button button-icon"><i class="fa-solid fa-star"></i></a>
 				<?php } ?>
 				<?php if (isset($trial)) { ?>
-					<a href="<?php echo $tour['JoinUrl']; ?>" class="button button-join"><?php echo $templatefields["trialtxtupgrade"]; ?></a>
+					<a href="<?php echo $tour['JoinUrl']; ?>" class="button button-join"><?php echo $templatefields["trialtxtupgradeshort"]; ?></a>
 					<a href="<?php echo $tour['JoinUrl']; ?>" class="button button-join-short"><?php echo $templatefields["trialtxtupgradeshort"]; ?></a>
 				<?php } ?>
 			</div>
@@ -84,13 +87,11 @@ $detect = new Mobile_Detect;
 						<ul>
 							<?php $site_name = explode('/', $_SERVER['REQUEST_URI'])[1]; ?>
 							<?php foreach ($sites as $site) { ?>
-								<li class="subsite <?php echo ($site["Name"] == $site_name) ? 'active' : ''; ?>"><a href="<?php echo 'https://members.vangoren.com/' . $site["Name"]; ?>"><?php echo $site["Name"]; ?></a></li>
+								<li class="subsite <?php echo ($site["Name"] == $site_name) ? 'active' : ''; ?>"><a href="<?php echo $url . $site["Name"]; ?>"><?php echo $site["Name"]; ?></a></li>
 							<?php } ?>
 						</ul>
 					</div>
 					<div class="nav-block-main">
-						<div class="sub-image"><img id="banner" src="https://dummyimage.com/992x120/000/fff&text=Banner" alt=""></div>
-						<h3 class="subsite-title"><span><?php echo $templatefields["txtmostpopular"]; ?>&nbsp;from&nbsp;</span><span class="sitename"><?php echo $site_name; ?></span></h3>
 						<?php
 						$layout = [
 							"skeleton",
@@ -103,15 +104,20 @@ $detect = new Mobile_Detect;
 						];
 						// TO DO: Get videos via AJAX, currently they're pre-loaded into the HTML and then hidden
 						foreach ($sites as $site) {
-						?><div class="sub-videos" id="site-<?php echo $site["Name"]; ?>" <?php if ($site["Name"] !== $site_name) { ?>style="display: none;" <?php } ?>><?php
-																																										$$site = get_from_scheduled_updates(5, 4, 'DESC', 1, false, false, $site["Id"]);
-																																										$i = 0;
-																																										foreach ($$site as $set) {
-																																											LoadTemplate("components/thumb_video.tpl", ["set" => $set, "prefer" => 'vids', "counter" => $i, "layout" => $layout]);
-																																											$i++;
-																																										}
-																																										?></div><?php }
-								?>
+							$siteurl = $url . $site["Name"] . '/';
+						?><div class="site" id="site-<?php echo $site["Name"]; ?>" <?php if ($site["Name"] !== $site_name) { ?>style="display: none;" <?php } ?>>
+								<div class="sub-image"><a href="<?php echo $siteurl; ?>"><img id="banner" src="<?php echo 'https://' . $site["Name"] . '.com/images/banners/banner_992x155.jpg'; ?>" alt=""></a></div>
+								<h3 class="subsite-title"><span><?php echo $templatefields["txtmostpopular"]; ?>&nbsp;from&nbsp;</span><span class="sitename"><?php echo $site_name; ?></span></h3>
+								<div class="sub-videos"><?php
+														$$site = get_from_scheduled_updates(5, 4, 'DESC', 1, false, false, $site["Id"]);
+														$i = 0;
+														foreach ($$site as $set) {
+															LoadTemplate("components/thumb_video.tpl", ["set" => $set, "prefer" => 'vids', "counter" => $i, "layout" => $layout, "url" => $siteurl]);
+															$i++;
+														}
+														?></div>
+							</div><?php }
+									?>
 					</div>
 				</div>
 			</div>
@@ -127,13 +133,21 @@ $detect = new Mobile_Detect;
 		}
 
 		$(".subsite").hover(function() {
-			$(".sub-videos").hide();
+			$(".site").hide();
 			$(".subsite.active").removeClass("active");
 			$(".sitename").text($(this).text());
-			$("#banner").attr("src", `https://dummyimage.com/992x120/000/fff&text=${$(this).text()}`);
 			$(this).toggleClass("active");
 			let last = $(this).text();
 			$("#site-" + last).show();
+			$(".nav-block-main").prepend('<div class="loading lds-dual-ring"></div>');
+
+			$("#site-" + last + " img").one("load", function() {
+				$(".loading").remove();
+			}).each(function() {
+				if (this.complete) {
+					$(this).trigger('load');
+				}
+			});
 		});
 
 		$(document).on("click", function(e) {

@@ -9,6 +9,7 @@ if (!isset($usepriority)) {
 		$usepriority = "14,20,21,22,23,24,25";
 	}
 }
+$url = ($url) ? $url : $areaurl;
 $hType = (isset($set["info"]["totals"]["types"]["highres"])) ? 1 : 0;
 $vType = (isset($set["info"]["totals"]["types"]["vids"])) ? 1 : 0;
 $usetype = "";
@@ -28,12 +29,12 @@ if (isset($GLOBALS["tour"])) {
 	if ($today > $set["AppearDate"]) {
 		if (isset($trial)) {
 			if (in_array($set["Id"], $trial['allowrecent']) || empty($trial['allowrecent'])) {
-				$ahref = Gallery_URL(["type" => $usetype, "id" => $set["Id"], "seoname" => $set["SEOname"], "set" => $set]);
+				$ahref = $url . Gallery_URL(["type" => $usetype, "id" => $set["Id"], "seoname" => $set["SEOname"], "set" => $set]);
 			} else {
 				$ahref = $trial['videourl'];
 			}
 		} else {
-			$ahref = Gallery_URL(["type" => $usetype, "id" => $set["Id"], "seoname" => $set["SEOname"], "set" => $set]);
+			$ahref = $url . Gallery_URL(["type" => $usetype, "id" => $set["Id"], "seoname" => $set["SEOname"], "set" => $set]);
 		}
 	} else {
 		$onclick = 'javascript:(Swal.fire("' . $templatefields["txtcoming"] . '&nbsp;' . $set["AppearDate"] . '"))';
