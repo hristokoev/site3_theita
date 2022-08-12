@@ -13,6 +13,7 @@ function LoadTemplate($file, $vars = array()) {
 		}
 	}
 }
+
 function Trailer_URL($arr = array()) {
 	$useseo = $GLOBALS["seo_urls"];
 	$areaurl = $areaurl;
@@ -35,6 +36,7 @@ function Trailer_URL($arr = array()) {
 	}
 	return $ret;
 }
+
 function Gallery_URL($arr = array()) {
 	$ret = "";
 	if (isset($GLOBALS["tour"])) {
@@ -108,6 +110,7 @@ function Gallery_URL($arr = array()) {
 	}
 	return $ret;
 }
+
 function Search_URL($arr = array()) {
 	$ret = "search.php";
 	$arrpush = array();
@@ -127,6 +130,7 @@ function Search_URL($arr = array()) {
 	}
 	return $ret;
 }
+
 function Index_URL($arr = array()) {
 	$ret = "";
 	if (isset($GLOBALS["tour"])) {
@@ -179,6 +183,7 @@ function Index_URL($arr = array()) {
 	}
 	return $ret;
 }
+
 function Sets_URL($arr = array()) {
 	$ret = "";
 	$seo_urls = $GLOBALS["seo_urls"];
@@ -209,6 +214,7 @@ function Sets_URL($arr = array()) {
 	}
 	return $ret;
 }
+
 function DVDS_URL($arr = array()) {
 	$ret = "";
 	$seo_urls = $GLOBALS["seo_urls"];
@@ -241,6 +247,7 @@ function DVDS_URL($arr = array()) {
 	}
 	return $ret;
 }
+
 function Bonus_URL($arr = array()) {
 	$ret = "";
 	$seo_urls = $GLOBALS["seo_urls"];
@@ -281,6 +288,7 @@ function Bonus_URL($arr = array()) {
 	}
 	return $ret;
 }
+
 function News_URL($arr = array()) {
 	$ret = "";
 	$seo_urls = $GLOBALS["seo_urls"];
@@ -319,6 +327,7 @@ function News_URL($arr = array()) {
 	}
 	return $ret;
 }
+
 function FAQ_URL($arr = array()) {
 	$ret = "";
 	$seo_urls = $GLOBALS["seo_urls"];
@@ -329,6 +338,7 @@ function FAQ_URL($arr = array()) {
 	}
 	return $ret;
 }
+
 function Calendar_URL($arr = array()) {
 	$ret = "";
 	$seo_urls = $GLOBALS["seo_urls"];
@@ -358,6 +368,7 @@ function Calendar_URL($arr = array()) {
 	}
 	return $ret;
 }
+
 function Category_URL($arr = array()) {
 	$ret = "";
 	$seo_urls = $GLOBALS["seo_urls"];
@@ -396,6 +407,7 @@ function Category_URL($arr = array()) {
 	}
 	return $ret;
 }
+
 function StdImage($arr) {
 	/*
 	if (!empty($GLOBALS["tour"]) && empty($arr["memberthumb"]))
@@ -539,6 +551,7 @@ function StdImage($arr) {
 		echo ' src="images/p' . $usep[0] . '.jpg" />';
 	}
 }
+
 function StdCatImage($arr) {
 	$usep = explode(",", $arr["usepriority"]);
 	$done = 0;

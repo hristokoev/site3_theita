@@ -3,6 +3,12 @@ define("DBHOST", "localhost");
 define("DBUSER", "vangoren");
 define("DBPASS", "j90a930rfe");
 define("DBNAME", "vangoren");
+
+function URL_Exists($url) {
+	$headers = get_headers($url);
+	return stripos($headers[0], "200 OK") ? true : false;
+}
+
 function custom_template_area($section) {
 	//custom function to alternate between all custom templates.
 	switch ($section) {
@@ -17,6 +23,7 @@ function custom_template_area($section) {
 	}
 	return $return;
 }
+
 // NOT USED
 function section_path() {
 	$actual_link = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
@@ -24,6 +31,7 @@ function section_path() {
 	//the members is [3]
 	echo $explode[3];
 }
+
 function get_from_scheduled_updates($category_id = 5, $limit = 999, $orderby = 'DESC', $current_page = 1, $parent_category = false, $exclude_category = false, $subsite_id = false) {
 	global $api;
 	global $subsiteid;
@@ -81,6 +89,7 @@ function get_from_scheduled_updates($category_id = 5, $limit = 999, $orderby = '
 	else
 		return array();
 }
+
 // NOT USED
 function get_comments_count($item_id, $content_type) {
 	global $api;
@@ -97,6 +106,7 @@ function get_comments_count($item_id, $content_type) {
 	$r = $api->getComments($arr);
 	return $r->commentcount;
 }
+
 // NOT USED
 function get_the_niches($wid = 0, $subsite_id = 'all') {
 	global $tags_category;
@@ -112,6 +122,7 @@ function get_the_niches($wid = 0, $subsite_id = 'all') {
 	$r = $api->getCategories($arr);
 	return $r->categories;
 }
+
 function custom_get_trailer_url($tour_ID = 1, $set_ID = 1) {
 	global $api;
 	$ret = $api->getSets([
@@ -124,6 +135,7 @@ function custom_get_trailer_url($tour_ID = 1, $set_ID = 1) {
 		return "no_trailer";
 	return $ret->sets[0]["trailer_url"];
 }
+
 // NOT USED
 function custom_get_member_trailer_url($set_ID = 1) {
 	global $api;
@@ -132,6 +144,7 @@ function custom_get_member_trailer_url($set_ID = 1) {
 	]);
 	return $ret;
 }
+
 // NOT USED
 function custom_get_member_media_contents($set_ID = 1) {
 	global $api;
@@ -140,6 +153,7 @@ function custom_get_member_media_contents($set_ID = 1) {
 	]);
 	return $ret;
 }
+
 function GetStdImageSrc($arr) {
 	$usep = explode(",", $arr["usepriority"]);
 	$done = 0;
@@ -168,6 +182,7 @@ function GetStdImageSrc($arr) {
 		return $usep[0] . '.jpg';
 	}
 }
+
 // NOT USED
 function getFileSize($bytes) {
 	$decimals = 2;
@@ -175,6 +190,7 @@ function getFileSize($bytes) {
 	$factor = floor((strlen($bytes) - 1) / 3);
 	return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . @$size[$factor];
 }
+
 // NOT USED
 function custom_get_category_tags($wid = 0, $subsite_id = 'all') {
 	global $tags_category;
@@ -190,6 +206,7 @@ function custom_get_category_tags($wid = 0, $subsite_id = 'all') {
 	$r = $api->getCategories($arr);
 	return $r->categories;
 }
+
 function custom_Category_URL($arr = array()) {
 	$ret = $areaurl;
 	$seo_urls = $GLOBALS["seo_urls"];
@@ -237,6 +254,7 @@ function custom_Category_URL($arr = array()) {
 	}
 	return $ret;
 }
+
 function custom_Category_Landing_URL($arr = array()) {
 	$ret = $areaurl;
 	$seo_urls = $GLOBALS["seo_urls"];
@@ -257,6 +275,7 @@ function custom_Category_Landing_URL($arr = array()) {
 	}
 	return $ret;
 }
+
 function custom_Sets_URL($arr = array()) {
 	$ret = $areaurl;
 	$seo_urls = $GLOBALS["seo_urls"];
@@ -318,6 +337,7 @@ function custom_Sets_URL($arr = array()) {
 	}
 	return $ret;
 }
+
 // NOT USED
 function tourCurrentUrl($lang = 'en') {
 	//$currentUrl = currentUrl();
@@ -331,4 +351,65 @@ function tourCurrentUrl($lang = 'en') {
 		$currentUrl = str_replace($areaurl, $areaurl . "it/", $currentUrl);
 	}
 	return $currentUrl;
+}
+
+function genresColor($inputGenre, $colors) {	
+	foreach ($colors as $genre => $color) {
+		if ($genre == $inputGenre) {
+			return $color;
+		}
+	}	
+}
+
+function randomColor($input, $mode = null) {
+    if ($mode == "light") {
+        $minVal = 127;
+        $maxVal = 255;
+    } else if ($mode == "dark") {
+        $minVal = 0;
+        $maxVal = 127;
+    }
+        
+    if (is_null($mode)) {
+        $minVal = 0;
+        $maxVal = 255;        
+    }
+    $minVal = $minVal < 0 || $minVal > 255 ? 0 : $minVal;
+    $maxVal = $maxVal < 0 || $maxVal > 255 ? 255 : $maxVal;
+	preg_match("/([0-9]+)/", md5($input), $matches);
+	srand($matches[0]);
+    $r = mt_rand($minVal, $maxVal);
+    $g = mt_rand($minVal, $maxVal);
+    $b = mt_rand($minVal, $maxVal);
+    return sprintf('#%02X%02X%02X', $r, $g, $b);
+}
+
+function randomIcon($input) {
+	$iconsArr = [
+		'<i class="fa-solid fa-face-smile fa-2x"></i>',
+		'<i class="fa-solid fa-face-grin fa-2x"></i>',
+		'<i class="fa-solid fa-face-grin-beam fa-2x"></i>',
+		'<i class="fa-solid fa-face-smile-wink fa-2x"></i>',
+		'<i class="fa-solid fa-face-kiss-beam fa-2x"></i>',
+		'<i class="fa-solid fa-face-laugh-squint fa-2x"></i>'
+	];    
+	preg_match("/([0-9]+)/", md5($input), $matches);
+	srand($matches[0]);
+	$index = mt_rand(0, 5);
+	return $iconsArr[$index];
+}
+
+function Mailbox_URL($arr=array()) {
+	
+	$ret = "mailbox.php";
+	if ($arr["inbox"] > 0) {
+		$arrpush[] = "inbox=$arr[inbox]";
+	} else {
+		$arrpush[] = "inbox=0";
+	}
+	if ($arr["page"] > 1)	$arrpush[] = "page=$arr[page]";
+	if (!empty($arrpush)) {
+		$ret .= "?" . join("&", $arrpush);
+	}
+	return $ret;
 }
