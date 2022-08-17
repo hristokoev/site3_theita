@@ -110,8 +110,10 @@ $sitename = str_replace(".com", "", $url['host']);
 				<a href="<?php echo $tour['MembersURL']; ?>" class="button button-icon"><i class="fa-solid fa-user dot" aria-hidden="true"></i></a>
 				<?php } ?>
 				<a href="<?php echo $tour['MembersURL']; ?>" class="button button-outline splash"><?php echo $templatefields["tourtxtmemberarea"]; ?></a>
+				<?php if ($content['SEOname'] !== "thanks") { ?>
 				<a href="<?php echo $tour['JoinUrl']; ?>" class="button button-join"><?php echo $templatefields["tourtxtjoin"]; ?></a>
 				<a href="<?php echo $tour['JoinUrl']; ?>" class="button button-join-short"><?php echo $templatefields["tourtxtjoinshort"]; ?></a>
+				<?php } ?>
 			</div>
 		</div>
 	</div>

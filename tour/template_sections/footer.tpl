@@ -7,6 +7,7 @@ if ($detect->isMobile() && !$detect->isTablet()) {
 	$src = "banner_footer.jpg";
 }
 ?>
+<?php if ($content['SEOname'] !== "thanks") { ?>
 <div class="footer-banner">
 	<div class="item">
 		<a href="<?php echo $areaurl . 'network/'; ?>">
@@ -14,6 +15,7 @@ if ($detect->isMobile() && !$detect->isTablet()) {
 		</a>
 	</div>
 </div>
+<?php } ?>
 <div class="footer">
 	<section class="container">
 		<div class="links">

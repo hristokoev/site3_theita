@@ -6,7 +6,7 @@
 			<div class="thumb">
 				<div class="thumb-holder">
 					<a href="<?php echo $deal["redirect"]; ?>">
-						<img src="<?php echo $areaurl . $deal["images"][array_rand($deal["images"])]; ?>" alt="">						
+						<img src="<?php echo "https://vangoren.com/" . $deal["images"][array_rand($deal["images"])]; ?>" alt="">						
 					</a>
 				</div>
 				<div class="secondary">

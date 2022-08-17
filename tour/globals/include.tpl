@@ -27,7 +27,7 @@
 <script type="text/javascript" defer src="<?php echo $areaurl; ?>js/custom.js"></script>
 <script type="text/javascript" defer src="<?php echo $areaurl; ?>js/tour.js"></script>
 <script type="text/javascript" defer src="<?php echo $areaurl; ?>js/videohandler.js"></script>
-<?php if ($pagename == "pages" && $_GET["id"] == "contacts") { ?>
+<?php if ($pagename == "pages" && $content['SEOname'] == "contacts") { ?>
 <script type="text/javascript" defer src="<?php echo $areaurl; ?>contact-form/form.js"></script>
 <?php } ?>
 <!-- Style -->
