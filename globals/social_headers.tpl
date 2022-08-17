@@ -35,7 +35,7 @@ if ($pagename == "index" && !isset($tourcontent)) {
 		}
 	}
 	// If Twitter images do not exist, use these other images.
-	$image_list[0] = $areaurl . "images/social_thumb.png";
+	$image_list[0] = $areaurl . "images/social_thumb.jpg";
 	// foreach($tourcontent as $item) {
 	// 	$image_list[] = $areaurl."content/contentthumbs/".$item["info"]["thumbs"]["14"]["1x_filename"];
 	// }

@@ -12,7 +12,7 @@ if (isset($set['info']['thumbs'][14]["1x_filename"])) {
 	$imageHighRes = cdn_hook($GLOBALS["contentdir"] . "/contentthumbs/" . $set['info']['thumbs'][14]["3x_filename"]);
 }
 ?>
-<video id="trailer" class="video-js vjs-theme-dt" controls preload="auto" poster="<?php echo $imageHighRes; ?>">
+<video id="trailer" class="video-js vjs-theme-dt vjs-16-9" controls preload="auto" poster="<?php echo $imageHighRes; ?>">
 	<source src="<?php echo $trailer_url; ?>" type="video/mp4" data-fake="<?php echo $fake; ?>" />
 </video>
 <div class="promo" style="opacity: 0; pointer-events: none;">
@@ -22,7 +22,7 @@ if (isset($set['info']['thumbs'][14]["1x_filename"])) {
 </div>
 <script src="https://cdn.jsdelivr.net/npm/video.js@7/dist/video.min.js"></script>
 <script>
-	var player = videojs('trailer', {
+	let player = videojs('trailer', {
 		fluid: true,
 		controlBar: {
 			children: [
@@ -45,8 +45,8 @@ if (isset($set['info']['thumbs'][14]["1x_filename"])) {
     });
 
 	$(function() {
-		var lmt = getCookieTLimit(ctlimit_name);
-		var remaining = maxClicks - lmt;
+		let lmt = getCookieTLimit(ctlimit_name);
+		let remaining = maxClicks - lmt;
 		hasPlayed = false;
 		player.on('playing', function() {
 			if (remaining > 0) {

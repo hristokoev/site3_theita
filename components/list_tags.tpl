@@ -1,21 +1,10 @@
 <?php
 $tagcount = 0;
 $tl = array();
-shuffle($tags);
-if ($pagename == "category") {
-	foreach ($tags as $tag) {
-		$setobj = $api->getSets(["category_filter" => [$tag["Id"]], "numperpage" => 10000]);
-		if ($setobj->settotal > 0 && $tagcount <= 25) {
-			$tl[] = $tag;
-			$tagcount++;
-		}		
-	}
-} else if ($pagename == "trailer" || $pagename == "gallery"){ 
-	foreach ($set["info"]["categories"] as $catitem) {
-		if (!$taglimit || sizeof($tl) < $taglimit) {
-			if ($tags[$catitem]) {
-				$tl[] = $tags[$catitem];
-			}
+foreach ($set["info"]["categories"] as $catitem) {
+	if (!$taglimit || sizeof($tl) < $taglimit) {
+		if ($tags[$catitem]) {
+			$tl[] = $tags[$catitem];
 		}
 	}
 }

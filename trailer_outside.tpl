@@ -80,8 +80,8 @@ $bitrates = array();
 					}
 					if ($tour['NumPerPageThumb'] > $i) {
 						LoadTemplate("components/thumb_video.tpl", ["set" => $set, "prefer" => 'vids', "counter" => $i, "layout" => $layout, "bitrates" => $bitrates]);
+						$i++;
 					}
-					$i++;
 					$bitrates = array();
 				}
 			?>
@@ -112,8 +112,9 @@ $bitrates = array();
 					}
 					if ($tour['NumPerPageThumb'] > $i) {
 						LoadTemplate("components/thumb_video.tpl", ["set" => $set, "prefer" => 'vids', "counter" => $i, "layout" => $layout, "bitrates" => $bitrates]);
+						$i++;
 					}
-					$i++;
+					
 					// Show 8 videos in 'More updates'. The total is set to 24 from the admin dashboard, this cuts it to 8.
 					if ($i >= 8) {
 						break;
