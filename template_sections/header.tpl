@@ -54,7 +54,7 @@ $url = "https://" . $parse['host'] . '/';
 				<div class="mobile-close"></div>
 			</div>
 			<div id="logo" class="header-start nav-item sub">
-				<?php if (isset($sites) && !empty($sites)) { ?>
+				<?php if (isset($sites) && array_not_empty($sites)) { ?>
 					<span onclick="blockReveal()" class="menu-down"></span>
 				<?php } ?>
 				<a href="<?php echo $areaurl; ?>" title="<?php echo $templatefields["sitename"]; ?>"><img src="<?php echo $areaurl; ?>images/logo.png" alt="<?php echo $templatefields["sitename"]; ?>"></a>

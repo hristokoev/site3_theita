@@ -19,7 +19,7 @@ $bitrates = array();
 					 echo $search_any; 
 					 } else if ($search_phrase) {
 						 echo $search_phrase;
-					 } else if (!empty($search_categories)) {
+					 } else if (array_not_empty($search_categories)) {
 						$clist = [];
 						foreach ($search_categories as $cata) {
 							if ($all_categories[$cata]) {
@@ -27,7 +27,7 @@ $bitrates = array();
 							}
 						}
 						echo join(", ", $clist);
-					} else if (!empty($search_sites)) {
+					} else if (array_not_empty($search_sites)) {
 						$clist = array();
 						foreach ($sites as $site) {
 							if (in_array($site["Id"], $search_sites)) {
@@ -36,7 +36,7 @@ $bitrates = array();
 						}
 						echo join(", ", $clist);
 					} ?>
-					<?php if ($search_query && !empty($search_categories)) {
+					<?php if ($search_query && array_not_empty($search_categories)) {
 						echo $templatefields["txtin"] . " ";
 						$clist = [];
 						foreach ($search_categories as $cata) {
@@ -51,7 +51,7 @@ $bitrates = array();
 			<?php if (!empty($models)) { ?>
 				<h3 class="page-subtitle"><?php echo $templatefields["txtvideos"]; ?></h3>
 			<?php } ?>
-			<?php if (!empty($sets) == 0) { ?>
+			<?php if (array_not_empty($sets) == 0) { ?>
 				<?php echo $templatefields["txtnosearchresults"]; ?>
 			<?php } ?>
 			<div class="grid grid-videos">
@@ -65,7 +65,7 @@ $bitrates = array();
 						$usetype = "vids";
 					} else if ($hType) {
 						$usetype = "highres";
-					} else if (!empty($set["info"]["totals"]["types"])) {
+					} else if (array_not_empty($set["info"]["totals"]["types"])) {
 						$usetype = each($set["info"]["totals"]["types"]);
 						$usetype = $usetype["key"];
 					}

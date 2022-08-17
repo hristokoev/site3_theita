@@ -75,7 +75,7 @@ function Gallery_URL($arr = array()) {
 			if ($arr["id"]) $arrpush[] = "id=" . $arr["id"];
 			if ($arr["page"] > 1) $arrpush[] = "page=" . $arr["page"];
 			if ($arr["template"]) $arrpush[] = "template=" . $arr["template"];
-			if (!empty($arrpush)) $ret .= "?";
+			if (array_not_empty($arrpush)) $ret .= "?";
 			$ret .= join("&", $arrpush);
 		}
 		if ($arr["anchor"]) {
@@ -104,7 +104,7 @@ function Gallery_URL($arr = array()) {
 		if ($arr["type"])  $arrpush[] = "type=$arr[type]";
 		if ($arr["page"] > 1)  $arrpush[] = "page=$arr[page]";
 		if ($arr["mt"])  $arrpush[] = "mt=$arr[mt]";
-		if (!empty($arrpush)) {
+		if (array_not_empty($arrpush)) {
 			$ret .= "?" . join("&", $arrpush);
 		}
 	}
@@ -125,7 +125,7 @@ function Search_URL($arr = array()) {
 	if ($arr["page"] > 1) {
 		$arrpush[] = "page=$arr[page]";
 	}
-	if (!empty($arrpush)) {
+	if (array_not_empty($arrpush)) {
 		$ret .= "?" . join("&", $arrpush);
 	}
 	return $ret;
@@ -158,7 +158,7 @@ function Index_URL($arr = array()) {
 			if ($arr["id"]) $arrpush[] = "id=" . $arr["id"];
 			if ($arr["page"] > 1) $arrpush[] = "page=" . $arr["page"];
 			if ($arr["template"]) $arrpush[] = "template=" . $arr["template"];
-			if (!empty($arrpush))
+			if (array_not_empty($arrpush))
 				$ret .= "?" . join("&", $arrpush);
 		}
 		if ($arr["anchor"]) {
@@ -177,7 +177,7 @@ function Index_URL($arr = array()) {
 		if ($arr["page"] > 1) $arrpush[] = "page=$arr[page]";
 		if ($GLOBALS["template_attribute"]) $arrpush[] = "template=" . $GLOBALS["template_attribute"];
 		if ($arr["mobile"])  $arrpush[] = "mobile=1";
-		if (!empty($arrpush)) {
+		if (array_not_empty($arrpush)) {
 			$ret .= "?" . join("&", $arrpush);
 		}
 	}
@@ -208,7 +208,7 @@ function Sets_URL($arr = array()) {
 		if ($arr["page"] > 1) $arrpush[] = "page=$arr[page]";
 		if ($arr["sw"]) $arrpush[] = "sw=$arr[sw]";
 		if ($arr["s"]) $arrpush[] = "s=$arr[s]";
-		if (!empty($arrpush)) {
+		if (array_not_empty($arrpush)) {
 			$ret .= "?" . join("&", $arrpush);
 		}
 	}
@@ -242,7 +242,7 @@ function DVDS_URL($arr = array()) {
 		if ($arr["page"] > 1) $arrpush[] = "page=$arr[page]";
 		if ($arr["id"]) $arrpush[] = "id=$arr[id]";
 	}
-	if (!empty($arrpush)) {
+	if (array_not_empty($arrpush)) {
 		$ret .= "?" . join("&", $arrpush);
 	}
 	return $ret;
@@ -282,7 +282,7 @@ function Bonus_URL($arr = array()) {
 		if ($arr["fc"]) $arrpush[] = "fc=$arr[fc]";
 		if ($arr["page"] > 1) $arrpush[] = "page=$arr[page]";
 		if ($arr["id"]) $arrpush[] = "id=$arr[id]";
-		if (!empty($arrpush)) {
+		if (array_not_empty($arrpush)) {
 			$ret .= "?" . join("&", $arrpush);
 		}
 	}
@@ -321,7 +321,7 @@ function News_URL($arr = array()) {
 		if (isset($arr["page"]) && $arr["page"] > 1) $arrpush[] = "page=$arr[page]";
 		if (!empty($arr["news"]["Id"])) $arrpush[] = "id=" . $arr["news"]["Id"];
 		if (!empty($arr["tag"])) $arrpush[] = "tag=$arr[tag]";
-		if (!empty($arrpush)) {
+		if (array_not_empty($arrpush)) {
 			$ret .= "?" . join("&", $arrpush);
 		}
 	}
@@ -362,7 +362,7 @@ function Calendar_URL($arr = array()) {
 		if (!empty($arr["year"])) $arrpush[] = "year=$arr[year]";
 		if (!empty($arr["month"])) $arrpush[] = "month=$arr[month]";
 		if (!empty($arr["id"])) $arrpush[] = "id=$arr[id]";
-		if (!empty($arrpush)) {
+		if (array_not_empty($arrpush)) {
 			$ret .= "?" . join("&", $arrpush);
 		}
 	}
@@ -401,7 +401,7 @@ function Category_URL($arr = array()) {
 		/*if ($arr["subsiteid"]>0) $arrpush[] = "subsiteid=$arr[subsiteid]";*/
 		if ($arr["s"] != "")  $arrpush[] = "s=$arr[s]";
 		if ($arr["sw"] != "")  $arrpush[] = "s=$arr[s]";
-		if (!empty($arrpush)) {
+		if (array_not_empty($arrpush)) {
 			$ret .= "?" . join("&", $arrpush);
 		}
 	}

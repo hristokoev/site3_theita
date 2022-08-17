@@ -63,7 +63,7 @@ LoadTemplate("template_sections/header.tpl", ["pagename" => "index", "title" => 
 						}
 					} ?>
 		</div>
-		<?php if (!empty($comingsoon[0]["sets"]) > 0) { ?>
+		<?php if (array_not_empty($comingsoon[0]["sets"]) > 0) { ?>
 		<div class="main-header-title">
 			<div class="holder">
 				<h2><?php echo $templatefields["txtupcoming"]; ?></h2>

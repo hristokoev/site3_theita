@@ -72,7 +72,7 @@ function get_from_scheduled_updates($category_id = 5, $limit = 999, $orderby = '
 		$arr["sort"] = "rating";
 	}
 	$setobj = $api->getSets($arr);
-	if (empty($setobj->sets))
+	if (!array_not_empty($setobj->sets))
 		return array();
 	// Original interface fetched smarty extra fields, so this rebuilds
 	// from the PHP template interface.
@@ -84,7 +84,7 @@ function get_from_scheduled_updates($category_id = 5, $limit = 999, $orderby = '
 		}
 		$set["extrafields"] = $exf;
 	}
-	if (!empty($setobj->sets))
+	if (array_not_empty($setobj->sets))
 		return $setobj->sets;
 	else
 		return array();
@@ -248,7 +248,7 @@ function custom_Category_URL($arr = array()) {
 		/*if ($arr["subsiteid"]>0) $arrpush[] = "subsiteid=$arr[subsiteid]";*/
 		if ($arr["s"] != "")  $arrpush[] = "s=$arr[s]";
 		if ($arr["sw"] != "")  $arrpush[] = "s=$arr[s]";
-		if (!empty($arrpush)) {
+		if (array_not_empty($arrpush)) {
 			$ret .= "?" . join("&", $arrpush);
 		}
 	}
@@ -269,7 +269,7 @@ function custom_Category_Landing_URL($arr = array()) {
 		/*if ($arr["subsiteid"]>0) $arrpush[] = "subsiteid=$arr[subsiteid]";*/
 		if ($arr["s"] != "")  $arrpush[] = "s=$arr[s]";
 		if ($arr["sw"] != "")  $arrpush[] = "s=$arr[s]";
-		if (!empty($arrpush)) {
+		if (array_not_empty($arrpush)) {
 			$ret .= "?" . join("&", $arrpush);
 		}
 	}
@@ -331,7 +331,7 @@ function custom_Sets_URL($arr = array()) {
 		if ($arr["page"] > 1) $arrpush[] = "page=$arr[page]";
 		if ($arr["sw"]) $arrpush[] = "sw=$arr[sw]";
 		if ($arr["s"]) $arrpush[] = "s=$arr[s]";
-		if (!empty($arrpush)) {
+		if (array_not_empty($arrpush)) {
 			$ret .= "?" . join("&", $arrpush);
 		}
 	}
@@ -408,7 +408,7 @@ function Mailbox_URL($arr=array()) {
 		$arrpush[] = "inbox=0";
 	}
 	if ($arr["page"] > 1)	$arrpush[] = "page=$arr[page]";
-	if (!empty($arrpush)) {
+	if (array_not_empty($arrpush)) {
 		$ret .= "?" . join("&", $arrpush);
 	}
 	return $ret;

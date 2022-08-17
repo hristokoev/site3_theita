@@ -19,7 +19,7 @@ if ($prefer && isset($set["info"]["totals"]["types"][$prefer])) {
 	$usetype = "vids";
 } else if ($hType) {
 	$usetype = "highres";
-} else if (!empty($set["info"]["totals"]["types"])) {
+} else if (array_not_empty($set["info"]["totals"]["types"])) {
 	$usetype = each($set["info"]["totals"]["types"]);
 	$usetype = $usetype["key"];
 }

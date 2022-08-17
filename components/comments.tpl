@@ -27,12 +27,12 @@ $textMaxLength = 250;
 			<div class="swal2-validation-message" id="swal2-validation-message" style="display: flex; margin: 0;"><?php echo $templatefields["txtmembersonly"]; ?></div>
 		</div>
 	<?php } ?>
-	<?php if (empty($comments) && $has_username) { ?>
+	<?php if (!array_not_empty($comments) && $has_username) { ?>
 		<div class="container content"><span><?php echo $templatefields["txtnocomments"]; ?></span></div>
 	<?php } else { ?>
 		<div class="comments-box">
 			<?php
-			if (!empty($comments) && $has_username) {
+			if (array_not_empty($comments) && $has_username) {
 				$comments = array_reverse($comments);
 				$length = count($comments);
 				$replies = array();

@@ -63,7 +63,7 @@ if (isset($_REQUEST['s']) && $_REQUEST['s'] != '') {
 						$gender = "F";
 				}
 				foreach ($models as $model) {
-					LoadTemplate("components/thumb_model.tpl", ["model" => $model, "counter" => $i, "total_models" => !empty($models)]);
+					LoadTemplate("components/thumb_model.tpl", ["model" => $model, "counter" => $i, "total_models" => array_not_empty($models)]);
 					$i++;
 				}
 				?>

@@ -46,8 +46,8 @@ if (isset($set['info']['thumbs'][14]["1x_filename"])) {
 	$imageHighRes = cdn_hook($GLOBALS["contentdir"] . "/contentthumbs/" . $set['info']['thumbs'][14]["3x_filename"]);
 }
 ?>
-<?php if (!empty($vidarr)) { ?>
-<video id="trailer" class="video-js vjs-theme-dt" controls preload="auto" poster="<?php echo $imageHighRes; ?>">
+<?php if (array_not_empty($vidarr)) { ?>
+<video id="trailer" class="video-js vjs-theme-dt vjs-16-9" controls preload="auto" poster="<?php echo $imageHighRes; ?>">
 	<?php foreach ($mediatypes as $mediatype) {
 		if ($mediatype["FullVideo"] == 2 && ($mediatype["ShowPlay"] != 2 || in_array($set["Id"], $trial["allowrecent"]))) {
 			if ($mediatype["Type"] == "vids") {
@@ -73,7 +73,7 @@ if (isset($set['info']['thumbs'][14]["1x_filename"])) {
 <script src="https://cdn.jsdelivr.net/npm/@silvermine/videojs-quality-selector@1/dist/js/silvermine-videojs-quality-selector.min.js"></script>
 <script>
 	let started = 0;
-	<?php if (!empty($vidarr)) { ?>
+	<?php if (array_not_empty($vidarr)) { ?>
 	let vidarr = <?php echo json_encode($vidarr); ?>;
 	let player = videojs('trailer', {
 		fluid: true,
@@ -111,7 +111,7 @@ if (isset($set['info']['thumbs'][14]["1x_filename"])) {
 		started = 0;
 	});
 	<?php } ?>
-	<?php if (empty($vidarr) && !empty($trial)) { ?>
+	<?php if (!array_not_empty($vidarr) && array_not_empty($trial)) { ?>
 		$("#promo").ready(function() {
 			$("#promo").show();
 		});
