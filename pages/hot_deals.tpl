@@ -1,12 +1,14 @@
 <?php $arr = json_decode($arr, true); ?>
 <section class="container">
 	<div class="grid grid-deals">
-		<?php foreach ($arr as $deal) { ?>
+		<?php foreach ($arr as $partner) {
+		$randomKey = array_rand($partner, 1);
+		$deal = $partner[$randomKey]; ?>
 		<div class="wrap">
 			<div class="thumb">
 				<div class="thumb-holder">
 					<a href="<?php echo $deal["redirect"]; ?>">
-						<img src="<?php echo "https://vangoren.com/" . $deal["images"][array_rand($deal["images"])]; ?>" alt="">						
+						<img src="<?php echo "https://vangoren.com/" . $deal["image"]; ?>" alt="">						
 					</a>
 				</div>
 				<div class="secondary">

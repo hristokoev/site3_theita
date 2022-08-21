@@ -52,6 +52,6 @@ $bitrates = array();
 </div>
 <?php include "template_sections/footer.tpl"; ?>
 <?php } else { 
-	header("Location: " . $GLOBALS['areaurl']);
+	header("Location: " . $areaurl);
 }
 ?>
