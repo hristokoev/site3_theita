@@ -7,41 +7,31 @@
 		<div class="grid grid-tags">
 			<?php
 			$i = 0;
-			$a_z = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z";
-			$lettersArr = explode(",", $a_z);
-			$lettersObj = [];
-			foreach ($lettersArr as $letter) {
-				$lettersObj[$letter] = 0;
-			}
 			foreach ($tags as $tag) {
-				$setobj = $api->getSets(["category_filter" => [$tag["Id"]], "numperpage" => 10000]);
+				$setobj = $api->getSets(["category_filter" => [$tag["Id"]]]);
 				$firstLetter = $tag["Title"][0];
 				if ($setobj->settotal > 0) {
-					$lettersObj[$firstLetter] += 1;
+					$lettersObj[$firstLetter][$tag["Id"]]          = [];
+					$lettersObj[$firstLetter][$tag["Id"]]["Title"] = $tag["Title"];
+					$lettersObj[$firstLetter][$tag["Id"]]["Count"] = $setobj->settotal;
+					$lettersObj[$firstLetter][$tag["Id"]]["URL"]   = $tag["SEOname"];
 					$i++;
 				}
 			}
-			$foundArr = array_keys($lettersObj);
-			foreach ($foundArr as $letter) {
-				if ($lettersObj[$letter] > 0) { ?>
-					<div class="tags-letter <?php echo $letter; ?>">
-						<div class="tags-holder"><span class="letter"><?php echo $letter; ?></span>
-							<?php
-							$i = 0;
-							foreach ($tags as $tag) {
-								$setobj = $api->getSets(["category_filter" => [$tag["Id"]]]);
-								if ($tag["Title"][0] == $letter && $setobj->settotal > 0) { ?>
-									<a href="<?php echo custom_Category_Landing_URL(["id" => $tag["Id"], "seoname" => $tag["SEOname"], "s" => "d", "category" => $tag]) ?>" class="tag">
-										<span class="hover"><?php echo $tag["Title"]; ?></span> <span class="count"><?php echo $setobj->settotal; ?></span>
-									</a>
-							<?php $i++;
-								}
-							}
-							?>
-						</div>
-					</div> <?php
-						}
-					} ?>
+
+			foreach ($lettersObj as $letter => $arr) { ?>
+				<div class="tags-letter <?php echo $letter; ?>">
+					<div class="tags-holder"><span class="letter"><?php echo $letter; ?></span>
+						<?php if (!empty($arr)) { ?>
+							<?php foreach ($lettersObj[$letter] as $tag) { ?>
+								<a href="<?php echo custom_Category_Landing_URL(["id" => $tag, "seoname" => $tag["URL"]]) ?>" class="tag">
+									<span class="hover"><?php echo $tag["Title"]; ?></span> <span class="count"><?php echo $tag["Count"]; ?></span>
+								</a>
+							<?php } ?>
+						<?php } ?>
+					</div>
+				</div>
+			<?php } ?>
 		</div>
 	</section>
 </div>
