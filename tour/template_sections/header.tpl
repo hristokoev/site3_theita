@@ -5,6 +5,11 @@ exit();
 } 
 ?>
 <?php
+if (isset($_GET["trailer"])) {
+	header("Location: " . $areaurl . 'trailers/' . $_GET["trailer"] . ".html" . "?nats=" . $_GET["nats"]);
+}
+?>
+<?php
 $cookie = !empty($_COOKIE["warn"]);
 // SITES 
 $stracks = array(
@@ -108,11 +113,11 @@ $sitename = str_replace(".com", "", $url['host']);
 				*/ ?>
 				<a href="<?php echo $tour['MembersURL']; ?>" class="button button-log-in button-outline"><?php echo $templatefields["tourtxtlogin"]; ?></a>
 				<a href="<?php echo $tour['MembersURL']; ?>" class="button button-icon"><i class="fa-solid fa-user dot" aria-hidden="true"></i></a>
-				<?php } ?>
 				<a href="<?php echo $tour['MembersURL']; ?>" class="button button-outline splash"><?php echo $templatefields["tourtxtmemberarea"]; ?></a>
 				<?php if ($content['SEOname'] !== "thanks") { ?>
-				<a href="<?php echo $tour['JoinUrl']; ?>" class="button button-join"><?php echo $templatefields["tourtxtjoin"]; ?></a>
-				<a href="<?php echo $tour['JoinUrl']; ?>" class="button button-join-short"><?php echo $templatefields["tourtxtjoinshort"]; ?></a>
+				<a href="<?php echo $tour["JoinUrl"]; ?>" class="button button-join"><?php echo $templatefields["tourtxtjoin"]; ?></a>
+				<a href="<?php echo $tour["JoinUrl"]; ?>" class="button button-join-short"><?php echo $templatefields["tourtxtjoinshort"]; ?></a>
+				<?php } ?>
 				<?php } ?>
 			</div>
 		</div>
