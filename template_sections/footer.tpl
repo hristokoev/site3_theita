@@ -1,3 +1,12 @@
+<?php if ($content['SEOname'] !== "hot-deals") { ?>
+<div class="footer-banner">
+	<div class="item">
+		<a href="<?php echo $areaurl . 'hot-deals/'; ?>">
+			<img src="https://vangoren.com/images/banners/banner_hot_deals.jpg" alt="Hot Deals" class="">
+		</a>
+	</div>
+</div>
+<?php } ?>
 <div class="footer">
 	<section class="container">
 		<div class="links">
