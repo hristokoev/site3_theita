@@ -2,34 +2,12 @@
 	body {
 		background: #000;
 	}
-	@media only screen and (max-width: 576px) {
-		a.left,
-		span.left {
-			border-bottom: 2px solid var(--primary);
-			line-height: 1.6rem;
-		}
-	}
-	.header-wrapper {
-		display: flex !important;
-		justify-content: space-between;
-	}
-	.header-mobile,
-	.header-middle,
-	.header-end #searchform,
-	.header-end .button-log-in,
-	.header-end .button-icon {
-		width: inherit !important;
-		display: none !important;
-	}
 	.header-end {
 		width: auto !important;
 	}
 	/* Show when splash */
 	.button.splash {
 		display: block;
-	}
-	.button-join {
-		color: #000;
 	}
 	.warning-container {
 		overflow: auto;

@@ -11,10 +11,6 @@ if (isset($_GET["trailer"])) {
 ?>
 <?php
 $cookie = !empty($_COOKIE["warn"]);
-if (!$cookie && isset($_GET["nats"])) {
-	setcookie("warn", "1", time() + (86400 * 14), "/"); // 14 DAYS
-	header("Refresh:0");
-}
 // SITES 
 $stracks = array(
 	"amaraw"			=>	"MC4wLjE5LjI4LjAuMC4wLjAuMA/19:28/0/1/",
@@ -34,7 +30,7 @@ $sitename = str_replace(".com", "", $url['host']);
 ?>
 <?php include "tour/globals/globals.tpl";
 echo "\n"; ?>
-<header>
+<header <?php if (!$cookie) { ?>style="position: fixed; width: 100%; z-index: 110;"<?php } ?>>
 	<div class="header-top">
 		<div class="header-wrapper">
 			<span><?php echo $templatefields["txtsites"]; ?></span>
@@ -49,7 +45,7 @@ echo "\n"; ?>
 	</div>
 	<div class="header-bottom">
 		<div class="header-wrapper">
-			<?php if ($cookie) { ?>
+			
 				<div class="header-mobile">
 					<div class="icon-hamburger">
 						<div class="bar1"></div>
@@ -83,11 +79,9 @@ echo "\n"; ?>
 					</div>
 					<div class="mobile-close"></div>
 				</div>
-			<?php } ?>
 			<div class="header-start">
 				<a href="<?php echo Index_URL(); ?>" title="<?php echo $templatefields["sitename"]; ?>"><img src="<?php echo $GLOBALS["tourarea"]; ?>images/logo.png" alt="<?php echo $templatefields["sitename"]; ?>"></a>
 			</div>
-			<?php if ($cookie) { ?>
 				<div class="header-middle">
 					<ul class="nav-wrapper">
 						<li class="nav-item"><a href="<?php echo $areaurl . 'categories/movies/1/latest/'; ?>"><?php echo $templatefields["txtvideos"]; ?></a></li>
@@ -97,9 +91,7 @@ echo "\n"; ?>
 						<li class="nav-item"><a href="<?php echo $areaurl . 'categories/tags.html'; ?>"><?php echo $templatefields["txttags"]; ?></a></li>
 					</ul>
 				</div>
-			<?php } ?>
 			<div class="header-end">
-				<?php if ($cookie) { ?>
 					<a onclick="$('.searchbar').toggleClass('on')" class="button button-icon search"><i class="fa-solid fa-magnifying-glass"></i></a>
 					<?php /* TO DO: Languages
 				div class="dropdown">
@@ -118,20 +110,16 @@ echo "\n"; ?>
 				*/ ?>
 					<a href="<?php echo $tour['MembersURL']; ?>" class="button button-log-in button-outline"><?php echo $templatefields["tourtxtlogin"]; ?></a>
 					<a href="<?php echo $tour['MembersURL']; ?>" class="button button-icon"><i class="fa-solid fa-user dot" aria-hidden="true"></i></a>
-					<a href="<?php echo $tour['MembersURL']; ?>" class="button button-outline splash"><?php echo $templatefields["tourtxtmemberarea"]; ?></a>
 					<?php if ($content['SEOname'] !== "thanks") { ?>
 						<a href="<?php echo $tour["JoinUrl"]; ?>" class="button button-join"><?php echo $templatefields["tourtxtjoin"]; ?></a>
 						<a href="<?php echo $tour["JoinUrl"]; ?>" class="button button-join-short"><?php echo $templatefields["tourtxtjoinshort"]; ?></a>
 					<?php } ?>
-				<?php } ?>
 			</div>
 		</div>
 	</div>
-	<?php if ($cookie) { ?>
-		<div class="header-search">
-			<?php include "components/searchbar.tpl"; ?>
-		</div>
-	<?php } ?>
+	<div class="header-search">
+		<?php include "components/searchbar.tpl"; ?>
+	</div>
 	<script>
 		const Popup = Swal.mixin({
 			backdrop: 'rgba(0,0,0,0.9)',
@@ -140,10 +128,4 @@ echo "\n"; ?>
 	</script>
 </header>
 <div class="body">
-	<?php if (!$cookie) {
-		include "tour/splashcss.tpl";
-		echo "\n";
-		include "tour/splash.tpl";
-		exit();
-	} ?>
 	<?php include "tour/template_sections/slider_primary.tpl"; ?>
