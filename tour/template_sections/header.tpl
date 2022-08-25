@@ -1,8 +1,8 @@
-<?php 
+<?php
 if (isset($_GET["ex"])) {
-LoadTemplate("pages/wip.tpl");
-exit();
-} 
+	LoadTemplate("pages/wip.tpl");
+	exit();
+}
 ?>
 <?php
 if (isset($_GET["trailer"])) {
@@ -11,6 +11,10 @@ if (isset($_GET["trailer"])) {
 ?>
 <?php
 $cookie = !empty($_COOKIE["warn"]);
+if (!$cookie && isset($_GET["nats"])) {
+	setcookie("warn", "1", time() + (86400 * 14), "/"); // 14 DAYS
+	header("Refresh:0");
+}
 // SITES 
 $stracks = array(
 	"amaraw"			=>	"MC4wLjE5LjI4LjAuMC4wLjAuMA/19:28/0/1/",
@@ -28,7 +32,8 @@ $stracks = array(
 $url = parse_url($areaurl);
 $sitename = str_replace(".com", "", $url['host']);
 ?>
-<?php include "tour/globals/globals.tpl"; echo "\n"; ?>
+<?php include "tour/globals/globals.tpl";
+echo "\n"; ?>
 <header>
 	<div class="header-top">
 		<div class="header-wrapper">
@@ -45,58 +50,58 @@ $sitename = str_replace(".com", "", $url['host']);
 	<div class="header-bottom">
 		<div class="header-wrapper">
 			<?php if ($cookie) { ?>
-			<div class="header-mobile">
-				<div class="icon-hamburger">
-					<div class="bar1"></div>
-					<div class="bar2"></div>
-					<div class="bar3"></div>
-				</div>
-				<div class="sidebar-menu">
-					<form class="search-form" action="search.php" method="get">
-						<div class="search-input">
-							<input type="search" name="query" autocomplete="off" placeholder="Type to search...">
-						</div>
-						<div class="search-icon">
-							<button class="search-toggle-mobile" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-						</div>
-					</form>
-					<ul>
-						<li><a href="<?php echo $areaurl . 'categories/movies/1/latest/'; ?>"><i class="fa-solid fa-video"></i><?php echo $templatefields["txtvideos"]; ?></a></li>
-						<li><a href="<?php echo $areaurl . 'categories/photos/1/latest/'; ?>"><i class="fa-solid fa-camera"></i><?php echo $templatefields["txtphotos"]; ?></a></li>
-						<li><a href="<?php echo $areaurl; ?>models/1/latest/"><i class="fa-solid fa-face-grin-tongue-wink"></i><?php echo $templatefields["txtmodels"]; ?></a></li>
-						<li><a href="<?php echo $areaurl . 'categories/categories.html'; ?>"><i class="fa-solid fa-boxes-stacked"></i><?php echo $templatefields["txtgenres"]; ?></a></li>
-						<li><a href="<?php echo $areaurl . 'categories/tags.html'; ?>"><i class="fa-solid fa-hashtag"></i><?php echo $templatefields["txttags"]; ?></a></li>
-					</ul>
-					<h6><?php echo $templatefields["txtsites"]; ?></h6>
-					<ul class="sites">
-						<?php foreach ($sites as $site) { ?>
-							<?php if (array_key_exists($site["Name"], $stracks)) { ?>
-								<li><a href="<?php echo 'https://joins.' . $site["Name"] . '.com/strack/' . $stracks[$site["Name"]]; ?>"><?php echo $site["Name"]; ?></a></li>
+				<div class="header-mobile">
+					<div class="icon-hamburger">
+						<div class="bar1"></div>
+						<div class="bar2"></div>
+						<div class="bar3"></div>
+					</div>
+					<div class="sidebar-menu">
+						<form class="search-form" action="search.php" method="get">
+							<div class="search-input">
+								<input type="search" name="query" autocomplete="off" placeholder="Type to search...">
+							</div>
+							<div class="search-icon">
+								<button class="search-toggle-mobile" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+							</div>
+						</form>
+						<ul>
+							<li><a href="<?php echo $areaurl . 'categories/movies/1/latest/'; ?>"><i class="fa-solid fa-video"></i><?php echo $templatefields["txtvideos"]; ?></a></li>
+							<li><a href="<?php echo $areaurl . 'categories/photos/1/latest/'; ?>"><i class="fa-solid fa-camera"></i><?php echo $templatefields["txtphotos"]; ?></a></li>
+							<li><a href="<?php echo $areaurl; ?>models/1/latest/"><i class="fa-solid fa-face-grin-tongue-wink"></i><?php echo $templatefields["txtmodels"]; ?></a></li>
+							<li><a href="<?php echo $areaurl . 'categories/categories.html'; ?>"><i class="fa-solid fa-boxes-stacked"></i><?php echo $templatefields["txtgenres"]; ?></a></li>
+							<li><a href="<?php echo $areaurl . 'categories/tags.html'; ?>"><i class="fa-solid fa-hashtag"></i><?php echo $templatefields["txttags"]; ?></a></li>
+						</ul>
+						<h6><?php echo $templatefields["txtsites"]; ?></h6>
+						<ul class="sites">
+							<?php foreach ($sites as $site) { ?>
+								<?php if (array_key_exists($site["Name"], $stracks)) { ?>
+									<li><a href="<?php echo 'https://joins.' . $site["Name"] . '.com/strack/' . $stracks[$site["Name"]]; ?>"><?php echo $site["Name"]; ?></a></li>
+								<?php } ?>
 							<?php } ?>
-						<?php } ?>
-					</ul>
+						</ul>
+					</div>
+					<div class="mobile-close"></div>
 				</div>
-				<div class="mobile-close"></div>
-			</div>
 			<?php } ?>
 			<div class="header-start">
 				<a href="<?php echo Index_URL(); ?>" title="<?php echo $templatefields["sitename"]; ?>"><img src="<?php echo $GLOBALS["tourarea"]; ?>images/logo.png" alt="<?php echo $templatefields["sitename"]; ?>"></a>
 			</div>
 			<?php if ($cookie) { ?>
-			<div class="header-middle">
-				<ul class="nav-wrapper">
-					<li class="nav-item"><a href="<?php echo $areaurl . 'categories/movies/1/latest/'; ?>"><?php echo $templatefields["txtvideos"]; ?></a></li>
-					<li class="nav-item"><a href="<?php echo $areaurl . 'categories/photos/1/latest/'; ?>"><?php echo $templatefields["txtphotos"]; ?></a></li>
-					<li class="nav-item"><a href="<?php echo $areaurl; ?>models/1/latest/"><?php echo $templatefields["txtmodels"]; ?></a></li>
-					<li class="nav-item"><a href="<?php echo $areaurl . 'categories/categories.html'; ?>"><?php echo $templatefields["txtgenres"]; ?></a></li>
-					<li class="nav-item"><a href="<?php echo $areaurl . 'categories/tags.html'; ?>"><?php echo $templatefields["txttags"]; ?></a></li>
-				</ul>
-			</div>
+				<div class="header-middle">
+					<ul class="nav-wrapper">
+						<li class="nav-item"><a href="<?php echo $areaurl . 'categories/movies/1/latest/'; ?>"><?php echo $templatefields["txtvideos"]; ?></a></li>
+						<li class="nav-item"><a href="<?php echo $areaurl . 'categories/photos/1/latest/'; ?>"><?php echo $templatefields["txtphotos"]; ?></a></li>
+						<li class="nav-item"><a href="<?php echo $areaurl; ?>models/1/latest/"><?php echo $templatefields["txtmodels"]; ?></a></li>
+						<li class="nav-item"><a href="<?php echo $areaurl . 'categories/categories.html'; ?>"><?php echo $templatefields["txtgenres"]; ?></a></li>
+						<li class="nav-item"><a href="<?php echo $areaurl . 'categories/tags.html'; ?>"><?php echo $templatefields["txttags"]; ?></a></li>
+					</ul>
+				</div>
 			<?php } ?>
 			<div class="header-end">
 				<?php if ($cookie) { ?>
-				<a onclick="$('.searchbar').toggleClass('on')" class="button button-icon search"><i class="fa-solid fa-magnifying-glass"></i></a>
-				<?php /* TO DO: Languages
+					<a onclick="$('.searchbar').toggleClass('on')" class="button button-icon search"><i class="fa-solid fa-magnifying-glass"></i></a>
+					<?php /* TO DO: Languages
 				div class="dropdown">
 					<div class="select">
 						<span class="select-title us"></span>
@@ -111,27 +116,34 @@ $sitename = str_replace(".com", "", $url['host']);
 					</ul>
 				</div>
 				*/ ?>
-				<a href="<?php echo $tour['MembersURL']; ?>" class="button button-log-in button-outline"><?php echo $templatefields["tourtxtlogin"]; ?></a>
-				<a href="<?php echo $tour['MembersURL']; ?>" class="button button-icon"><i class="fa-solid fa-user dot" aria-hidden="true"></i></a>
-				<a href="<?php echo $tour['MembersURL']; ?>" class="button button-outline splash"><?php echo $templatefields["tourtxtmemberarea"]; ?></a>
-				<?php if ($content['SEOname'] !== "thanks") { ?>
-				<a href="<?php echo $tour["JoinUrl"]; ?>" class="button button-join"><?php echo $templatefields["tourtxtjoin"]; ?></a>
-				<a href="<?php echo $tour["JoinUrl"]; ?>" class="button button-join-short"><?php echo $templatefields["tourtxtjoinshort"]; ?></a>
-				<?php } ?>
+					<a href="<?php echo $tour['MembersURL']; ?>" class="button button-log-in button-outline"><?php echo $templatefields["tourtxtlogin"]; ?></a>
+					<a href="<?php echo $tour['MembersURL']; ?>" class="button button-icon"><i class="fa-solid fa-user dot" aria-hidden="true"></i></a>
+					<a href="<?php echo $tour['MembersURL']; ?>" class="button button-outline splash"><?php echo $templatefields["tourtxtmemberarea"]; ?></a>
+					<?php if ($content['SEOname'] !== "thanks") { ?>
+						<a href="<?php echo $tour["JoinUrl"]; ?>" class="button button-join"><?php echo $templatefields["tourtxtjoin"]; ?></a>
+						<a href="<?php echo $tour["JoinUrl"]; ?>" class="button button-join-short"><?php echo $templatefields["tourtxtjoinshort"]; ?></a>
+					<?php } ?>
 				<?php } ?>
 			</div>
 		</div>
 	</div>
 	<?php if ($cookie) { ?>
-	<div class="header-search">
-		<?php include "components/searchbar.tpl"; ?>
-	</div>
+		<div class="header-search">
+			<?php include "components/searchbar.tpl"; ?>
+		</div>
 	<?php } ?>
+	<script>
+		const Popup = Swal.mixin({
+			backdrop: 'rgba(0,0,0,0.9)',
+			scrollbarPadding: false
+		})
+	</script>
 </header>
 <div class="body">
-<?php if (!$cookie) {
-	include "tour/splashcss.tpl"; echo "\n";
-	include "tour/splash.tpl";
-	exit();
-} ?>
-<?php include "tour/template_sections/slider_primary.tpl"; ?>
+	<?php if (!$cookie) {
+		include "tour/splashcss.tpl";
+		echo "\n";
+		include "tour/splash.tpl";
+		exit();
+	} ?>
+	<?php include "tour/template_sections/slider_primary.tpl"; ?>
