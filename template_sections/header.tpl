@@ -156,6 +156,11 @@ $url = "https://" . $parse['host'] . '/';
 				$(".menu-down").removeClass("pressed");
 			}
 		});
+
+		const Popup = Swal.mixin({
+			backdrop: 'rgba(0,0,0,0.9)',
+			scrollbarPadding: false					
+		})
 	</script>
 </header>
 <div class="body">

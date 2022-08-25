@@ -113,7 +113,7 @@ if (isset($trial) && $trial['allowzips'] == 0) {
 								?>
 								<?php $i = 0;
 								foreach ($relevant as $kex => $relset) { ?>
-									<?php
+								<?php
 									$media = $api->getContent(["id" => $relset["Id"]]);
 									foreach ($media->content['vids'] as $k => $l) {
 										foreach ($l as $m => $n) {
@@ -141,7 +141,7 @@ if (isset($trial) && $trial['allowzips'] == 0) {
 
 				function showdownload() {
 					<?php if (!isset($trial)) { ?>
-						Swal.fire({
+						Popup.fire({
 							html: `<div class="download-box"><?php
 																$usetype = "vids";
 																$settype = "vids";
@@ -150,24 +150,24 @@ if (isset($trial) && $trial['allowzips'] == 0) {
 																	foreach ($media->content[$usetype] as $tmp1) {
 																		if (isset($tmp1[$mediatype["Name"] . ":" . $mediatype["Type"]]) && ($mediatype["ShowDownload"] >= 1) && ($mediatype["FullVideo"] >= 1)) {
 																?><a href="<?php echo $areaurl; ?>?action=download&file=<?php echo $tmp1[$mediatype["Name"] . ":" . $mediatype["Type"]]["fullpath"]; ?>"><?php echo $mediatype["Format"] . ' ' . $mediatype["Label"] .  ' <span>(' . sprintf("%.1f", $tmp1[$mediatype["Name"] . ":" . $mediatype["Type"]]["filesize"] / 1024 / 1024) . ' MB)</span>'; ?></a><?php }
-																																																																																											}
-																																																																																										} ?></div>`,
+																																																																																																	}
+																																																																																																} ?></div>`,
 							showCloseButton: true,
 							showConfirmButton: false,
-							backdrop: 'rgba(0,0,0,0.9)',
 							width: '240px'
 						})
 					<?php } else if (isset($trial)) { ?>
 						let timerInterval;
-						Swal.fire({
+						Popup.fire({
 							icon: 'error',
 							title: '<?php echo $templatefields["txtmembersonly"]; ?>',
 							showCloseButton: true,
-							backdrop: 'rgba(0,0,0,0.9)',
 							timer: 2000,
 							timerProgressBar: true,
 							didOpen: () => {
-								timerInterval = setInterval(() => { window.location.href = "<?php echo $trial['videourl']; ?>" }, 2000);
+								timerInterval = setInterval(() => {
+									window.location.href = "<?php echo $trial['videourl']; ?>"
+								}, 2000);
 							},
 							didDestroy: () => {
 								clearInterval(timerInterval);
@@ -177,7 +177,7 @@ if (isset($trial) && $trial['allowzips'] == 0) {
 				}
 
 				function showreport() {
-					Swal.fire({
+					Popup.fire({
 						icon: 'warning',
 						title: "<?php echo $templatefields["txtreport"]; ?>",
 						html: `<div class="problems active">
@@ -189,7 +189,6 @@ if (isset($trial) && $trial['allowzips'] == 0) {
 						</div>`,
 						showCloseButton: true,
 						showConfirmButton: false,
-						backdrop: 'rgba(0,0,0,0.9)',
 						customClass: {
 							htmlContainer: "report-ui"
 						}
@@ -197,7 +196,7 @@ if (isset($trial) && $trial['allowzips'] == 0) {
 				}
 
 				function reportother() {
-					Swal.fire({
+					Popup.fire({
 						input: 'textarea',
 						inputLabel: '<?php echo $templatefields["txtreport"]; ?>',
 						inputPlaceholder: '<?php echo $templatefields["txttypereport"]; ?>',
@@ -205,7 +204,6 @@ if (isset($trial) && $trial['allowzips'] == 0) {
 							'aria-label': '<?php echo $templatefields["txttypereport"]; ?>'
 						},
 						showCancelButton: true,
-						backdrop: 'rgba(0,0,0,0.9)',
 						showClass: {
 							backdrop: 'swal2-noanimation',
 							popup: '',
@@ -238,31 +236,28 @@ if (isset($trial) && $trial['allowzips'] == 0) {
 						try {
 							dtt = $.parseJSON(data);
 						} catch (e) {
-							Swal.fire({
+							Popup.fire({
 								icon: 'error',
 								title: '<?php echo $templatefields["txtoops"]; ?>',
-								text: '<?php echo $templatefields["txterror"]; ?>: ' + data,
-								backdrop: 'rgba(0,0,0,0.9)',
-								scrollbarPadding: false
+								text: '<?php echo $templatefields["txterror"]; ?>: ' + data
 							})
 							return false;
 						}
-						Swal.fire({
+						Popup.fire({
 							text: dtt.message,
-							backdrop: 'rgba(0,0,0,0.9)',
 							scrollbarPadding: false
 						});
 					});
 				}
-			</script>			
+			</script>
 		<?php } else if ($settype == "highres" || $settype == "caps") { ?>
 			<?php LoadTemplate("template_sections/images_loader.tpl"); ?>
 			<div class="page-header">
 				<h1 class="page-title">
 					<?php if ($settype == "highres") { ?>
-					<a href="<?php echo Gallery_URL(["type" => "highres", "id" => $set["Id"], "seoname" => $set["SEOname"], "set" => $set]); ?>"><?php echo $templatefields["h1_photos"]; ?></a>
+						<a href="<?php echo Gallery_URL(["type" => "highres", "id" => $set["Id"], "seoname" => $set["SEOname"], "set" => $set]); ?>"><?php echo $templatefields["h1_photos"]; ?></a>
 					<?php } else if ($settype == "caps") { ?>
-					<a href="<?php echo Gallery_URL(["type" => "caps", "id" => $set["Id"], "seoname" => $set["SEOname"], "set" => $set]); ?>"><?php echo $templatefields["h1_caps"]; ?></a>
+						<a href="<?php echo Gallery_URL(["type" => "caps", "id" => $set["Id"], "seoname" => $set["SEOname"], "set" => $set]); ?>"><?php echo $templatefields["h1_caps"]; ?></a>
 					<?php } ?>
 				</h1>
 				<h2 class="page-subtitle"><?php echo $title; ?></h2>
@@ -281,7 +276,7 @@ if (isset($trial) && $trial['allowzips'] == 0) {
 									<?php } ?>
 								<?php } else { ?>
 									<?php foreach ($set["info"]["zips"] as $zip) { ?>
-										<li><a onclick='javascript:(Swal.fire("<?php echo $templatefields["txtmembersonly"]; ?>"))'><?php echo $zip["ziptype"]; ?></a></li>
+										<li><a onclick='javascript:(Popup.fire("<?php echo $templatefields["txtmembersonly"]; ?>"))'><?php echo $zip["ziptype"]; ?></a></li>
 									<?php } ?>
 								<?php } ?>
 							</ul>

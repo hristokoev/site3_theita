@@ -32,21 +32,19 @@ LoadTemplate("template_sections/header.tpl", ["pagename" => "messaging", "title"
 		subj = "<?php echo $templatefields["txtmailjssubj"]; ?>";
 		body = "<?php echo $templatefields["txtmailjsbody"]; ?>";
 		if (v.Subject.value == "") {
-			Swal.fire({
+			Popup.fire({
 				icon: 'error',
 				title: '<?php echo $templatefields["txtoops"]; ?>',
 				text: subj,
-				backdrop: 'rgba(0,0,0,0.9)',
 			})
 			v.Subject.focus();
 			return false;
 		}
 		if (v.Body.value == "") {
-			Swal.fire({
+			Popup.fire({
 				icon: 'error',
 				title: '<?php echo $templatefields["txtoops"]; ?>',
 				text: body,
-				backdrop: 'rgba(0,0,0,0.9)',
 			})
 			v.Body.focus();
 			return false;
@@ -71,20 +69,18 @@ LoadTemplate("template_sections/header.tpl", ["pagename" => "messaging", "title"
 			try {
 				dtt = $.parseJSON(data);
 			} catch (e) {
-				Swal.fire({
+				Popup.fire({
 					icon: 'error',
 					title: '<?php echo $templatefields["txtoops"]; ?>',
 					text: data,
-					backdrop: 'rgba(0,0,0,0.9)',
 				})
 				return false;
 			}
 			if (dtt.success == "1") {
 				document.location = "mailbox.php";
 			} else {
-				Swal.fire({
+				Popup.fire({
 					text: dtt.message,
-					backdrop: 'rgba(0,0,0,0.9)',
 				});
 			}
 		});
@@ -93,14 +89,14 @@ LoadTemplate("template_sections/header.tpl", ["pagename" => "messaging", "title"
 </script>
 <script>
 	page = <?php echo (!empty($_REQUEST['page'])) ? $_REQUEST['page'] : 1; ?>;
+
 	function confirmdel(id) {
-		Swal.fire({
+		Popup.fire({
 			title: 'Are you sure?',
 			text: "You won't be able to revert this!",
 			icon: 'warning',
 			showCancelButton: true,
 			confirmButtonText: 'Yes, delete it!',
-			backdrop: 'rgba(0,0,0,0.9)',
 		}).then((result) => {
 			if (result.isConfirmed) {
 				if ($(".messages").children().length > 1 && page >= 1) {

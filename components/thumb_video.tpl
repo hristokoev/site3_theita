@@ -37,14 +37,15 @@ if (isset($GLOBALS["tour"])) {
 			$ahref = $url . Gallery_URL(["type" => $usetype, "id" => $set["Id"], "seoname" => $set["SEOname"], "set" => $set]);
 		}
 	} else {
-		$onclick = 'javascript:(Swal.fire("' . $templatefields["txtcoming"] . '&nbsp;' . $set["AppearDate"] . '"))';
+		$ahref = "";
+		$onclick = "javascript:(Popup.fire('" . $templatefields["txtcoming"] . '&nbsp;' . date("j F Y", strtotime($set["AppearDate"])) . "'))";
 	}
 }
 ?>
 <div class="wrap <?php echo $class; ?>">
 	<div class="thumb">
 		<div class="thumb-holder">
-			<a href="<?php echo $ahref; ?>" onclick="<?php echo $onclick; ?>" title="<?php echo $set["Title"]; ?>">
+			<a <?php if ($ahref !== "") { echo "href=" . $ahref; } ?> onclick="<?php echo $onclick; ?>" title="<?php echo $set["Title"]; ?>">
 				<?php if (in_array("skeleton", $layout)) { ?>
 					<!-- <div class="skeleton-thumb" style="width: 100%; height: 100%;"></div> -->
 				<?php } ?>
@@ -86,7 +87,7 @@ if (isset($GLOBALS["tour"])) {
 					<?php } ?>
 				</div>
 				<?php if (in_array("title", $layout["info"])) { ?>
-					<h5 class="title"><a href="<?php echo $ahref; ?>" onclick="<?php echo $onclick; ?>" title="<?php echo $set["Title"]; ?>"><?php echo $set["Title"]; ?></a></h5>
+					<h5 class="title"><a <?php if ($ahref !== "") { echo "href=" . $ahref; } ?> onclick="<?php echo $onclick; ?>" title="<?php echo $set["Title"]; ?>"><?php echo $set["Title"]; ?></a></h5>
 				<?php } ?>
 			</div>
 		<?php } ?>

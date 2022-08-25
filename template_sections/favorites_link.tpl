@@ -24,7 +24,7 @@ $favtxt = ($isFav) ? "txtremovefromfavorites" : "txtaddtofavorites";
 				vx.data("fav", newstatus + "");
 				let txt = (currstatus == "1") ? "<?php echo "<i class='fa-solid fa-xmark'></i>" . $templatefields["txtremovefromfavorites"]; ?>" : "<?php echo "<i class='fa-solid fa-xmark'></i>" . $templatefields["txtaddtofavorites"]; ?>";
 				$(".favtxt", vx).html(txt);
-				Swal.fire("<?php echo $templatefields["txterror"]; ?>");
+				Popup.fire("<?php echo $templatefields["txterror"]; ?>");
 			})
 			.done(function(data) {
 				let newstatus = data.is_favorite;
@@ -52,11 +52,10 @@ $favtxt = ($isFav) ? "txtremovefromfavorites" : "txtaddtofavorites";
 	}
 	<?php } else if (isset($trial)) { ?>
 		function toggleFavorites()	{
-			Swal.fire({
+			Popup.fire({
 				icon: 'error',
 				title: '<?php echo $templatefields["txtmembersonly"]; ?>',
 				showCloseButton: true,
-				backdrop: 'rgba(0,0,0,0.9)',
 				timer: 2000,
 				timerProgressBar: true,
 				didOpen: () => {

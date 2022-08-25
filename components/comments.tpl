@@ -108,20 +108,18 @@ $textMaxLength = 250;
 								return;
 							}
 						}
-						Swal.fire({
+						Popup.fire({
 							icon: 'error',
 							title: '<?php echo $templatefields["txtoops"]; ?>',
-							text: data.message,
-							backdrop: 'rgba(0,0,0,0.9)',
+							text: data.message
 						})
 						return;
 					},
 					error: function(XMLHttpRequest, textStatus, errorThrown) {
-						Swal.fire({
+						Popup.fire({
 							icon: 'error',
 							title: '<?php echo $templatefields["txtoops"]; ?>',
-							text: "There has been an error submitting your comment.\nPlease contact support if you continue to see this message.\n\nMessage:\n" + XMLHttpRequest.responseText,
-							backdrop: 'rgba(0,0,0,0.9)',
+							text: "There has been an error submitting your comment.\nPlease contact support if you continue to see this message.\n\nMessage:\n" + XMLHttpRequest.responseText
 						})
 					}
 				});

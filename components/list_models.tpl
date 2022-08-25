@@ -16,10 +16,11 @@ foreach ($mdl as $k => $model) {
 	if ($today > $set["AppearDate"]) {
 		$ahref = Sets_URL(["id" => $model["id"], "seoname" => $model["seoname"], "model" => $model]);
 	} else {
-		$onclick = 'javascript:(Swal.fire("' . $templatefields["txtcoming"] . '&nbsp;' . $set["AppearDate"] . '"))';
+		$ahref = "";
+		$onclick = "javascript:(Popup.fire('" . $templatefields["txtcoming"] . '&nbsp;' . date("j F Y", strtotime($set["AppearDate"])) . "'))";
 	}
 	if (!$nolink) { ?>
-		<a href="<?php echo $ahref; ?>" onclick="<?php echo $onclick; ?>">
+		<a <?php if ($ahref !== "") { echo "href=" . $ahref; } ?> onclick="<?php echo $onclick; ?>">
 			<h2>
 		<?php }
 	echo $model["name"];
