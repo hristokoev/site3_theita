@@ -4,8 +4,10 @@
 	$modelObj = $api->getModels([
 		"sort" => "date",
 		"numperpage" => 6,
+		"subsiteid" => $subsite['Id']
 	]);
 	foreach ($modelObj->models as $model) {
+		$videoObj = $api->getSets(["model_filter" => $model['Id'],]);
 	?>
 		<div class="wrap">
 			<div class="thumb">
@@ -18,10 +20,10 @@
 					<h4><a href="<?php echo Sets_URL(["id" => $model["Id"], "seoname" => $model["SEOname"], "model" => $model]); ?>" title="<?php echo $model["ModelName"]; ?>"><?php echo $model["ModelName"]; ?></a></h4>
 					<span>
 						<?php
-						if ($model["setcount"] == 1) {
-							echo $model["setcount"] . ' ' . $templatefields["txtscene"];
+						if ($videoObj->settotal == 1) {
+							echo $videoObj->settotal . ' ' . $templatefields["txtscene"];
 						} else {
-							echo $model["setcount"] . ' ' . $templatefields["txtscenes"];
+							echo $videoObj->settotal . ' ' . $templatefields["txtscenes"];
 						}
 						?>
 					</span>
