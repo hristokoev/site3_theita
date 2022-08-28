@@ -18,7 +18,7 @@ $bitrates = array();
 					<span class="length"><?php LoadTemplate("components/info_length_short.tpl", ["set" => $set]); ?></span>
 				</div>
 				<div class="title">
-					<h2><?php echo $set["Title"]; ?></h2>
+					<h1><?php echo $set["Title"]; ?></h1>
 				</div>
 				<div class="starring">
 					<span><?php echo $templatefields["txtstarring"]; ?>: </span>

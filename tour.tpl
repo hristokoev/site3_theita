@@ -24,45 +24,6 @@ if (isset($p['cat']) && $p['n'] && $p["s"] && $p["p"]) {
 $bitrates = array();
 ?>
 <?php LoadTemplate("tour/template_sections/header.tpl", ["pagename" => "tour"]); ?>
-<script>
-	$(document).on("DOMContentLoaded", () => {
-		// $("#loadmore").on("click", getData)
-	});
-
-	function getData(ev) {
-		ev.preventDefault();
-		const url = "./templates/thumb_video.html";
-		let req = new Request(url, {
-			method: "GET"
-		});
-		for (let i = 1; i <= 8; i++) {
-			fetch(req)
-				.then(response => response.text())
-				.then(text => {
-					let main = $("#req");
-					let doc = $.parseHTML(text);
-					let setId = "";
-					let setTitle = "";
-					let setSEO = "";
-					let setDate = "";
-					let rr = "";
-					let rt = "";
-					let htmlTitle = $(doc).find(".title");
-					$.get(`?cat=5&n=1&s=p&p=${i+8}`, function(data) {
-						let foundObj = JSON.parse(data);
-						setId = foundObj[0]["id"];
-						setTitle = foundObj[0]["title"];
-						setSEO = foundObj[0]["seo"];
-						setDate = foundObj[0]["date"];
-						setrr = foundObj[0]["rr"];
-						setrt = foundObj[0]["rt"];
-						htmlTitle.text(setTitle);
-						main.append(doc);
-					});
-				})
-		}
-	}
-</script>
 <div class="main">
 	<section class="container">
 		<div class="main-header-title">
