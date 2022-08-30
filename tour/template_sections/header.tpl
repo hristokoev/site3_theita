@@ -1,8 +1,32 @@
 <?php
-if (isset($_GET["ex"])) {
-	LoadTemplate("pages/wip.tpl");
-	exit();
+// Get total videos
+$link = mysqli_connect("localhost", "vangoren", "j90a930rfe", "vangoren");
+$sqlvids = "SELECT `Num` FROM `totals` WHERE `MajorType` = 'types' AND `MinorType` = 'vids' AND `siteid` IS NULL LIMIT 1";
+$sqlhighres = "SELECT `Num` FROM `totals` WHERE `MajorType` = 'types' AND `MinorType` = 'highres' AND `siteid` IS NULL LIMIT 1";
+$sqlmodels = "SELECT `Num` FROM `totals` WHERE `MajorType` = 'models' AND `siteid` IS NULL LIMIT 1";
+$resultvids = mysqli_query($link, $sqlvids);
+while($row = mysqli_fetch_array($resultvids)) {
+    $totalVideos = $row['Num']; 
 }
+mysqli_free_result($resultvids);
+$resulthighres = mysqli_query($link, $sqlhighres);
+while($row = mysqli_fetch_array($resulthighres)) {
+    $totalPhotos = $row['Num']; 
+}
+mysqli_free_result($resulthighres);
+$resultmodels = mysqli_query($link, $sqlmodels);
+while($row = mysqli_fetch_array($resultmodels)) {
+    $totalModels = $row['Num']; 
+}
+mysqli_free_result($resultmodels);
+mysqli_close($link);
+?>
+<?php
+// Work In Progress Page
+// if (isset($_GET["ex"])) {
+// 	LoadTemplate("pages/wip.tpl");
+// 	exit();
+// }
 ?>
 <?php
 if (isset($_GET["trailer"])) {
@@ -34,11 +58,9 @@ echo "\n"; ?>
 		<div class="header-wrapper">
 			<span><?php echo $templatefields["txtsites"]; ?></span>
 			<ul>
-				<?php foreach ($sites as $site) { ?>
-					<?php if (array_key_exists($site["Name"], $stracks)) { ?>
-						<li><a href="<?php echo 'https://joins.' . $site["Name"] . '.com/strack/' . $stracks[$site["Name"]]; ?>"><?php echo $site["Name"]; ?></a></li>
-					<?php } ?>
-				<?php } ?>
+				<li><a style="cursor: default"><i class="fa-solid fa-clapperboard"></i>&nbsp;<?php echo $totalVideos . " " . $templatefields["txtvideos"]; ?></a></li>
+				<li><a style="cursor: default"><i class="fa-solid fa-camera"></i>&nbsp;<?php echo $totalPhotos . " " . $templatefields["txtphotos"]; ?></a></li>
+				<li><a style="cursor: default"><i class="fa-solid fa-venus-mars"></i>&nbsp;<?php echo $totalModels . " " . $templatefields["txtmodels"]; ?></a></li>
 			</ul>
 		</div>
 	</div>
