@@ -4,6 +4,7 @@
 	if ($content['SEOname'] == "404") LoadTemplate("pages/404.tpl");
 	else if ($content['SEOname'] == "contacts") LoadTemplate("pages/contacts.tpl");
 	else if ($content['SEOname'] == "hot-deals") LoadTemplate("pages/hot_deals.tpl", ["arr" => $content["Body"]]);
+	else if ($content['SEOname'] == "partners") LoadTemplate("pages/partners.tpl", ["arr" => $content["Body"]]);
 	else if ($content['SEOname'] == "bug-reports") LoadTemplate("pages/bugs.tpl");
 	else { ?>
 		<section class="container">
