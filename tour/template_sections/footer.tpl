@@ -6,7 +6,6 @@ if ($detect->isMobile() && !$detect->isTablet()) {
 } else {
 	$src = "banner_footer.jpg";
 }
-$cookie = !empty($_COOKIE["warn"]);
 ?>
 <?php if ($content['SEOname'] !== "thanks") { ?>
 <div class="footer-banner">
@@ -56,24 +55,6 @@ $cookie = !empty($_COOKIE["warn"]);
 	</section>
 </div>
 </div>
-<?php if (!$cookie) {
-	include "tour/splashcss.tpl";
-	echo "\n";
-	include "tour/splash.tpl";
-	?>
-	<script>
-		let headerHeight = $(".header-top").height();
-		$(".body").css("padding-top", headerHeight);
-		$(".warning-container").css("top", headerHeight);
-		$("a.cookie18").on("click", function () {
-			$(".warning-container").remove();
-			$("header").removeAttr("style");
-			$(".body").removeAttr("style");
-			$("style").remove();
-		});
-	</script>
-	<?php
-} ?>
 </body>
 
 </html>

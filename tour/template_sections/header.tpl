@@ -10,7 +10,6 @@ if (isset($_GET["trailer"])) {
 }
 ?>
 <?php
-$cookie = !empty($_COOKIE["warn"]);
 // SITES 
 $stracks = array(
 	"amaraw"			=>	"MC4wLjE5LjI4LjAuMC4wLjAuMA/19:28/0/1/",
@@ -30,7 +29,7 @@ $sitename = str_replace(".com", "", $url['host']);
 ?>
 <?php include "tour/globals/globals.tpl";
 echo "\n"; ?>
-<header <?php if (!$cookie) { ?>style="position: fixed; width: 100%; z-index: 110;"<?php } ?>>
+<header>
 	<div class="header-top">
 		<div class="header-wrapper">
 			<span><?php echo $templatefields["txtsites"]; ?></span>
