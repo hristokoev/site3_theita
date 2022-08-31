@@ -1,5 +1,3 @@
-<!-- Favicon -->
-<link rel="shortcut icon" href="<?php echo $areaurl; ?>favicon.ico">
 <!-- CDN --------- Font Awesome -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css">
 <!-- CDN --------- jQuery -->
