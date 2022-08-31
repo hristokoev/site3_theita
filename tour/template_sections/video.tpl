@@ -10,10 +10,17 @@ if ($trailer_url == "no_trailer") {
 if (isset($set['info']['thumbs'][14]["1x_filename"])) {
 	$imageLowRes = cdn_hook($GLOBALS["contentdir"] . "/contentthumbs/" . $set['info']['thumbs'][14]["1x_filename"]);
 	$imageHighRes = cdn_hook($GLOBALS["contentdir"] . "/contentthumbs/" . $set['info']['thumbs'][14]["3x_filename"]);
+	if (Filter_SFW()) {
+		$imageHighRes = "https://dummyimage.com/1920x1080/c6d5d4/000&text=+";
+	}
 }
 ?>
 <video id="trailer" class="video-js vjs-theme-dt vjs-16-9" controls preload="auto" poster="<?php echo $imageHighRes; ?>">
+	<?php if (Filter_SFW()) { ?>
+	<source src="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4" data-fake="<?php echo $fake; ?>" />
+	<?php } else { ?>
 	<source src="<?php echo $trailer_url; ?>" type="video/mp4" data-fake="<?php echo $fake; ?>" />
+	<?php } ?>
 </video>
 <div class="promo" style="opacity: 0; pointer-events: none;">
 	<a href="<?php echo $tour['JoinUrl']; ?>">

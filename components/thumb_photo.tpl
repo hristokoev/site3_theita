@@ -25,7 +25,11 @@ if (isset($GLOBALS["tour"])) {
 	<div class="thumb">
 		<div class="thumb-holder hover">
 			<a href="<?php echo $ahref; ?>" title="<?php echo $set["Title"]; ?>">
+				<?php if (Filter_SFW()) { ?>
+					<img src="https://dummyimage.com/800x1067/c6d5d4/000&text=+" alt="">
+				<?php } else { ?>
 				<?php StdImage(array("set" => $set, "usepriority" => $usepriority, "alt" => "", "class" => "thumbs")); ?>
+				<?php } ?>
 			</a>
 		</div>
 		<div class="secondary">

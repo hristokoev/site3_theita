@@ -10,11 +10,22 @@ if ($detect->isMobile() && !$detect->isTablet()) {
 <?php if ($content['SEOname'] !== "thanks") { ?>
 <div class="footer-banner">
 	<div class="item">
+		<?php if (Filter_SFW()) { ?>
+			<img src="https://dummyimage.com/1920x480/c6d5d4/000&text=+" alt="">
+		<?php } else { ?>
 		<a href="<?php echo $areaurl . 'network/'; ?>">
 			<img src="<?php echo $areaurl . 'images/banners/' . $src; ?>" alt="Banner" class="">
 		</a>
+		<?php } ?>
 	</div>
 </div>
+<?php } ?>
+<?php if (Filter_SFW()) { ?>
+<script>
+	$('a').each(function() {
+		this.href += (/\?/.test(this.href) ? '&' : '?') + 'sfw';
+	});
+</script>
 <?php } ?>
 <div class="footer">
 	<section class="container">

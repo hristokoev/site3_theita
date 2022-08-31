@@ -23,10 +23,14 @@ $arr = json_decode($json, true);
 				$i++;
 				?>
 				<div class="swiper-slide">
+					<?php if (Filter_SFW()) { ?>
+						<img src="https://dummyimage.com/1920x660/c6d5d4/000&text=+" alt="">
+					<?php } else { ?>
 					<a href="<?php echo $banner["url"]; ?>">
 						<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
 						<img src="<?php echo $areaurl . 'images/banners/header/' . $src; ?>" alt="<?php echo $banner["alt"]; ?>" class="swiper-lazy">
 					</a>
+					<?php } ?>
 				</div>
 			<?php } ?>
 		</div>

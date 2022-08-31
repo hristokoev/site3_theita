@@ -9,6 +9,12 @@ function URL_Exists($url) {
 	return stripos($headers[0], "200 OK") ? true : false;
 }
 
+function Filter_SFW() {
+	if (isset($_GET["sfw"])) {
+		return true;
+	} else return false;
+}
+
 function custom_template_area($section) {
 	//custom function to alternate between all custom templates.
 	switch ($section) {

@@ -14,7 +14,11 @@
 						<div class="thumb">
 							<div class="thumb-holder">
 								<a href="<?php echo custom_Category_Landing_URL(["id" => $cat["Id"], "seoname" => $cat["SEOname"], "s" => "d", "category" => $cat]) ?>">
+									<?php if (Filter_SFW()) { ?>
+										<img src="https://dummyimage.com/800x600/c6d5d4/000&text=+" alt="">
+									<?php } else { ?>
 									<?php StdCatImage(array("category" => $cat, "usepriority" => "34", "alt" => "", "class" => "thumbs")); ?>
+									<?php } ?>
 								</a>
 							</div>
 							<div class="secondary">

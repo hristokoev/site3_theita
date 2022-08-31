@@ -49,7 +49,11 @@ if (isset($GLOBALS["tour"])) {
 				<?php if (in_array("skeleton", $layout)) { ?>
 					<!-- <div class="skeleton-thumb" style="width: 100%; height: 100%;"></div> -->
 				<?php } ?>
+				<?php if (Filter_SFW()) { ?>
+					<img src="https://dummyimage.com/452x254/c6d5d4/000&text=+" alt="">
+				<?php } else { ?>
 				<?php StdImage(array("set" => $set, "usepriority" => $usepriority, "alt" => "", "class" => "thumbs")); ?>
+				<?php } ?>
 				<div class="videoloadline"></div>				
 				<div class="overlay">
 					<span class="bitrate">
