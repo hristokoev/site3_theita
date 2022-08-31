@@ -65,8 +65,7 @@ echo "\n"; ?>
 		</div>
 	</div>
 	<div class="header-bottom">
-		<div class="header-wrapper">
-			
+		<div class="header-wrapper">			
 				<div class="header-mobile">
 					<div class="icon-hamburger">
 						<div class="bar1"></div>
@@ -74,14 +73,7 @@ echo "\n"; ?>
 						<div class="bar3"></div>
 					</div>
 					<div class="sidebar-menu">
-						<form class="search-form" action="search.php" method="get">
-							<div class="search-input">
-								<input type="search" name="query" autocomplete="off" placeholder="Type to search...">
-							</div>
-							<div class="search-icon">
-								<button class="search-toggle-mobile" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-							</div>
-						</form>
+						<?php include "components/searchbar_mobile.tpl"; ?>
 						<ul>
 							<li><a href="<?php echo $areaurl . 'categories/movies/1/latest/'; ?>"><i class="fa-solid fa-video"></i><?php echo $templatefields["txtvideos"]; ?></a></li>
 							<li><a href="<?php echo $areaurl . 'categories/photos/1/latest/'; ?>"><i class="fa-solid fa-camera"></i><?php echo $templatefields["txtphotos"]; ?></a></li>
