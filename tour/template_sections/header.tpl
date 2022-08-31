@@ -33,24 +33,6 @@ if (isset($_GET["trailer"])) {
 	header("Location: " . $areaurl . 'trailers/' . $_GET["trailer"] . ".html" . "?nats=" . $_GET["nats"]);
 }
 ?>
-<?php
-// SITES 
-$stracks = array(
-	"amaraw"			=>	"MC4wLjE5LjI4LjAuMC4wLjAuMA/19:28/0/1/",
-	"blackcockpassion"	=>	"MC4wLjE4LjI1LjAuMC4wLjAuMA/18:25/0/1/",
-	"iluvmilfs"			=>	"MC4wLjIxLjMwLjAuMC4wLjAuMA/21:30/0/1/",
-	"iluvteens"			=>	"MC4wLjIwLjI5LjAuMC4wLjAuMA/20:29/0/1/",
-	"italianshotclub"	=>	"MC4wLjEwLjEwLjAuMC4wLjAuMA/10:10/0/1/",
-	"lesbiantribe"		=>	"MC4wLjMuMy4wLjAuMC4wLjA/3:3/0/1/",
-	"oblackgirls"		=>	"MC4wLjIzLjMyLjAuMC4wLjAuMA/23:32/0/1/",
-	"oblowjobs"			=>	"MC4wLjIyLjMxLjAuMC4wLjAuMA/22:31/0/1/",
-	"pornlandvideos"	=>	"MC4wLjQuNC4wLjAuMC4wLjA/4:4/0/1/",
-	"sologirlsmania"	=>	"MC4wLjIuMi4wLjAuMC4wLjA/2:2/0/1/",
-	"vangoren"			=>	"MC4wLjUuNS4wLjAuMC4wLjA/5:5/0/1/"
-);
-$url = parse_url($areaurl);
-$sitename = str_replace(".com", "", $url['host']);
-?>
 <?php include "tour/globals/globals.tpl";
 echo "\n"; ?>
 <header>
@@ -80,14 +62,6 @@ echo "\n"; ?>
 							<li><a href="<?php echo $areaurl; ?>models/1/latest/"><i class="fa-solid fa-face-grin-tongue-wink"></i><?php echo $templatefields["txtmodels"]; ?></a></li>
 							<li><a href="<?php echo $areaurl . 'categories/categories.html'; ?>"><i class="fa-solid fa-boxes-stacked"></i><?php echo $templatefields["txtgenres"]; ?></a></li>
 							<li><a href="<?php echo $areaurl . 'categories/tags.html'; ?>"><i class="fa-solid fa-hashtag"></i><?php echo $templatefields["txttags"]; ?></a></li>
-						</ul>
-						<h6><?php echo $templatefields["txtsites"]; ?></h6>
-						<ul class="sites">
-							<?php foreach ($sites as $site) { ?>
-								<?php if (array_key_exists($site["Name"], $stracks)) { ?>
-									<li><a href="<?php echo 'https://joins.' . $site["Name"] . '.com/strack/' . $stracks[$site["Name"]]; ?>"><?php echo $site["Name"]; ?></a></li>
-								<?php } ?>
-							<?php } ?>
 						</ul>
 					</div>
 					<div class="mobile-close"></div>
