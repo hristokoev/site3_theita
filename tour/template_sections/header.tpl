@@ -38,7 +38,9 @@ echo "\n"; ?>
 <header>
 	<div class="header-top">
 		<div class="header-wrapper">
-			<span><?php echo $templatefields["txtsites"]; ?></span>
+			<ul>
+				<li><a href="<?php echo $areaurl; ?>network/"><?php echo $templatefields["txtsites"]; ?></a></li>
+			</ul>			
 			<ul>
 				<li><a style="cursor: default"><i class="fa-solid fa-clapperboard"></i>&nbsp;<?php echo $totalVideos . " " . $templatefields["txtvideos"]; ?></a></li>
 				<li><a style="cursor: default"><i class="fa-solid fa-camera"></i>&nbsp;<?php echo $totalPhotos . " " . $templatefields["txtphotos"]; ?></a></li>
@@ -55,7 +57,7 @@ echo "\n"; ?>
 						<div class="bar3"></div>
 					</div>
 					<div class="sidebar-menu">
-						<?php include "components/searchbar_mobile.tpl"; ?>
+						<?php include "components/searchbar_mobile.tpl"; ?>				
 						<ul>
 							<li><a href="<?php echo $areaurl . 'categories/movies/1/latest/'; ?>"><i class="fa-solid fa-video"></i><?php echo $templatefields["txtvideos"]; ?></a></li>
 							<li><a href="<?php echo $areaurl . 'categories/photos/1/latest/'; ?>"><i class="fa-solid fa-camera"></i><?php echo $templatefields["txtphotos"]; ?></a></li>
@@ -63,6 +65,10 @@ echo "\n"; ?>
 							<li><a href="<?php echo $areaurl . 'categories/categories.html'; ?>"><i class="fa-solid fa-boxes-stacked"></i><?php echo $templatefields["txtgenres"]; ?></a></li>
 							<li><a href="<?php echo $areaurl . 'categories/tags.html'; ?>"><i class="fa-solid fa-hashtag"></i><?php echo $templatefields["txttags"]; ?></a></li>
 						</ul>
+						<div class="members">
+							<a href="<?php echo $tour['MembersURL']; ?>" class="button button-log-in button-outline mobile"><?php echo $templatefields["tourtxtlogin"]; ?></a>
+							<a href="<?php echo $tour["JoinUrl"]; ?>" class="button button-join-short mobile"><?php echo $templatefields["tourtxtjoin"]; ?></a>
+						</div>	
 					</div>
 					<div class="mobile-close"></div>
 				</div>
@@ -79,22 +85,24 @@ echo "\n"; ?>
 					</ul>
 				</div>
 			<div class="header-end">
-					<a onclick="$('.searchbar').toggleClass('on')" class="button button-icon search"><i class="fa-solid fa-magnifying-glass"></i></a>
-					<?php /* TO DO: Languages
-				div class="dropdown">
-					<div class="select">
-						<span class="select-title us"></span>
+					<?php if (isset($_GET["test"])) { ?>
+					<div class="dropdown">
+						<div class="select">
+							<span class="select-title us">EN</span>
+						</div>
+						<ul class="menu">
+							<li class="us">EN</li>
+							<li class="it">IT</li>
+							<li class="de">FR</li>
+							<li class="fr">DE</li>
+							<li class="ru">ES</li>
+							<li class="bg">PT</li>
+							<li class="bg">RU</li>
+							<li class="bg">JA</li>
+						</ul>
 					</div>
-					<ul class="menu">
-						<li class="us"></li>
-						<li class="it"></li>
-						<li class="de"></li>
-						<li class="fr"></li>
-						<li class="ru"></li>
-						<li class="bg"></li>
-					</ul>
-				</div>
-				*/ ?>
+					<?php } ?>				
+					<a onclick="$('.searchbar').toggleClass('on')" class="button button-icon search"><i class="fa-solid fa-magnifying-glass"></i></a>
 					<a href="<?php echo $tour['MembersURL']; ?>" class="button button-log-in button-outline"><?php echo $templatefields["tourtxtlogin"]; ?></a>
 					<a href="<?php echo $tour['MembersURL']; ?>" class="button button-icon"><i class="fa-solid fa-user dot" aria-hidden="true"></i></a>
 					<?php if ($content['SEOname'] !== "thanks") { ?>

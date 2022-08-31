@@ -55,6 +55,7 @@ if ($detect->isMobile() && !$detect->isTablet()) {
 				<div class="socials">
 					<a href="https://twitter.com/vangoren_com" target="_blank"><i class="fa-brands fa-twitter"></i></a>
 					<a href="https://www.instagram.com/vangoren_com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+					<a href="#"><i class="fa-brands fa-youtube"></i></a>
 				</div>
 			</div>
 		</div>
