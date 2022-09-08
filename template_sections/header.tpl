@@ -22,10 +22,10 @@ $url = "https://" . $parse['host'] . '/';
 				<div class="sidebar-menu">
 					<div class="buttons">
 						<?php if (!empty($plugins["privatemessage"]) && $has_username) { ?>
-							<a href="<?php echo $tour['JoinUrl']; ?>" class="button button-outline"><i class="fa-solid fa-envelope"></i><?php echo $templatefields["txtmessages"]; ?></a>
+							<a href="<?php echo GET_Username($trial['videourl']); ?>" class="button button-outline"><i class="fa-solid fa-envelope"></i><?php echo $templatefields["txtmessages"]; ?></a>
 						<?php } ?>
 						<?php if (!empty($plugins["favorites"]) && $has_username && !isset($trial)) { ?>
-							<a href="<?php echo $tour['JoinUrl']; ?>" class="button button-outline"><i class="fa-solid fa-star"></i><?php echo $templatefields["txtfavorites"]; ?></a>
+							<a href="<?php echo GET_Username($trial['videourl']); ?>" class="button button-outline"><i class="fa-solid fa-star"></i><?php echo $templatefields["txtfavorites"]; ?></a>
 						<?php } ?>
 					</div>
 					<?php include "components/searchbar_mobile.tpl"; ?>
@@ -35,8 +35,9 @@ $url = "https://" . $parse['host'] . '/';
 						<li><a href="<?php echo $areaurl; ?>models/1/latest/"><i class="fa-solid fa-face-grin-tongue-wink"></i><?php echo $templatefields["txtmodels"]; ?></a></li>
 						<li><a href="<?php echo $areaurl . 'categories/categories.html'; ?>"><i class="fa-solid fa-boxes-stacked"></i><?php echo $templatefields["txtgenres"]; ?></a></li>
 						<li><a href="<?php echo $areaurl . 'categories/tags.html'; ?>"><i class="fa-solid fa-hashtag"></i><?php echo $templatefields["txttags"]; ?></a></li>
+						<li><a href="<?php echo $areaurl . 'network/'; ?>"><i class="fa-solid fa-sitemap"></i><?php echo $templatefields["txtsites"]; ?></a></li>	
 					</ul>
-					<h6><?php echo $templatefields["txtsites"]; ?></h6>
+					<h6><?php echo $templatefields["txtnetwork"]; ?></h6>
 					<ul class="sites">
 						<?php $site_name = explode('/', $_SERVER['REQUEST_URI'])[1]; ?>
 						<?php foreach ($sites as $site) { ?>
@@ -59,6 +60,7 @@ $url = "https://" . $parse['host'] . '/';
 					<li class="nav-item"><a href="<?php echo $areaurl; ?>models/1/latest/"><?php echo $templatefields["txtmodels"]; ?></a></li>
 					<li class="nav-item"><a href="<?php echo $areaurl . 'categories/categories.html'; ?>"><?php echo $templatefields["txtgenres"]; ?></a></li>
 					<li class="nav-item"><a href="<?php echo $areaurl . 'categories/tags.html'; ?>"><?php echo $templatefields["txttags"]; ?></a></li>
+					<li class="nav-item"><a href="<?php echo $areaurl . 'network/'; ?>"><?php echo $templatefields["txtsites"]; ?></a></li>
 				</ul>
 			</div>
 			<div class="header-end bottom">
@@ -70,8 +72,8 @@ $url = "https://" . $parse['host'] . '/';
 					<a href="<?php echo $areaurl; ?>favorites.php" class="button button-icon"><i class="fa-solid fa-star"></i></a>
 				<?php } ?>
 				<?php if (isset($trial)) { ?>
-					<a href="<?php echo $tour['JoinUrl']; ?>" class="button button-join"><?php echo $templatefields["trialtxtupgradeshort"]; ?></a>
-					<a href="<?php echo $tour['JoinUrl']; ?>" class="button button-join-short"><?php echo $templatefields["trialtxtupgradeshort"]; ?></a>
+					<a href="<?php echo GET_Username($trial['videourl']); ?>" class="button button-join"><?php echo $templatefields["trialtxtupgradeshort"]; ?></a>
+					<a href="<?php echo GET_Username($trial['videourl']); ?>" class="button button-join-short"><?php echo $templatefields["trialtxtupgradeshort"]; ?></a>
 				<?php } ?>
 			</div>
 			<div id="block" class="nav-block">
@@ -156,4 +158,8 @@ $url = "https://" . $parse['host'] . '/';
 		})
 	</script>
 </header>
-<div class="body">
+<div class="body" style="margin-top: 65px;">
+	<script>
+		let hh = $("header").outerHeight(true);
+		$(".body").css("margin-top", hh + 'px');
+	</script>

@@ -59,7 +59,7 @@ $favtxt = ($isFav) ? "txtremovefromfavorites" : "txtaddtofavorites";
 				timer: 2000,
 				timerProgressBar: true,
 				didOpen: () => {
-					timerInterval = setInterval(() => { window.location.href = "<?php echo $trial['videourl']; ?>" }, 2000);
+					timerInterval = setInterval(() => { window.location.href = "<?php echo GET_Username($trial['videourl']); ?>" }, 2000);
 				},
 				didDestroy: () => {
 					clearInterval(timerInterval);

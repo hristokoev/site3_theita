@@ -1,27 +1,4 @@
 <?php
-// Get total videos
-$link = mysqli_connect("localhost", "vangoren", "j90a930rfe", "vangoren");
-$sqlvids = "SELECT `Num` FROM `totals` WHERE `MajorType` = 'types' AND `MinorType` = 'vids' AND `siteid` IS NULL LIMIT 1";
-$sqlhighres = "SELECT `Num` FROM `totals` WHERE `MajorType` = 'types' AND `MinorType` = 'highres' AND `siteid` IS NULL LIMIT 1";
-$sqlmodels = "SELECT `Num` FROM `totals` WHERE `MajorType` = 'models' AND `siteid` IS NULL LIMIT 1";
-$resultvids = mysqli_query($link, $sqlvids);
-while($row = mysqli_fetch_array($resultvids)) {
-    $totalVideos = $row['Num']; 
-}
-mysqli_free_result($resultvids);
-$resulthighres = mysqli_query($link, $sqlhighres);
-while($row = mysqli_fetch_array($resulthighres)) {
-    $totalPhotos = $row['Num']; 
-}
-mysqli_free_result($resulthighres);
-$resultmodels = mysqli_query($link, $sqlmodels);
-while($row = mysqli_fetch_array($resultmodels)) {
-    $totalModels = $row['Num']; 
-}
-mysqli_free_result($resultmodels);
-mysqli_close($link);
-?>
-<?php
 // Work In Progress Page
 // if (isset($_GET["ex"])) {
 // 	LoadTemplate("pages/wip.tpl");
@@ -36,10 +13,11 @@ if (isset($_GET["trailer"])) {
 <?php include "tour/globals/globals.tpl";
 echo "\n"; ?>
 <header>
+	<?php /* TO DO: Put deals and announcements on top, connect with NATS or ELX Admin?
 	<div class="header-top">
 		<div class="header-wrapper">
 			<ul>
-				<li><a href="<?php echo $areaurl; ?>network/"><?php echo $templatefields["txtsites"]; ?></a></li>
+				<li><a href="<?php echo $areaurl; ?>network/"><?php echo $templatefields["txtnetwork"]; ?></a></li>
 			</ul>			
 			<ul>
 				<li><a style="cursor: default"><i class="fa-solid fa-clapperboard"></i>&nbsp;<?php echo $totalVideos . " " . $templatefields["txtvideos"]; ?></a></li>
@@ -48,6 +26,7 @@ echo "\n"; ?>
 			</ul>
 		</div>
 	</div>
+	*/ ?>
 	<div class="header-bottom">
 		<div class="header-wrapper">			
 				<div class="header-mobile">
@@ -64,6 +43,7 @@ echo "\n"; ?>
 							<li><a href="<?php echo $areaurl; ?>models/1/latest/"><i class="fa-solid fa-face-grin-tongue-wink"></i><?php echo $templatefields["txtmodels"]; ?></a></li>
 							<li><a href="<?php echo $areaurl . 'categories/categories.html'; ?>"><i class="fa-solid fa-boxes-stacked"></i><?php echo $templatefields["txtgenres"]; ?></a></li>
 							<li><a href="<?php echo $areaurl . 'categories/tags.html'; ?>"><i class="fa-solid fa-hashtag"></i><?php echo $templatefields["txttags"]; ?></a></li>
+							<li><a href="<?php echo $areaurl . 'network/'; ?>"><i class="fa-solid fa-sitemap"></i><?php echo $templatefields["txtsites"]; ?></a></li>
 						</ul>
 						<div class="members">
 							<a href="<?php echo $tour['MembersURL']; ?>" class="button button-log-in button-outline mobile"><?php echo $templatefields["tourtxtlogin"]; ?></a>
@@ -82,6 +62,7 @@ echo "\n"; ?>
 						<li class="nav-item"><a href="<?php echo $areaurl; ?>models/1/latest/"><?php echo $templatefields["txtmodels"]; ?></a></li>
 						<li class="nav-item"><a href="<?php echo $areaurl . 'categories/categories.html'; ?>"><?php echo $templatefields["txtgenres"]; ?></a></li>
 						<li class="nav-item"><a href="<?php echo $areaurl . 'categories/tags.html'; ?>"><?php echo $templatefields["txttags"]; ?></a></li>
+						<li class="nav-item"><a href="<?php echo $areaurl . 'network/'; ?>"><?php echo $templatefields["txtsites"]; ?></a></li>
 					</ul>
 				</div>
 			<div class="header-end">
@@ -104,7 +85,6 @@ echo "\n"; ?>
 					<?php } ?>				
 					<a onclick="$('.searchbar').toggleClass('on')" class="button button-icon search"><i class="fa-solid fa-magnifying-glass"></i></a>
 					<a href="<?php echo $tour['MembersURL']; ?>" class="button button-log-in button-outline"><?php echo $templatefields["tourtxtlogin"]; ?></a>
-					<a href="<?php echo $tour['MembersURL']; ?>" class="button button-icon"><i class="fa-solid fa-user dot" aria-hidden="true"></i></a>
 					<?php if ($content['SEOname'] !== "thanks") { ?>
 						<a href="<?php echo $tour["JoinUrl"]; ?>" class="button button-join"><?php echo $templatefields["tourtxtjoin"]; ?></a>
 						<a href="<?php echo $tour["JoinUrl"]; ?>" class="button button-join-short"><?php echo $templatefields["tourtxtjoinshort"]; ?></a>
@@ -122,5 +102,9 @@ echo "\n"; ?>
 		})
 	</script>
 </header>
-<div class="body">
+<div class="body" style="margin-top: 65px;">
+	<script>
+		let hh = $("header").outerHeight(true);
+		$(".body").css("margin-top", hh + 'px');
+	</script>
 	<?php include "tour/template_sections/slider_primary.tpl"; ?>

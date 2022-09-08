@@ -70,19 +70,21 @@ $templatefields = $GLOBALS["templatefields"];
 ?>
 <?php if ($numberofpages > 1) {
 	if ($onpage != 1) {
-		$args[$pagename] = $onpage - 1; ?>
-		<a class="button prev" href="<?php echo call_user_func($funcname, $args); ?>"><i class="fa-solid fa-chevron-left"></i></a>
+		$args[$pagename] = 1; ?>
+		<a class="prev" href="<?php echo call_user_func($funcname, $args); ?>"><i class="fa-solid fa-angles-left"></i></a>
+		<?php $args[$pagename] = $onpage - 1; ?>
+		<a class="button prev" href="<?php echo call_user_func($funcname, $args); ?>"><i class="fa-solid fa-angle-left"></i></a>
 	<?php } ?>
 	<div class="pages"><?php
 		for ($page = 1; $page <= $numberofpages; $page++) {
-			if ($page >= ($onpage - 10) && $page <= ($onpage + 9)) {
+			if ($page >= ($onpage - 5) && $page <= ($onpage + 4)) {
 				$args[$pagename] = $page;
 				if ($page == $onpage) {
 					echo '<a href="' . call_user_func($funcname, $args) . '" class="button button-active">' . $page . '</a>';
 				} else {
 					// In trial area limit access to gallery pages
 					if ($GLOBALS["pagename"] == "gallery" && isset($trial) && in_array($page, $trial["accesspages"])) {
-						echo '<a href="' . $trial['photourl'] . '" class="button button-outline">' . $page . '</a>';
+						echo '<a href="' . GET_Username($trial['photourl']) . '" class="button button-outline">' . $page . '</a>';
 					} else {
 						echo '<a href="' . call_user_func($funcname, $args) . '" class="button button-outline">' . $page . '</a>';
 					}
@@ -99,6 +101,8 @@ $templatefields = $GLOBALS["templatefields"];
 		?></div>
 	<?php if ($onpage != $numberofpages) {
 		$args[$pagename] = $onpage + 1; ?>
-		<a class="button next" href="<?php echo call_user_func($funcname, $args); ?>"><i class="fa-solid fa-chevron-right"></i></a>
+		<a class="button next" href="<?php echo call_user_func($funcname, $args); ?>"><i class="fa-solid fa-angle-right"></i></a>
+		<?php $args[$pagename] = $numberofpages; ?>
+		<a class="next" href="<?php echo call_user_func($funcname, $args); ?>"><i class="fa-solid fa-angles-right"></i></a>
 <?php }
 } ?>

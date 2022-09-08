@@ -20,10 +20,8 @@ foreach ($mdl as $k => $model) {
 		$onclick = "javascript:(Popup.fire('" . $templatefields["txtcoming"] . '&nbsp;' . date("j F Y", strtotime($set["AppearDate"])) . "'))";
 	}
 	if (!$nolink) { ?>
-		<a <?php if ($ahref !== "") { echo "href=" . $ahref; } ?> onclick="<?php echo $onclick; ?>">
-			<h2>
-		<?php }
+		<a <?php if ($ahref !== "") { echo "href=" . $ahref; } ?> onclick="<?php echo $onclick; ?>"><?php }
 	echo $model["name"];
-	if (!$nolink) echo "</h2></a>";
+	if (!$nolink) echo "</a>";
 	if ($k != array_not_empty($mdl) - 1) echo ", ";
 } ?>

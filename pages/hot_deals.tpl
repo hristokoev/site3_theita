@@ -7,12 +7,12 @@
 		<div class="wrap">
 			<div class="thumb">
 				<div class="thumb-holder">
-					<a href="<?php echo $deal["redirect"]; ?>">
+					<a href="<?php echo $deal["redirect"]; ?>" target="_blank">
 						<img src="<?php echo "https://vangoren.com/" . $deal["image"]; ?>" alt="">						
 					</a>
 				</div>
 				<div class="secondary">
-					<h4><a href="<?php echo $deal["redirect"]; ?>"><?php echo $deal["title"]; ?></a></h4>
+					<h4><a href="<?php echo $deal["redirect"]; ?>" target="_blank"><?php echo $deal["title"]; ?></a></h4>
 					<span><?php echo $deal["subtitle"]; ?></span>
 				</div>
 			</div>

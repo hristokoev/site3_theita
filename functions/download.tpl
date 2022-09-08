@@ -12,7 +12,7 @@ function cdn_download($file) {
         'enabled' => true, // enable cdn urls
         'delay'   => '7200', // delay
     );
-    $mediaobjects = array('mp4', 'zip', 'wmv', 'mov', 'wav', 'flv', 'jpeg', 'jpg', 'png'); // accepted file formats array for cdn
+    $mediaobjects = array('mp4', 'zip', 'wmv', 'mov', 'wav', 'flv', 'jpeg', 'jpg', 'png', 'webp'); // accepted file formats array for cdn
     $path_parts = pathinfo($file);
     $extension = $path_parts['extension'];
     if (in_array($extension, $mediaobjects) && $config['enabled']) {

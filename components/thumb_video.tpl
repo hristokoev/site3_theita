@@ -31,7 +31,7 @@ if (isset($GLOBALS["tour"])) {
 			if (in_array($set["Id"], $trial['allowrecent']) || empty($trial['allowrecent'])) {
 				$ahref = $url . Gallery_URL(["type" => $usetype, "id" => $set["Id"], "seoname" => $set["SEOname"], "set" => $set]);
 			} else {
-				$ahref = $trial['videourl'];
+				$ahref = GET_Username($trial['videourl']);
 			}
 		} else {
 			$ahref = $url . Gallery_URL(["type" => $usetype, "id" => $set["Id"], "seoname" => $set["SEOname"], "set" => $set]);
@@ -71,6 +71,9 @@ if (isset($GLOBALS["tour"])) {
 		</div>
 		<?php if (isset($layout["info"])) { ?>
 			<div class="thumb-info">
+				<?php if (in_array("title", $layout["info"])) { ?>
+					<div class="title"><a <?php if ($ahref !== "") { echo "href=" . $ahref; } ?> onclick="<?php echo $onclick; ?>" title="<?php echo $set["Title"]; ?>"><?php echo $set["Title"]; ?></a></div>
+				<?php } ?>				
 				<div class="desc">
 					<?php if (in_array("model", $layout["info"])) { ?>
 						<div class="model">
@@ -90,9 +93,6 @@ if (isset($GLOBALS["tour"])) {
 						</div>
 					<?php } ?>
 				</div>
-				<?php if (in_array("title", $layout["info"])) { ?>
-					<h5 class="title"><a <?php if ($ahref !== "") { echo "href=" . $ahref; } ?> onclick="<?php echo $onclick; ?>" title="<?php echo $set["Title"]; ?>"><?php echo $set["Title"]; ?></a></h5>
-				<?php } ?>
 			</div>
 		<?php } ?>
 	</div>

@@ -8,7 +8,7 @@
 	<div class="grid grid-videos">
 		<?php
 		$bitrates = array();
-		$videos = get_from_scheduled_updates(5, 8, 'p');
+		$videos = get_from_scheduled_updates(5, 8, 'DESC');
 		$i = 0;
 		$layout = [
 			"skeleton",

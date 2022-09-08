@@ -419,3 +419,7 @@ function Mailbox_URL($arr=array()) {
 	}
 	return $ret;
 }
+
+function GET_Username($url) {
+	return str_replace("<username>", $GLOBALS['userinfo']['UserName'], $url);
+}

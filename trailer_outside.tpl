@@ -6,11 +6,23 @@ $bitrates = array();
 <div class="main">
 	<section class="container">
 		<div class="trailer">
-			<div class="trailer-video">
-				<?php
-				$my_trailer_url = custom_get_trailer_url($tour['Id'], $set['Id']);
-				LoadTemplate("tour/template_sections/video.tpl", ["pagename" => "trailers", "trailer_url" => $my_trailer_url]);
-				?>
+			<div class="trailer-wrapper">
+				<div class="trailer-video">
+					<?php
+					$my_trailer_url = custom_get_trailer_url($tour['Id'], $set['Id']);
+					LoadTemplate("tour/template_sections/video.tpl", ["pagename" => "trailers", "trailer_url" => $my_trailer_url]);
+					?>
+				</div>
+				<div class="trailer-join">
+					<h2><?php echo $templatefields["tourtxttrailer"]; ?></h2>
+					<ul>
+						<li><i class="fa fa-play-circle" aria-hidden="true"></i>&nbsp;<?php echo $templatefields["tourtxttrailer1"]; ?></li>
+						<li><i class="fa fa-download" aria-hidden="true"></i>&nbsp;<?php echo $templatefields["tourtxttrailer2"]; ?></li>
+						<li><i class="fa fa-check" aria-hidden="true"></i>&nbsp;<?php echo $templatefields["tourtxttrailer3"]; ?></li>
+						<li><i class="fa fa-lock" aria-hidden="true"></i>&nbsp;<?php echo $templatefields["tourtxttrailer4"]; ?></li>
+					</ul>
+					<a href="<?php echo $tour["JoinUrl"]; ?>" class="button button-join" style="display: block;"><?php echo $templatefields["tourtxtjoin"]; ?></a>
+				</div>
 			</div>
 			<div class="trailer-details">
 				<div class="info">

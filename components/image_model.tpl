@@ -18,12 +18,6 @@ if ($pexists) {
 		echo "_" . $postfix;
 	}
 	echo '" ';
-	if ($pelement["width"] > 0) {
-		//echo 'width="' . $pelement["width"] . '" ';
-	}
-	if ($pelement["height"] > 0) {
-		//echo 'height="' . $pelement["height"] . '" ';
-	}
 	if (isset($alt)) {
 		echo 'alt="' . $alt . '" ';
 	}

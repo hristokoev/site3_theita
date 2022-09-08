@@ -188,7 +188,8 @@
 			<item name="googleanalyticscode"></item>
 		</category>
 		<category name="Navigation">
-			<item name="txtsites">Vangoren NETWORK</item>
+			<item name="txtnetwork">Vangoren NETWORK</item>
+			<item name="txtsites">Sites</item>
 			<item name="txttrialarea">Trial Area</item>
 			<item name="txtmembersarea">Members Area</item>
 			<item name="txthome">Home</item>
@@ -277,6 +278,7 @@
 			<item name="txtviewall">View all</item>
 			<item name="txtourmodels">Our models</item>
 			<item name="txtlatestvideos">Latest videos</item>
+			<item name="txtfeaturedvideos">Featured videos</item>
 			<item name="txtmostpopularvideos">Most popular videos</item>
 			<item name="txtpopulargenres">Popular genres</item>
 			<item name="txtfeaturing">Porn movies featuring</item>
@@ -287,6 +289,12 @@
 			<item name="tourtxtjoinshort">Join</item>
 			<item name="tourtxtlogin">Log in</item>
 			<item name="tourtxtmemberarea">Member area</item>
+			<item name="tourtxtalt">Click here to become a member!</item>
+			<item name="tourtxttrailer">Just a few more clicks to gain unlimited access!</item>
+			<item name="tourtxttrailer1">New videos every day</item>
+			<item name="tourtxttrailer2">Unlimited downloads</item>
+			<item name="tourtxttrailer3">Access to our entire network</item>
+			<item name="tourtxttrailer4">100% Safe and Secure</item>			
 			<item name="tourdefaultmetadescription">Welcome to Vangoren.com, Home of World Class Hardcore Porn. We have thousands of Full HD and 4K Porn Clips for Your Pleasure. Enter And Enjoy!</item>
 			<item name="tourdefaultmetakeywords">porn, hardcore, big tits, pornstars, adult, fetish, sex, 4k, lesbian</item>
 		</category>

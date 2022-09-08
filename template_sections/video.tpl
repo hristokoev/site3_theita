@@ -65,8 +65,10 @@ if (isset($set['info']['thumbs'][14]["1x_filename"])) {
 	} ?>
 </video>
 <?php } ?>
-<div id="promo" style="display: none; width: 100%; aspect-ratio: 16/9; background: cyan">
-	<h2>JOIN NOW</h2>
+<div id="promo" style="display: none; width: 100%; aspect-ratio: 16/9;">
+	<div style="display: flex; place-content: center;">
+		<h2><a href="<?php echo GET_Username($trial['videourl']); ?>">JOIN NOW</a></h2>
+	</div>	
 </div>
 <script src="https://cdn.jsdelivr.net/npm/video.js@7/dist/video.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/videojs-vtt-thumbnails@0.0.13/dist/videojs-vtt-thumbnails.min.js"></script>

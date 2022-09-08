@@ -14,7 +14,7 @@ if (isset($GLOBALS["tour"])) {
 		if (in_array($set["Id"], $trial['allowrecent']) || empty($trial['allowrecent'])) {
 			$ahref = Gallery_URL(["type" => "highres", "id" => $set["Id"], "seoname" => $set["SEOname"], "set" => $set]);
 		} else {
-			$ahref = $trial['photourl'];
+			$ahref = GET_Username($trial['photourl']);
 		}
 	} else {
 		$ahref = Gallery_URL(["type" => "highres", "id" => $set["Id"], "seoname" => $set["SEOname"], "set" => $set]);

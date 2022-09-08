@@ -6,12 +6,12 @@ LoadTemplate("template_sections/header.tpl", ["pagename" => "gallery", "title" =
 $startpos = (($onpage - 1) * $numperpage + 1);
 $endpos   = (($onpage) * $numperpage + 1);
 if (isset($trial) && !in_array($onpage, $trial['accesspages'])) {
-	header("Location: " . $trial['photourl']);
-	die();
+	header("Location: " . GET_Username($trial['photourl']));
+	exit();
 }
 if (isset($trial) && !in_array($set["Id"], $trial['allowrecent']) && !empty($trial['allowrecent']) && $settype == "vids") {
-	header("Location: " . $trial['videourl']);
-	die();
+	header("Location: " . GET_Username($trial['videourl']));
+	exit();
 }
 $bitrates = array();
 ?>
@@ -166,7 +166,7 @@ if (isset($trial) && $trial['allowzips'] == 0) {
 							timerProgressBar: true,
 							didOpen: () => {
 								timerInterval = setInterval(() => {
-									window.location.href = "<?php echo $trial['videourl']; ?>"
+									window.location.href = "<?php echo GET_Username($trial['videourl']); ?>"
 								}, 2000);
 							},
 							didDestroy: () => {
@@ -332,7 +332,7 @@ if (isset($trial) && $trial['allowzips'] == 0) {
 				<?php if (isset($trial) && $trial["clickpages"][0] !== 0) { ?>
 					lightbox.on('change', () => {
 						if (jQuery.inArray(pswp.currSlide.index + 1, clickpages) == -1) {
-							window.location.href = "<?php echo $trial['photourl']; ?>";
+							window.location.href = "<?php echo GET_Username($trial['photourl']); ?>";
 						}
 					});
 				<?php } ?>

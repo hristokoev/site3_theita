@@ -66,6 +66,3 @@ $arr = json_decode($json, true);
 	</script>
 </div>
 </section>
-<div class="button-lined">
-	<a href="<?php echo $areaurl; ?>models/1/latest/" class="button button-load-more button-outline"><?php echo $templatefields["txtloadmore"]; ?></a>
-</div>

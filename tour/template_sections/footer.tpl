@@ -7,6 +7,9 @@ if ($detect->isMobile() && !$detect->isTablet()) {
 	$src = "banner_footer.jpg";
 }
 ?>
+<div class="button-centered">
+	<a href="<?php echo $tour["JoinUrl"]; ?>" class="button button-join cta"><?php echo $templatefields["tourtxtalt"]; ?></a>
+</div>
 <?php if ($content['SEOname'] !== "thanks") { ?>
 <div class="footer-banner">
 	<div class="item">

@@ -19,7 +19,7 @@ function cdn_hook($file) {
         'enabled' => $enabled, // enable cdn urls
         'delay'   => '7200', // delay
     );
-    $mediaobjects = array('mp4', 'zip', 'wmv', 'mov', 'wav', 'flv', 'jpeg', 'jpg', 'png', 'm3u8'); // accepted file formats array for cdn
+    $mediaobjects = array('mp4', 'zip', 'wmv', 'mov', 'wav', 'flv', 'jpeg', 'jpg', 'png', 'webp', 'm3u8'); // accepted file formats array for cdn
     $path_parts = pathinfo($file);
     $extension = $path_parts['extension'];
     if (in_array($extension, $mediaobjects) && ($config['enabled'])) {
