@@ -45,6 +45,10 @@ if (isset($set['info']['thumbs'][14]["1x_filename"])) {
 	$imageLowRes = cdn_hook($GLOBALS["contentdir"] . "/contentthumbs/" . $set['info']['thumbs'][14]["1x_filename"]);
 	$imageHighRes = cdn_hook($GLOBALS["contentdir"] . "/contentthumbs/" . $set['info']['thumbs'][14]["3x_filename"]);
 }
+if (isset($set['info']['thumbs'][14]["webp_1x_filename"])) {
+	$imageLowRes = cdn_hook($GLOBALS["contentdir"] . "/contentthumbs/" . $set['info']['thumbs'][14]["webp_1x_filename"]);
+	$imageHighRes = cdn_hook($GLOBALS["contentdir"] . "/contentthumbs/" . $set['info']['thumbs'][14]["webp_3x_filename"]);
+}
 ?>
 <?php if (array_not_empty($vidarr)) { ?>
 <video id="trailer" class="video-js vjs-theme-dt vjs-16-9" controls preload="auto" poster="<?php echo $imageHighRes; ?>">

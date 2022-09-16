@@ -52,7 +52,7 @@ if (isset($GLOBALS["tour"])) {
 				<?php if (Filter_SFW()) { ?>
 					<img src="https://dummyimage.com/452x254/c6d5d4/000&text=+" alt="">
 				<?php } else { ?>
-				<?php StdImage(array("set" => $set, "usepriority" => $usepriority, "alt" => "", "class" => "thumbs")); ?>
+				<?php StdImage(array("set" => $set, "usepriority" => $usepriority, "alt" => "", "class" => "thumbs", "loading" => "lazy")); ?>
 				<?php } ?>
 				<div class="videoloadline"></div>				
 				<div class="overlay">

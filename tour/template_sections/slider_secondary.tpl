@@ -18,8 +18,12 @@ $arr = json_decode($json, true);
 				$src = "";
 				if ($detect->isMobile() && !$detect->isTablet()) {
 					$src = $banner["mobile"];
+					$width = 600;
+					$height = 400;
 				} else {
 					$src = $banner["desktop"];
+					$width = 1344;
+					$height = 400;
 				}
 				$i++;
 				?>
@@ -28,8 +32,7 @@ $arr = json_decode($json, true);
 						<img src="https://dummyimage.com/1440x320/c6d5d4/000&text=+" alt="">
 					<?php } else { ?>
 					<a href="<?php echo $banner["url"]; ?>">
-						<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-						<img src="<?php echo $areaurl . 'images/banners/middle/' . $src; ?>" alt="<?php echo $banner["alt"]; ?>" class="swiper-lazy">
+						<img width="<?php echo $width; ?> height="<?php echo $height; ?> src="<?php echo $areaurl . 'images/banners/middle/' . $src; ?>" alt="<?php echo $banner["alt"]; ?>">
 					</a>
 					<?php } ?>
 				</div>

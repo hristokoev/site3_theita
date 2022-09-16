@@ -45,10 +45,10 @@ $file_name = $match[0];
 $url_action = $p["action"];
 $fp = $p["file"];
 if ($url_action == "download") {
-    $exp = "~(?<=\/)[^\/\?#]+(?=[^\/]*$)~";
+    $exp = "~([^\/]+(?=\/[^\/]+\/?$))\/([\w]*)(\.\w*)~";
     preg_match($exp, $fp, $match);
-    $fn = $match[0];
-    $file_url = cdn_download($fp);
+    $fn = $match[2] . "_" . $match[1] . $match[3];
+	$file_url = cdn_download($fp);
     header('Content-Type: octet/stream');
     header("Content-Transfer-Encoding: Binary");
     header("Content-disposition: attachment; filename=\"" . $fn . "\"");

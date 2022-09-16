@@ -10,9 +10,13 @@ if ($trailer_url == "no_trailer") {
 if (isset($set['info']['thumbs'][14]["1x_filename"])) {
 	$imageLowRes = cdn_hook($GLOBALS["contentdir"] . "/contentthumbs/" . $set['info']['thumbs'][14]["1x_filename"]);
 	$imageHighRes = cdn_hook($GLOBALS["contentdir"] . "/contentthumbs/" . $set['info']['thumbs'][14]["3x_filename"]);
-	if (Filter_SFW()) {
-		$imageHighRes = "https://dummyimage.com/1920x1080/c6d5d4/000&text=+";
-	}
+}
+if (isset($set['info']['thumbs'][14]["webp_1x_filename"]) && (strpos($_SERVER['HTTP_ACCEPT'], 'image/webp') !== false)) {
+	$imageLowRes = cdn_hook($GLOBALS["contentdir"] . "/contentthumbs/" . $set['info']['thumbs'][14]["webp_1x_filename"]);
+	$imageHighRes = cdn_hook($GLOBALS["contentdir"] . "/contentthumbs/" . $set['info']['thumbs'][14]["webp_3x_filename"]);
+}
+if (Filter_SFW()) {
+	$imageHighRes = "https://dummyimage.com/1920x1080/c6d5d4/000&text=+";
 }
 ?>
 <video id="trailer" class="video-js vjs-theme-dt vjs-16-9" controls preload="auto" poster="<?php echo $imageHighRes; ?>">

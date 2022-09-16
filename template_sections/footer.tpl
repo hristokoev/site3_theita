@@ -37,7 +37,7 @@
 		</div>
 		<div class="info">
 			<div class="footer-text"><?php echo $templatefields["txtfooter"]; ?></div>
-			<div class="footer-rta"><img src="<?php echo $areaurl; ?>rta.webp" alt="Restricted To Adults"></div>
+			<div class="footer-rta"><img src="<?php echo $areaurl; ?>rta.webp" alt="Restricted To Adults" loading="lazy"></div>
 			<div class="footer-copyright">&copy; <?php echo date('Y'); ?>&nbsp;<?php echo $templatefields["sitename"]; ?> . <?php echo $templatefields["txtallrightsreserved"]; ?></div>
 		</div>
 	</section>

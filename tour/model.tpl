@@ -15,7 +15,7 @@ $bitrates = array();
 	<section class="container">
 		<div class="model-bio">
 			<div class="model-image">
-				<?php LoadTemplate("components/image_model.tpl", ["model" => $model, "priority" => "103"]); ?>
+				<?php LoadTemplate("components/image_model.tpl", ["model" => $model, "priority" => "103", "loading" => "lazy"]); ?>
 			</div>
 			<div class="model-info">
 				<div class="model-title">

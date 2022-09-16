@@ -28,7 +28,7 @@ if (isset($GLOBALS["tour"])) {
 				<?php if (Filter_SFW()) { ?>
 					<img src="https://dummyimage.com/800x1067/c6d5d4/000&text=+" alt="">
 				<?php } else { ?>
-				<?php StdImage(array("set" => $set, "usepriority" => $usepriority, "alt" => "", "class" => "thumbs")); ?>
+				<?php StdImage(array("set" => $set, "usepriority" => $usepriority, "alt" => "", "class" => "thumbs", "loading" => "lazy")); ?>
 				<?php } ?>
 			</a>
 		</div>

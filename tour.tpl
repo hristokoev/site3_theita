@@ -47,12 +47,17 @@ mysqli_free_result($resultmodels);
 mysqli_close($link);
 ?>
 <?php LoadTemplate("tour/template_sections/header.tpl", ["pagename" => "tour"]); ?>
+<?php
+if (strpos( $_SERVER['HTTP_ACCEPT'], 'image/webp') !== false) {
+
+}
+?>
 <div class="main">
 	<section class="container">
 		<div class="usps-icons">
-			<a href=""><i class="fa-solid fa-clapperboard"></i><span class="count"><?php echo $totalVideos; ?></span><span class="text"><?php echo $templatefields["txtvideos"]; ?></a>
-			<a href=""><i class="fa-solid fa-camera"></i><span class="count"><?php echo $totalPhotos; ?></span><span class="text"><?php echo $templatefields["txtphotos"]; ?></a>
-			<a href=""><i class="fa-solid fa-venus-mars"></i><span class="count"><?php echo $totalModels; ?></span><span class="text"><?php echo $templatefields["txtmodels"]; ?></a>
+			<a href="<?php echo $areaurl . 'categories/movies/1/latest/'; ?>"><i class="fa-solid fa-clapperboard"></i><span class="count"><?php echo $totalVideos; ?></span><span class="text"><?php echo $templatefields["txtvideos"]; ?></a>
+			<a href="<?php echo $areaurl . 'categories/photos/1/latest/'; ?>"><i class="fa-solid fa-camera"></i><span class="count"><?php echo $totalPhotos; ?></span><span class="text"><?php echo $templatefields["txtphotos"]; ?></a>
+			<a href="<?php echo $areaurl . 'categories/models/1/latest/'; ?>"><i class="fa-solid fa-venus-mars"></i><span class="count"><?php echo $totalModels; ?></span><span class="text"><?php echo $templatefields["txtmodels"]; ?></a>
 		</div>
 		<div class="main-header-title">
 			<div class="holder">
@@ -92,7 +97,7 @@ mysqli_close($link);
 		</div>
 	</section>
 	<div class="button-centered">
-		<a href="<?php echo $areaurl; ?>categories/movies/1/latest/" id="loadmore" class="button button-load-more button-outline"><?php echo $templatefields["txtloadmore"]; ?></a>
+		<a href="<?php echo $areaurl; ?>categories/movies/1/latest/" class="button button-load-more button-outline"><?php echo $templatefields["txtloadmore"]; ?></a>
 	</div>	
 	<section class="container">
 		<div class="main-header-title">
@@ -138,7 +143,7 @@ mysqli_close($link);
 		</div>
 	</section>	
 	<div class="button-lined">
-		<a href="<?php echo $areaurl; ?>categories/movies/1/popular/" id="loadmore" class="button button-load-more button-outline"><?php echo $templatefields["txtloadmore"]; ?></a>
+		<a href="<?php echo $areaurl; ?>categories/movies/1/popular/" class="button button-load-more button-outline"><?php echo $templatefields["txtloadmore"]; ?></a>
 	</div>	
 	<?php // Middle banner ?>
 	<?php // include "tour/template_sections/slider_secondary.tpl"; ?>	
@@ -165,7 +170,6 @@ mysqli_close($link);
 		navigation: {
 			nextEl: '#carousel_button_next',
 			prevEl: '#carousel_button_prev',
-			hideOnClick: true,
 		},
 		breakpoints: {
 			1200: {

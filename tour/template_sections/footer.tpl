@@ -1,10 +1,13 @@
 <?php
 $detect = new Mobile_Detect;
-$src = "";
+$src_jpg = "";
+$src_webp = "";
 if ($detect->isMobile() && !$detect->isTablet()) {
-	$src = "banner_footer_mobile.jpg";
+	$src_jpg = "banner_footer_mobile.jpg";
+	$src_webp = "banner_footer_mobile.webp";
 } else {
-	$src = "banner_footer.jpg";
+	$src_jpg = "banner_footer.jpg";
+	$src_webp = "banner_footer.webp";
 }
 ?>
 <div class="button-centered">
@@ -17,7 +20,10 @@ if ($detect->isMobile() && !$detect->isTablet()) {
 			<img src="https://dummyimage.com/1920x480/c6d5d4/000&text=+" alt="">
 		<?php } else { ?>
 		<a href="<?php echo $areaurl . 'network/'; ?>">
-			<img src="<?php echo $areaurl . 'images/banners/' . $src; ?>" alt="Banner" class="">
+			<picture>
+				<source srcset="<?php echo $areaurl . 'images/banners/' . $src_webp; ?>" type="image/webp">
+				<img src="<?php echo $areaurl . 'images/banners/' . $src_jpg; ?>" alt="Banner" class="" loading="lazy">
+			</picture>
 		</a>
 		<?php } ?>
 	</div>
@@ -64,7 +70,7 @@ if ($detect->isMobile() && !$detect->isTablet()) {
 		</div>
 		<div class="info">
 			<div class="footer-text"><?php echo $templatefields["txtfooter"]; ?></div>
-			<div class="footer-rta"><img src="<?php echo $areaurl; ?>rta.webp" alt="Restricted To Adults"></div>
+			<div class="footer-rta"><img width="180" height="160" src="<?php echo $areaurl; ?>rta.webp" alt="Restricted To Adults" loading="lazy"></div>
 			<div class="footer-copyright">&copy; <?php echo date('Y'); ?>&nbsp;<?php echo $templatefields["sitename"]; ?></br><?php echo $templatefields["txtallrightsreserved"]; ?></div>
 		</div>
 	</section>

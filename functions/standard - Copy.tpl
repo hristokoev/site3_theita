@@ -409,20 +409,55 @@ function Category_URL($arr = array()) {
 }
 
 function StdImage($arr) {
+	/*
+	if (!empty($GLOBALS["tour"]) && empty($arr["memberthumb"]))
+	{
+		if ($arr["set"]["wc_id"])
+		{
+			$content = "content/webmastercentral_" . $arr["set"]["wc_id"] . "/" . $arr["usepriority"] . ".jpg";
+		}
+		else
+		{
+			$content = "content/" . $arr["set"]["Directory"] . "/" . $arr["usepriority"] . ".jpg";
+		}
+		echo '<img alt="' . $content . '" src="' . cdn_hook($content) . '" ';
+		if ($arr["width"])  echo 'width="' . $arr["width"] . '" ';
+		if ($arr["height"]) echo 'height="' . $arr["height"] . '" ';
+		if ($arr["class"])  echo 'class="' . $arr["class"] . '" ';
+		if ($arr["style"])  echo 'style="' . $arr["style"] . '" ';
+		echo '/>';
+		return;
+	}
+	*/
 	$usep = explode(",", $arr["usepriority"]);
+	$done = 0;
 	$pexists = 0;
 	$cdir = $GLOBALS["contentdir"];
 	if (isset($arr["set"]["info"]["thumbs"][$usep[0]])) {
+		/*if($arr["set"]["info"]["thumbs"][$usep[0]]["id"]==1772){
+			print_r($arr);
+		}*/
 		$pexists = 1;
 		$pelement = $arr["set"]["info"]["thumbs"][$usep[0]];
 	}
 	if ($pexists && $pelement["hasmp4"]) {
 		echo "<video loop=\"\" muted=\"\" playsinline=\"\" preload=\"none\" ";
-		if ($pelement["width"] > 0) echo 'width="' . $pelement["width"] . '" ';
-		if ($pelement["height"] > 0) echo 'height="' . $pelement["height"] . '" ';
-		if (isset($arr["alt"])) echo 'alt="' . $arr["alt"] . '" ';
-		if (isset($arr["style"])) echo 'style="' . $arr["style"] . '" ';
-		if (isset($arr["class"])) echo 'class="' . $arr["class"] . ' stdvideo" ';
+		if ($pelement["width"] > 0) {
+			echo 'width="' . $pelement["width"] . '" ';
+		}
+		if ($pelement["height"] > 0) {
+			echo 'height="' . $pelement["height"] . '" ';
+		}
+		if (isset($arr["alt"])) {
+			echo 'alt="' . $arr["alt"] . '" ';
+		}
+		if (isset($arr["style"])) {
+			echo 'style="' . $arr["style"] . '" ';
+		}
+		if (isset($arr["class"])) {
+			echo 'class="' . $arr["class"] . ' stdvideo" ';
+		}
+		// Uncomment this if you want src tags within stdimage for SEO purposes **}
 		if ($cnt == 0) {
 			if ($pelement["1x_width"]) {
 				echo 'poster="' . cdn_hook($cdir . '/contentthumbs/' . $pelement["1x_filename"]) . '" ';
@@ -430,55 +465,89 @@ function StdImage($arr) {
 				echo 'poster="' . cdn_hook($cdir . '/contentthumbs/' . $pelement["filename"]) . '" ';
 			}
 		}
-		if ($pelement["1x_width"]) echo 'poster' . $cnt . '_1x="' . cdn_hook($cdir . '/contentthumbs/' . $pelement["1x_filename"]) . '" ';
-		if ($pelement["2x_width"]) echo 'poster' . $cnt . '_2x="' . cdn_hook($cdir . '/contentthumbs/' . $pelement["2x_filename"]) . '" ';
-		if ($pelement["3x_width"]) echo 'poster' . $cnt . '_3x="' . cdn_hook($cdir . '/contentthumbs/' . $pelement["3x_filename"]) . '" ';
-		if ($pelement["4x_width"]) echo 'poster' . $cnt . '_4x="' . cdn_hook($cdir . '/contentthumbs/' . $pelement["4x_filename"]) . '" ';
-		if (!$pelement["1x_width"] && $pelement["filename"]) echo 'poster' . $cnt . '="' . cdn_hook($cdir . '/contentthumbs/' . $pelement["filename"]) . '" ';
+		if ($pelement["1x_width"]) {
+			echo 'poster' . $cnt . '_1x="' . cdn_hook($cdir . '/contentthumbs/' . $pelement["1x_filename"]) . '" ';
+			echo 'poster' . $cnt . '_1x_width="' . $pelement["1x_width"] . '" ';
+		}
+		if ($pelement["2x_width"]) {
+			echo 'poster' . $cnt . '_2x="' . cdn_hook($cdir . '/contentthumbs/' . $pelement["2x_filename"]) . '" ';
+			//			echo 'poster' . $cnt . '_2x_width="' . $pelement["2x_width"] . '" ';
+		}
+		if ($pelement["3x_width"]) {
+			echo 'poster' . $cnt . '_3x="' . cdn_hook($cdir . '/contentthumbs/' . $pelement["3x_filename"]) . '" ';
+			//			echo 'poster' . $cnt . '_3x_width="' . $pelement["3x_width"] . '" ';
+		}
+		if ($pelement["4x_width"]) {
+			echo 'poster' . $cnt . '_4x="' . cdn_hook($cdir . '/contentthumbs/' . $pelement["4x_filename"]) . '" ';
+			//			echo 'poster' . $cnt . '_4x_width="' . $pelement["4x_width"] . '" ';
+		}
+		if (!$pelement["1x_width"] && $pelement["filename"]) {
+			echo 'poster' . $cnt . '="' . cdn_hook($cdir . '/contentthumbs/' . $pelement["filename"]) . '" ';
+			//			echo 'poster' . $cnt . '_4x_width="' . $pelement["4x_width"] . '" ';
+		}
 		$src =  $cdir . '/contentthumbs/' . $pelement["mp4file"];
 		echo 'src="' . $src . '" >';
 		echo ' <source src="' . $src . '" type="video/mp4">';
 		echo '</video>';
 	} else if ($pexists) {
-		$prefix = "";
-		if (strpos($_SERVER['HTTP_ACCEPT'], 'image/webp') !== false ) {
-			$prefix = "webp_";
-		}
-		echo "<picture class='stdimage'>";
-		$cnt = 0;
 		echo "<img ";
 		echo 'id="set-target-' . $arr["set"]["Id"] . '-' . rand(100, 9999999);
-		if ($arr["postfix"]) echo "_" . $arr["postfix"];
-		echo '" ';
-		if (isset($arr["loading"])) echo 'loading="' . $arr["loading"] . '" ';
-		if ($pelement["width"] > 0) echo 'width="' . $pelement["width"] . '" ';
-		if ($pelement["height"] > 0) echo 'height="' . $pelement["height"] . '" ';
-		if (isset($arr["alt"])) echo 'alt="' . $arr["alt"] . '" ';
-		if (isset($arr["style"])) echo 'style="' . $arr["style"] . '" ';
-		if (isset($arr["class"])) echo 'class="' . $arr["class"] . '" ';
-		echo 'src="' . cdn_hook($cdir . '/contentthumbs/' . $arr["set"]["info"]["thumbs"][14][$prefix . "1x_filename"]) . '" ';
-		foreach ($usep as $k => $up) {
-			if (!$arr["set"]["info"]["thumbs"][$up]["1x_width"] && $arr["set"]["info"]["thumbs"][$up]["1x_filename"]) {
-				echo 'data-src' . $cnt . '="' . cdn_hook($cdir . '/contentthumbs/' . $arr["set"]["info"]["thumbs"][$up]["1x_filename"]) . '" ';
-			}
-			if ($arr["set"]["info"]["thumbs"][$up]["1x_width"]) { 
-				echo 'data-srcset' . $cnt . '="' . 
-				cdn_hook($cdir . '/contentthumbs/' . $arr["set"]["info"]["thumbs"][$up][$prefix . "1x_filename"]) . ' 1x, ' .
-				cdn_hook($cdir . '/contentthumbs/' . $arr["set"]["info"]["thumbs"][$up][$prefix . "2x_filename"]) . ' 2x'   .
-				'"';
-				$cnt++;
-			}			
+		if ($arr["postfix"]) {
+			echo "_" . $arr["postfix"];
 		}
-		echo 'srcset="' . 
-		cdn_hook($cdir . '/contentthumbs/' . $arr["set"]["info"]["thumbs"][$usep[0]][$prefix . "1x_filename"]) . ' 1x, ' .
-		cdn_hook($cdir . '/contentthumbs/' . $arr["set"]["info"]["thumbs"][$usep[0]][$prefix . "2x_filename"]) . ' 2x'   .			
-		'" '; 
+		echo '" ';
+		if (isset($arr["loading"])) {
+			echo 'loading="' . $arr["loading"] . '" ';
+		}
+		if ($pelement["width"] > 0) {
+			echo 'width="' . $pelement["width"] . '" ';
+		}
+		if ($pelement["height"] > 0) {
+			echo 'height="' . $pelement["height"] . '" ';
+		}
+		if (isset($arr["alt"])) {
+			echo 'alt="' . $arr["alt"] . '" ';
+		}
+		if (isset($arr["style"])) {
+			echo 'style="' . $arr["style"] . '" ';
+		}
+		if (isset($arr["class"])) {
+			echo 'class="' . $arr["class"] . ' stdimage" ';
+		}
+		$cnt = 0;
+		foreach ($usep as $k => $up) {
+			if (!$arr["set"]["info"]["thumbs"][$up]) continue;
+			// Uncomment this if you want src tags within stdimage for SEO purposes **}
+			if ($cnt == 0) {
+				if ($arr["set"]["info"]["thumbs"][$up]["1x_width"]) {
+					//echo 'src="' . cdn_hook($cdir . '/contentthumbs/' . $arr["set"]["info"]["thumbs"][$up]["1x_filename"]) . '" ';
+				} else {
+					echo 'src="' . cdn_hook($cdir . '/contentthumbs/' . $arr["set"]["info"]["thumbs"][$up]["filename"]) . '" ';
+				}
+			}
+			if (isset($arr["set"]["info"]["thumbs"][$up]["mp4file"]) && $cnt == 1) {
+				//echo "video_url='".$arr["set"]["info"]["thumbs"][$up]["mp4file"]."'";
+				echo "video_url='" . $arr["set"]["info"]["thumbs"][$up]["mp4file"] . "'";
+			}
+			if ($arr["set"]["info"]["thumbs"][$up]["1x_width"])
+				echo 'src' . $cnt . '_1x="' . cdn_hook($cdir . '/contentthumbs/' . $arr["set"]["info"]["thumbs"][$up]["1x_filename"]) . '" ';
+			if ($arr["set"]["info"]["thumbs"][$up]["2x_width"])
+				echo 'src' . $cnt . '_2x="' . cdn_hook($cdir . '/contentthumbs/' . $arr["set"]["info"]["thumbs"][$up]["2x_filename"]) . '" ';
+			if ($arr["set"]["info"]["thumbs"][$up]["3x_width"])
+				echo 'src' . $cnt . '_3x="' . cdn_hook($cdir . '/contentthumbs/' . $arr["set"]["info"]["thumbs"][$up]["3x_filename"]) . '" ';
+			if (!$arr["set"]["info"]["thumbs"][$up]["1x_width"] && $arr["set"]["info"]["thumbs"][$up]["filename"])
+				echo 'src' . $cnt . '="' . cdn_hook($cdir . '/contentthumbs/' . $arr["set"]["info"]["thumbs"][$up]["filename"]) . '" ';
+			$cnt++;
+		}
 		echo 'cnt="' . $cnt . '" v="0" />';
-		echo "</picture>";
 	} else {
 		echo '<img ';
-		if ($arr["class"]) echo 'class="' . $arr["class"] . '" ';
-		if (isset($arr["style"])) echo 'style="' . $arr["style"] . '" ';
+		if ($arr["class"]) {
+			echo 'class="' . $arr["class"] . '" ';
+		}
+		if (isset($arr["style"])) {
+			echo 'style="' . $arr["style"] . '" ';
+		}
 		echo ' src="images/p' . $usep[0] . '.jpg" />';
 	}
 }

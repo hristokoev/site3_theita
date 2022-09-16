@@ -35,13 +35,13 @@ $url = "https://" . $parse['host'] . '/';
 						<li><a href="<?php echo $areaurl; ?>models/1/latest/"><i class="fa-solid fa-face-grin-tongue-wink"></i><?php echo $templatefields["txtmodels"]; ?></a></li>
 						<li><a href="<?php echo $areaurl . 'categories/categories.html'; ?>"><i class="fa-solid fa-boxes-stacked"></i><?php echo $templatefields["txtgenres"]; ?></a></li>
 						<li><a href="<?php echo $areaurl . 'categories/tags.html'; ?>"><i class="fa-solid fa-hashtag"></i><?php echo $templatefields["txttags"]; ?></a></li>
-						<li><a href="<?php echo $areaurl . 'network/'; ?>"><i class="fa-solid fa-sitemap"></i><?php echo $templatefields["txtsites"]; ?></a></li>	
+						<li><a href="<?php echo $areaurl . 'sites/'; ?>"><i class="fa-solid fa-sitemap"></i><?php echo $templatefields["txtsites"]; ?></a></li>	
 					</ul>
 					<h6><?php echo $templatefields["txtnetwork"]; ?></h6>
 					<ul class="sites">
-						<?php $site_name = explode('/', $_SERVER['REQUEST_URI'])[1]; ?>
+						
 						<?php foreach ($sites as $site) { ?>
-							<li class="subsite <?php echo ($site["Name"] == $site_name) ? 'active' : ''; ?>"><a href="<?php echo $url .  $site["Name"]; ?>"><?php echo $site["Name"]; ?></a></li>
+							<li class="subsite <?php echo ($site["Name"] == $area['Sitename']) ? 'active' : ''; ?>"><a href="<?php echo $url .  $site["Name"]; ?>"><?php echo $site["Name"]; ?></a></li>
 						<?php } ?>
 					</ul>
 				</div>
@@ -60,7 +60,7 @@ $url = "https://" . $parse['host'] . '/';
 					<li class="nav-item"><a href="<?php echo $areaurl; ?>models/1/latest/"><?php echo $templatefields["txtmodels"]; ?></a></li>
 					<li class="nav-item"><a href="<?php echo $areaurl . 'categories/categories.html'; ?>"><?php echo $templatefields["txtgenres"]; ?></a></li>
 					<li class="nav-item"><a href="<?php echo $areaurl . 'categories/tags.html'; ?>"><?php echo $templatefields["txttags"]; ?></a></li>
-					<li class="nav-item"><a href="<?php echo $areaurl . 'network/'; ?>"><?php echo $templatefields["txtsites"]; ?></a></li>
+					<li class="nav-item"><a href="<?php echo $areaurl . 'sites/'; ?>"><?php echo $templatefields["txtsites"]; ?></a></li>
 				</ul>
 			</div>
 			<div class="header-end bottom">
@@ -80,9 +80,8 @@ $url = "https://" . $parse['host'] . '/';
 				<div class="nav-block-wrapper">
 					<div class="nav-block-left">
 						<ul>
-							<?php $site_name = explode('/', $_SERVER['REQUEST_URI'])[1]; ?>
 							<?php foreach ($sites as $site) { ?>
-								<li class="subsite <?php echo ($site["Name"] == $site_name) ? 'active' : ''; ?>"><a href="<?php echo $url . $site["Name"]; ?>"><?php echo $site["Name"]; ?></a></li>
+								<li class="subsite <?php echo ($site["Name"] == $area['Sitename']) ? 'active' : ''; ?>"><a href="<?php echo $url . $site["Name"]; ?>"><?php echo $site["Name"]; ?></a></li>
 							<?php } ?>
 						</ul>
 					</div>
@@ -94,15 +93,16 @@ $url = "https://" . $parse['host'] . '/';
 							"title",
 							"info" => [
 								"date",
+								"model",
 								"title"
 							]
 						];
 						// TO DO: Get videos via AJAX, currently they're pre-loaded into the HTML and then hidden
 						foreach ($sites as $site) {
 							$siteurl = $url . $site["Name"] . '/';
-						?><div class="site" id="site-<?php echo $site["Name"]; ?>" <?php if ($site["Name"] !== $site_name) { ?>style="display: none;" <?php } ?>>
+						?><div class="site" id="site-<?php echo $site["Name"]; ?>" <?php if ($site["Name"] !== $area['Sitename']) { ?>style="display: none;" <?php } ?>>
 								<div class="sub-image"><a href="<?php echo $siteurl; ?>"><img id="banner" src="<?php echo 'https://' . $site["Name"] . '.com/images/banners/banner_992x155.jpg'; ?>" alt=""></a></div>
-								<h3 class="subsite-title"><span><?php echo $templatefields["txtmostpopular"]; ?>&nbsp;from&nbsp;</span><span class="sitename"><?php echo $site_name; ?></span></h3>
+								<h3 class="subsite-title"><span><?php echo $templatefields["txtlatestvideos"]; ?>&nbsp;&#8212;&nbsp;</span><span class="sitename"><?php echo $area['Sitename']; ?></span></h3>
 								<div class="sub-videos"><?php
 														$$site = get_from_scheduled_updates(5, 4, 'DESC', 1, false, false, $site["Id"]);
 														$i = 0;

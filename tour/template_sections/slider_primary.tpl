@@ -16,9 +16,15 @@ $arr = json_decode($json, true);
 				<?php
 				$src = "";
 				if ($detect->isMobile() && !$detect->isTablet()) {
-					$src = $banner["mobile"];
+					$src_jpg = $banner["mobile_jpg"];
+					$src_webp = $banner["mobile_webp"];
+					$width = 600;
+					$height = 600;
 				} else {
-					$src = $banner["desktop"];
+					$src_jpg = $banner["desktop_jpg"];
+					$src_webp = $banner["desktop_webp"];
+					$width = 1920;
+					$height = 600;
 				}
 				$i++;
 				?>
@@ -27,8 +33,10 @@ $arr = json_decode($json, true);
 						<img src="https://dummyimage.com/1920x660/c6d5d4/000&text=+" alt="">
 					<?php } else { ?>
 					<a href="<?php echo $banner["url"]; ?>">
-						<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-						<img src="<?php echo $areaurl . 'images/banners/header/' . $src; ?>" alt="<?php echo $banner["alt"]; ?>" class="swiper-lazy">
+						<picture>
+							<source type="image/webp" data-srcset="<?php echo $areaurl . 'images/banners/header/' . $src_webp; ?>" />
+							<img width="<?php echo $width; ?> height="<?php echo $height; ?> src="<?php echo $areaurl . 'images/banners/header/' . $src_jpg; ?>" alt="<?php echo $banner["alt"]; ?>">
+						</picture>
 					</a>
 					<?php } ?>
 				</div>

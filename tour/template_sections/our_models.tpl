@@ -16,7 +16,7 @@
 						<?php if (Filter_SFW()) { ?>
 							<img src="https://dummyimage.com/800x1067/c6d5d4/000&text=+" alt="">
 						<?php } else { ?>
-						<?php LoadTemplate("components/image_model.tpl", ["model" => $model, "priority" => $usepriority]); ?>
+							<?php LoadTemplate("components/image_model.tpl", ["model" => $model, "priority" => "103", "loading" => "lazy"]); ?>
 						<?php } ?>
 					</a>
 				</div>
