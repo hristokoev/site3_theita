@@ -40,8 +40,8 @@ if (isset($trial) && $trial['allowzips'] == 0) {
 					</div>
 					<div class="info">
 						<div class="buttons">
-							<a href="<?php echo Gallery_URL(["type" => "highres", "id" => $set["Id"], "seoname" => $set["SEOname"], "set" => $set]); ?>" class="photos"><i class="fa-solid fa-images"></i><?php echo $templatefields["txtphotos"]; ?></a>
-							<a href="<?php echo Gallery_URL(["type" => "caps", "id" => $set["Id"], "seoname" => $set["SEOname"], "set" => $set]); ?>" class="caps"><i class="fa-solid fa-photo-film"></i><?php echo $templatefields["txtcaps"]; ?></a>
+							<?php if (isset($set['info']['totals']['types']['highres'])) { ?><a href="<?php echo Gallery_URL(["type" => "highres", "id" => $set["Id"], "seoname" => $set["SEOname"], "set" => $set]); ?>" class="photos"><i class="fa-solid fa-images"></i><?php echo $templatefields["txtphotos"]; ?></a><?php } ?>
+							<?php if (isset($set['info']['totals']['types']['caps'])) { ?><a href="<?php echo Gallery_URL(["type" => "caps", "id" => $set["Id"], "seoname" => $set["SEOname"], "set" => $set]); ?>" class="caps"><i class="fa-solid fa-photo-film"></i><?php echo $templatefields["txtcaps"]; ?></a><?php } ?>
 							<a href="javascript:showdownload()" class="download"><i class="fa-solid fa-download"></i><?php echo $templatefields["txtdownload"]; ?></a>
 							<?php LoadTemplate("template_sections/favorites_link.tpl", ["set" => $set]); ?>
 							<a href="javascript:showreport()" class="report"><i class="fa-solid fa-flag"></i><?php echo $templatefields["txtreport"]; ?></a>
@@ -64,7 +64,39 @@ if (isset($trial) && $trial['allowzips'] == 0) {
 						</div>
 						<div class="additional">
 							<div class="date">
-								<span class="text-p"><?php echo date("j F Y", strtotime($set['date'])); ?></span>
+								<span class="text-p">
+									<?php 
+										$day = date("j", strtotime($set['AppearDate'])); 
+										$month = date("m", strtotime($set['AppearDate'])); 
+										$year = date("Y", strtotime($set['AppearDate'])); 
+										if ($month==1) {
+											$month = $templatefields["txtjanuary"];
+										} else if ($month==2) {
+											$month = $templatefields["txtfebruary"];
+										} else if ($month==3) {
+											$month = $templatefields["txtmarch"];
+										} else if ($month==4) {
+											$month = $templatefields["txtapril"];
+										} else if ($month==5) {
+											$month = $templatefields["txtmay"];
+										} else if ($month==6) {
+											$month = $templatefields["txtjune"];
+										} else if ($month==7) {
+											$month = $templatefields["txtjuly"];
+										} else if ($month==8) {
+											$month = $templatefields["txtaugust"];
+										} else if ($month==9) {
+											$month = $templatefields["txtseptember"];
+										} else if ($month==10) {
+											$month = $templatefields["txtoctober"];
+										} else if ($month==11) {
+											$month = $templatefields["txtnovember"];
+										} else if ($month==12) {
+											$month = $templatefields["txtdecember"];
+										}
+										echo "$day-$month-$year";
+									?>
+								</span>
 							</div>
 							<div class="rating-count">
 								<?php $rating = $set["plg_ratings_rank"] / (($set["plg_ratings_total"]) ? $set["plg_ratings_total"] : 1) * 10; ?>
@@ -112,18 +144,41 @@ if (isset($trial) && $trial['allowzips'] == 0) {
 								];
 								?>
 								<?php $i = 0;
-								foreach ($relevant as $kex => $relset) { ?>
-								<?php
-									$media = $api->getContent(["id" => $relset["Id"]]);
+								$chronological = $api->getSets([
+									"page" => 1,
+									"numperpage" => 5,
+									"sort" => "date",
+									"olderthan" => $set['AppearDate'],
+									"category_filter" => 5,
+								]);
+								$latest = get_from_scheduled_updates(5, 4, 'DESC');
+								foreach ($chronological->sets as $video) {
+									if ($chronological->setcount < 5) break;
+									if ($video["Id"] == $set["Id"]) continue;
+									$media = $api->getContent(["id" => $video["Id"]]);
 									foreach ($media->content['vids'] as $k => $l) {
 										foreach ($l as $m => $n) {
 											if ($n['name'] == '720p' || $n['name'] == '1080p') $bitrates[] = "HD";
 											if ($n['name'] == '4K') $bitrates[] = "4K";
 										}
 									}
-									LoadTemplate("components/thumb_video.tpl", ["set" => $relset, "prefer" => 'vids', "counter" => $i, "layout" => $layout, "bitrates" => $bitrates]);
+									LoadTemplate("components/thumb_video.tpl", ["set" => $video, "prefer" => 'vids', "counter" => $i, "layout" => $layout, "bitrates" => $bitrates]);
 									$i++;
 									$bitrates = array();
+								}
+								if ($chronological->setcount < 5) {
+									foreach ($latest as $video) {
+										$media = $api->getContent(["id" => $video["Id"]]);
+										foreach ($media->content['vids'] as $k => $l) {
+											foreach ($l as $m => $n) {
+												if ($n['name'] == '720p' || $n['name'] == '1080p') $bitrates[] = "HD";
+												if ($n['name'] == '4K') $bitrates[] = "4K";
+											}
+										}
+										LoadTemplate("components/thumb_video.tpl", ["set" => $video, "prefer" => 'vids', "counter" => $i, "layout" => $layout, "bitrates" => $bitrates]);
+										$i++;
+										$bitrates = array();
+									}
 								} ?>
 							</div>
 						<?php } ?>
@@ -149,7 +204,7 @@ if (isset($trial) && $trial['allowzips'] == 0) {
 																foreach ($mediatypes as $mediatype) {
 																	foreach ($media->content[$usetype] as $tmp1) {
 																		if (isset($tmp1[$mediatype["Name"] . ":" . $mediatype["Type"]]) && ($mediatype["ShowDownload"] >= 1) && ($mediatype["FullVideo"] >= 1)) {
-																?><a href="<?php echo $areaurl; ?>?action=download&file=<?php echo $tmp1[$mediatype["Name"] . ":" . $mediatype["Type"]]["fullpath"]; ?>"><?php echo $mediatype["Format"] . ' ' . $mediatype["Label"] .  ' <span>(' . sprintf("%.1f", $tmp1[$mediatype["Name"] . ":" . $mediatype["Type"]]["filesize"] / 1024 / 1024) . ' MB)</span>'; ?></a><?php }
+																?><a href="<?php echo $areaurl . lang_prefix(); ?>?action=download&file=<?php echo $tmp1[$mediatype["Name"] . ":" . $mediatype["Type"]]["fullpath"]; ?>"><?php echo $mediatype["Format"] . ' ' . $mediatype["Label"] .  ' <span>(' . sprintf("%.1f", $tmp1[$mediatype["Name"] . ":" . $mediatype["Type"]]["filesize"] / 1024 / 1024) . ' MB)</span>'; ?></a><?php }
 																																																																																																	}
 																																																																																																} ?></div>`,
 							showCloseButton: true,
@@ -311,7 +366,8 @@ if (isset($trial) && $trial['allowzips'] == 0) {
 					dataSource: images,
 					initialZoomLevel: 'fit',
 					maxZoomLevel: 2,
-					pswpModule: () => import('https://cdn.jsdelivr.net/npm/photoswipe@5.2.8/dist/photoswipe.esm.js'),
+					// Importing from local instead of CDN to temporarily fix a bug with right arrow
+					pswpModule: () => import('https://vangoren.com/js/photoswipe.esm.js'),
 				});
 				lightbox.addFilter('thumbEl', (thumbEl, data, index) => {
 					const el = galleryEl.querySelector('[data-id="' + data.id + '"] img');
@@ -339,5 +395,43 @@ if (isset($trial) && $trial['allowzips'] == 0) {
 			</script>
 		<?php } ?>
 	</section>
+	<section class="container">
+		<div class="main-header-title">
+			<div class="holder">
+				<h2><?php echo $templatefields["txtlatestvideos"]; ?></h2>
+				<a href="<?php echo $areaurl . lang_prefix(); ?>categories/movies/1/latest/"><?php echo $templatefields["txtviewall"]; ?>&nbsp;<i class="fa-solid fa-arrow-right-long"></i></a>
+			</div>
+		</div>
+		<div class="grid grid-videos">
+		<?php
+			$layout = [
+				"skeleton",
+				"bitrate",
+				"duration",
+				"title",
+				"info" => [
+					"model",
+					"date",
+					"stars",
+					"title"
+				]
+			];
+			?>
+			<?php $i = 0;
+			foreach ($relevant as $kex => $relset) { ?>
+			<?php
+				$media = $api->getContent(["id" => $relset["Id"]]);
+				foreach ($media->content['vids'] as $k => $l) {
+					foreach ($l as $m => $n) {
+						if ($n['name'] == '720p' || $n['name'] == '1080p') $bitrates[] = "HD";
+						if ($n['name'] == '4K') $bitrates[] = "4K";
+					}
+				}
+				LoadTemplate("components/thumb_video.tpl", ["set" => $relset, "prefer" => 'vids', "counter" => $i, "layout" => $layout, "bitrates" => $bitrates]);
+				$i++;
+				$bitrates = array();
+			} ?>
+		</div>
+</section>
 </div>
 <?php include "template_sections/footer.tpl"; ?>
