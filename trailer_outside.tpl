@@ -21,12 +21,44 @@ $bitrates = array();
 						<li><i class="fa fa-check" aria-hidden="true"></i>&nbsp;<?php echo $templatefields["tourtxttrailer3"]; ?></li>
 						<li><i class="fa fa-lock" aria-hidden="true"></i>&nbsp;<?php echo $templatefields["tourtxttrailer4"]; ?></li>
 					</ul>
-					<a href="<?php echo $tour["JoinUrl"]; ?>" class="button button-join" style="display: block;"><?php echo $templatefields["tourtxtjoin"]; ?></a>
+					<a href="<?php echo $tour["JoinUrl"] . lang_join_suffix(); ?>" class="button button-join" style="display: block;"><?php echo $templatefields["tourtxtjoin"]; ?></a>
 				</div>
 			</div>
 			<div class="trailer-details">
 				<div class="info">
-					<span class="date"><?php echo date("j F Y", strtotime($set['date'])); ?></span>
+					<span class="date">
+						<?php 
+							$day = date("j", strtotime($set['AppearDate'])); 
+							$month = date("m", strtotime($set['AppearDate'])); 
+							$year = date("Y", strtotime($set['AppearDate'])); 
+							if ($month==1) {
+								$month = $templatefields["txtjanuary"];
+							} else if ($month==2) {
+								$month = $templatefields["txtfebruary"];
+							} else if ($month==3) {
+								$month = $templatefields["txtmarch"];
+							} else if ($month==4) {
+								$month = $templatefields["txtapril"];
+							} else if ($month==5) {
+								$month = $templatefields["txtmay"];
+							} else if ($month==6) {
+								$month = $templatefields["txtjune"];
+							} else if ($month==7) {
+								$month = $templatefields["txtjuly"];
+							} else if ($month==8) {
+								$month = $templatefields["txtaugust"];
+							} else if ($month==9) {
+								$month = $templatefields["txtseptember"];
+							} else if ($month==10) {
+								$month = $templatefields["txtoctober"];
+							} else if ($month==11) {
+								$month = $templatefields["txtnovember"];
+							} else if ($month==12) {
+								$month = $templatefields["txtdecember"];
+							}
+							echo "$day-$month-$year";
+						?>
+					</span>
 					<span class="length"><?php LoadTemplate("components/info_length_short.tpl", ["set" => $set]); ?></span>
 				</div>
 				<div class="title">
@@ -44,11 +76,11 @@ $bitrates = array();
 				</div>
 			</div>
 			<div class="trailer-buttons">
-				<a href="<?php echo $tour["JoinUrl"]; ?>" class="active"><i class="fa-regular fa-circle-play fa-2x" aria-hidden="true"></i><span><?php echo $templatefields["txtmovies"]; ?></span></a>
-				<a href="<?php echo $tour["JoinUrl"]; ?>"><i class="fa-solid fa-images fa-2x" aria-hidden="true"></i><span><?php echo $templatefields["txtphotos"]; ?></span></a>
-				<a href="<?php echo $tour["JoinUrl"]; ?>"><i class="fa-solid fa-film fa-2x" aria-hidden="true"></i><span><?php echo $templatefields["txtcaps"]; ?></span></a>
-				<a href="<?php echo $tour["JoinUrl"]; ?>"><i class="fa-solid fa-comments fa-2x" aria-hidden="true"></i><span><?php echo $templatefields["txtcomments"]; ?></span></a>
-				<a href="<?php echo $tour["JoinUrl"]; ?>"><i class="fa-solid fa-download fa-2x" aria-hidden="true"></i><span><?php echo $templatefields["txtdownload"]; ?></span></a>
+				<a href="<?php echo $tour["JoinUrl"] . lang_join_suffix(); ?>" class="active"><i class="fa-regular fa-circle-play fa-2x" aria-hidden="true"></i><span><?php echo $templatefields["txtmovies"]; ?></span></a>
+				<a href="<?php echo $tour["JoinUrl"] . lang_join_suffix(); ?>"><i class="fa-solid fa-images fa-2x" aria-hidden="true"></i><span><?php echo $templatefields["txtphotos"]; ?></span></a>
+				<a href="<?php echo $tour["JoinUrl"] . lang_join_suffix(); ?>"><i class="fa-solid fa-film fa-2x" aria-hidden="true"></i><span><?php echo $templatefields["txtcaps"]; ?></span></a>
+				<a href="<?php echo $tour["JoinUrl"] . lang_join_suffix(); ?>"><i class="fa-solid fa-comments fa-2x" aria-hidden="true"></i><span><?php echo $templatefields["txtcomments"]; ?></span></a>
+				<a href="<?php echo $tour["JoinUrl"] . lang_join_suffix(); ?>"><i class="fa-solid fa-download fa-2x" aria-hidden="true"></i><span><?php echo $templatefields["txtdownload"]; ?></span></a>
 				<a href="#favorite" onclick="javascript:Swal.fire({icon:'error', text:'<?php echo $templatefields['txtmembersonly']; ?>'}); return false;"><i class="fa-solid fa-heart-circle-check fa-2x" aria-hidden="true"></i><span><span><?php echo $templatefields["txtaddtofavorites"]; ?></span></a>
 			</div>
 			<div class="trailer-cats genres">
@@ -63,7 +95,7 @@ $bitrates = array();
 		<div class="main-header-title">
 			<div class="holder">
 				<h2><?php echo $templatefields["txtmoreupdates"]; ?></h2>
-				<a href="<?php echo $areaurl; ?>categories/movies/1/latest/"><?php echo $templatefields["txtviewall"]; ?>&nbsp;<i class="fa-solid fa-arrow-right-long"></i></a>
+				<a href="<?php echo $areaurl . lang_prefix(); ?>categories/movies/1/latest/"><?php echo $templatefields["txtviewall"]; ?>&nbsp;<i class="fa-solid fa-arrow-right-long"></i></a>
 			</div>
 		</div>
 		<div class="grid grid-videos">
@@ -98,7 +130,7 @@ $bitrates = array();
 				}
 			?>
 		</div>
-		<a href="<?php echo $areaurl; ?>models/1/latest/" class="button button-load-more button-outline"><?php echo $templatefields["txtviewall"]; ?></a>
+		<a href="<?php echo $areaurl . lang_prefix(); ?>models/1/latest/" class="button button-load-more button-outline"><?php echo $templatefields["txtviewall"]; ?></a>
 	<?php
 			} else {
 				$layout = [

@@ -51,9 +51,9 @@ if ($pagename == "category") {
 			<?php $args["s"] = "n"; ?>
 			<li><a href="<?php echo $func($args); ?>" class="<?php echo ($sort == "n") ? "active" : ""; ?>"><?php echo $templatefields["txtnametitle"]; ?></a></li>
 		<?php } else { ?>
-			<li><a href="<?php echo $areaurl; ?>favorites.php?s=d" class="<?php echo ($sort == "d") ? "active" : ""; ?>"><?php echo $templatefields["txtmostrecent"]; ?></a></li>
-			<li><a href="<?php echo $areaurl; ?>favorites.php?s=p" class="<?php echo ($sort == "p") ? "active" : ""; ?>"><?php echo $templatefields["txtmostpopular"]; ?></a></li>
-			<li><a href="<?php echo $areaurl; ?>favorites.php?s=n" class="<?php echo ($sort == "n") ? "active" : ""; ?>"><?php echo $templatefields["txtnametitle"]; ?></a></li>
+			<li><a href="<?php echo $areaurl . lang_prefix(); ?>favorites.php?s=d" class="<?php echo ($sort == "d") ? "active" : ""; ?>"><?php echo $templatefields["txtmostrecent"]; ?></a></li>
+			<li><a href="<?php echo $areaurl . lang_prefix(); ?>favorites.php?s=p" class="<?php echo ($sort == "p") ? "active" : ""; ?>"><?php echo $templatefields["txtmostpopular"]; ?></a></li>
+			<li><a href="<?php echo $areaurl . lang_prefix(); ?>favorites.php?s=n" class="<?php echo ($sort == "n") ? "active" : ""; ?>"><?php echo $templatefields["txtnametitle"]; ?></a></li>
 		<?php } ?>
 	</ul>
 </div>

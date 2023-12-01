@@ -15,6 +15,102 @@ function Filter_SFW() {
 	} else return false;
 }
 
+function lang_prefix($slash = 1) {
+	$prefix = "";
+	switch($GLOBALS["current_language"]) {
+		case 6:
+			$prefix = 'it';
+			break;
+		case 7:
+			$prefix = 'fr';
+			break;
+		case 8:
+			$prefix = 'de';
+			break;
+		case 9:
+			$prefix = 'es';
+			break;
+		case 10:
+			$prefix = 'pt';
+			break;
+		case 11:
+			$prefix = 'ru';
+			break;
+		case 12:
+			$prefix = 'ja';
+			break;
+		default:
+			$prefix = "";
+	}
+	if ($slash == 1) {
+		if ($prefix == "") {
+			return ""; 
+		} else {
+			return $prefix . "/";
+		}
+	}
+	if ($slash == 0) return $prefix;
+}
+
+function lang_join_suffix() {
+	$suffix = "";
+	switch($GLOBALS["current_language"]) {
+		case 6:
+			$suffix = '&tpl=join_it';
+			break;
+		case 7:
+			$suffix = '&tpl=join_fr';
+			break;
+		case 8:
+			$suffix = '&tpl=join_de';
+			break;
+		case 9:
+			$suffix = '&tpl=join_es';
+			break;
+		case 10:
+			$suffix = '&tpl=join_pt';
+			break;
+		case 11:
+			$suffix = '&tpl=join_ru';
+			break;
+		case 12:
+			$suffix = '&tpl=join_jp';
+			break;
+		default:
+			$suffix = "";
+	}
+	return $suffix;
+}
+
+function lang_url($lang = 'en')
+{
+    $currentUrl = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+    if (!$lang) {
+        return $currentUrl;
+    } else if (isset($lang) && $GLOBALS["current_language"] !== 0) {
+		$currentUrl = str_replace($GLOBALS["areaurl"] . lang_prefix(), $GLOBALS["areaurl"], $currentUrl);
+	}
+
+    if ($lang === 'it') {
+        $currentUrl = str_replace($GLOBALS["areaurl"], $GLOBALS["areaurl"]."it/", $currentUrl);
+    } elseif ($lang === 'fr') {
+        $currentUrl = str_replace($GLOBALS["areaurl"], $GLOBALS["areaurl"]."fr/", $currentUrl);
+    } elseif ($lang === 'de') {
+        $currentUrl = str_replace($GLOBALS["areaurl"], $GLOBALS["areaurl"]."de/", $currentUrl);
+    } elseif ($lang === 'es') {
+        $currentUrl = str_replace($GLOBALS["areaurl"], $GLOBALS["areaurl"]."es/", $currentUrl);
+    } elseif ($lang === 'pt') {
+        $currentUrl = str_replace($GLOBALS["areaurl"], $GLOBALS["areaurl"]."pt/", $currentUrl);
+    } elseif ($lang === 'ru') {
+        $currentUrl = str_replace($GLOBALS["areaurl"], $GLOBALS["areaurl"]."ru/", $currentUrl);
+    } elseif ($lang === 'ja') {
+        $currentUrl = str_replace($GLOBALS["areaurl"], $GLOBALS["areaurl"]."ja/", $currentUrl);
+    }
+
+    return $currentUrl;
+}
+
 function custom_template_area($section) {
 	//custom function to alternate between all custom templates.
 	switch ($section) {
@@ -214,9 +310,10 @@ function custom_get_category_tags($wid = 0, $subsite_id = 'all') {
 }
 
 function custom_Category_URL($arr = array()) {
-	$ret = $areaurl;
+	$ret = $GLOBALS["areaurl"];
 	$seo_urls = $GLOBALS["seo_urls"];
 	if ($arr["seoname"] != "" && $seo_urls) {
+		$ret .= lang_prefix();
 		$ret .= "categories/" . $arr["seoname"];
 		if ($arr["page"] > 1) {
 			$ret .= "/" . $arr["page"];
@@ -262,9 +359,10 @@ function custom_Category_URL($arr = array()) {
 }
 
 function custom_Category_Landing_URL($arr = array()) {
-	$ret = $areaurl;
+	$ret = $GLOBALS["areaurl"];
 	$seo_urls = $GLOBALS["seo_urls"];
 	if ($arr["seoname"] != "" && $seo_urls) {
+		$ret .= lang_prefix();
 		$ret .= "categories/" . $arr["seoname"];
 		$ret .= ".html";
 	} else {
@@ -283,9 +381,10 @@ function custom_Category_Landing_URL($arr = array()) {
 }
 
 function custom_Sets_URL($arr = array()) {
-	$ret = $areaurl;
+	$ret = $GLOBALS["areaurl"];
 	$seo_urls = $GLOBALS["seo_urls"];
 	if ((!$arr["id"] || $arr["seoname"] != "") && $seo_urls) {
+		$ret .= lang_prefix();
 		if ($arr["id"]) {
 			$ret .=  "models/";
 			$ret .= $arr["seoname"];
@@ -342,21 +441,6 @@ function custom_Sets_URL($arr = array()) {
 		}
 	}
 	return $ret;
-}
-
-// NOT USED
-function tourCurrentUrl($lang = 'en') {
-	//$currentUrl = currentUrl();
-	$currentUrl = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-	if (!$lang) {
-		return $currentUrl;
-	}
-	if ($lang === 'en' && strpos($currentUrl, '/it/') !== false) {
-		$currentUrl = str_replace('/it/', '/', $currentUrl);
-	} else if ($lang === 'it' && strpos($currentUrl, '/it/') === false) {
-		$currentUrl = str_replace($areaurl, $areaurl . "it/", $currentUrl);
-	}
-	return $currentUrl;
 }
 
 function genresColor($inputGenre, $colors) {	

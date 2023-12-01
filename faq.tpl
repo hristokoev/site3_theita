@@ -9,16 +9,7 @@ if (isset($GLOBALS["tour"])) {
 <div class="main">
 	<section class="container">
 		<h2 class="page-title">
-			<?php echo $templatefields["txtquestions"]; ?>
-		</h2>
-		<div class="faq_questions">
-			<?php foreach($faqs as $faq) { ?>
-			<?php echo $faq["sublevel"]; ?>.&nbsp;<a href="<?php echo FAQ_URL(); ?>#<?php echo $faq["sublevel"]; ?>"><?php echo $faq["Title"]; ?></a><br/>
-			<?php } ?>
-		</div>
-		
-		<h2 class="page-title">
-		<?php echo $templatefields["txtanswers"]; ?>
+		<?php echo $templatefields["txtfaq"]; ?>
 		</h2>
 		
 		<div class="">

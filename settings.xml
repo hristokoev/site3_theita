@@ -189,6 +189,8 @@
 		</category>
 		<category name="Navigation">
 			<item name="txtnetwork">Vangoren NETWORK</item>
+			<item name="txtnetwork1">Our network</item>
+			<item name="txtnetwork2">ALL sites included in ONE Membership</item>
 			<item name="txtsites">Sites</item>
 			<item name="txttrialarea">Trial Area</item>
 			<item name="txtmembersarea">Members Area</item>

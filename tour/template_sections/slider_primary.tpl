@@ -34,8 +34,8 @@ $arr = json_decode($json, true);
 					<?php } else { ?>
 					<a href="<?php echo $banner["url"]; ?>">
 						<picture>
-							<source type="image/webp" data-srcset="<?php echo $areaurl . 'images/banners/header/' . $src_webp; ?>" />
-							<img width="<?php echo $width; ?> height="<?php echo $height; ?> src="<?php echo $areaurl . 'images/banners/header/' . $src_jpg; ?>" alt="<?php echo $banner["alt"]; ?>">
+							<source type="image/webp" srcset="<?php echo $areaurl . 'images/banners/header/' . $src_webp; ?>" />
+							<img width="<?php echo $width; ?>" height="<?php echo $height; ?>" src="<?php echo $areaurl; ?>images/banners/header/<?php echo $src_jpg; ?>" alt="<?php echo $banner["alt"]; ?>">
 						</picture>
 					</a>
 					<?php } ?>

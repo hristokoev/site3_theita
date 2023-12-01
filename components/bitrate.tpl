@@ -1,34 +1,32 @@
 <?php
 if ($pagename == "gallery" && $title) {
 
-	$arr = array();
+	$icon = "";
 
-	foreach ($media['vids'] as $k => $l) {
-		foreach ($l as $m => $n) {
-			if ($n['name'] == '720p' || $n['name'] == '1080p') $arr[] = "HD";
-			if ($n['name'] == '4K') $arr[] = "4K";
+	foreach ($media['vids'] as $video => $formats) {
+		foreach ($formats as $format => $parameter) {
+			if ($parameter['name'] == '4K') {
+				$icon = "4K";
+				break 2;
+			}	else if ($parameter['name'] == '720p' || $parameter['name'] == '1080p') {
+				$icon = "HD";
+			}
 		}
 	}
 
-	$arr = array_unique($arr);
-	foreach ($arr as $bitrate) {
-		if ($bitrate == "HD") {
-			echo '<span class="icon-hd"></span>';
-		}
-		if ($bitrate == "4K") {
-			echo '<span class="icon-4k"></span>';
-		}
+	if ($icon == "4K") {
+		echo '<span class="icon-4k"></span>';
+	} else if ($icon == "HD") {
+		echo '<span class="icon-hd"></span>';
 	}
 }
 
 if (isset($icons)) {
-	$icons = array_unique($icons);
-	foreach ($icons as $bitrate) {
-		if ($bitrate == "HD") {
-			echo '<span class="icon-hd"></span>';
-		}
-		if ($bitrate == "4K") {
+	// Check for 4K first
+	if (in_array("4K", $icons)) {
 			echo '<span class="icon-4k"></span>';
-		}
+	} elseif (in_array("HD", $icons)) {
+			// If 4K is not available, check for HD
+			echo '<span class="icon-hd"></span>';
 	}
 }

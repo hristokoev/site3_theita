@@ -1,3 +1,5 @@
+<?php if ($content['SEOname'] == "custom-feed") { LoadTemplate("pages/custom_feed.tpl"); exit; } ?>
+<?php if ($content['SEOname'] == "custom-feed-menno") { LoadTemplate("pages/custom_feed_menno.tpl"); exit; } ?>
 <?php LoadTemplate("tour/template_sections/header.tpl"); ?>
 <div class="main">
 	<?php

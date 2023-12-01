@@ -1,5 +1,5 @@
 <?php
-$url="https://mvgcash.com/member_loginlog.php?username=" . $userinfo['UserName'] . "&siteid=19,18,21,20,10,3,23,22,4,2,5,8,7,6,9,11&ip=" . $_SERVER['REMOTE_ADDR'];
+$url="https://mvgcash.com/member_loginlog.php?username=" . $userinfo['UserName'] . "&siteid=19,18,21,20,10,3,23,22,4,2,5,8,7,6,9,14,15,11&ip=" . $_SERVER['REMOTE_ADDR'];
 @file($url);
 $title = ($subsite) ? $subsite["Name"] : $templatefields["sitename"];
 if (isset($_REQUEST['page'])) {
@@ -33,8 +33,8 @@ LoadTemplate("template_sections/header.tpl", ["pagename" => "index", "title" => 
 	<section class="container">
 		<div class="main-header-title">
 			<div class="holder">
-				<h2><a href="<?php echo $areaurl . 'categories/categories.html'; ?>"><?php echo $templatefields["txtpopulargenres"]; ?></a></h2>
-				<a href="<?php echo $areaurl . 'categories/categories.html'; ?>"><?php echo $templatefields["txtviewall"]; ?>&nbsp;<i class="fa-solid fa-arrow-right-long"></i></a>
+				<h2><a href="<?php echo $areaurl . lang_prefix() . 'categories/categories.html'; ?>"><?php echo $templatefields["txtpopulargenres"]; ?></a></h2>
+				<a href="<?php echo $areaurl . lang_prefix() . 'categories/categories.html'; ?>"><?php echo $templatefields["txtviewall"]; ?>&nbsp;<i class="fa-solid fa-arrow-right-long"></i></a>
 			</div>
 		</div>
 		<div class="grid grid-genres">
@@ -65,8 +65,8 @@ LoadTemplate("template_sections/header.tpl", ["pagename" => "index", "title" => 
 		</div>
 		<div class="main-header-title">
 			<div class="holder">
-				<h2><a href="<?php echo $areaurl . 'categories/movies/1/latest/'; ?>"><?php echo $templatefields["txtlatestvideos"]; ?></a></h2>
-				<a href="<?php echo $areaurl . 'categories/movies/1/latest/'; ?>"><?php echo $templatefields["txtviewall"]; ?>&nbsp;<i class="fa-solid fa-arrow-right-long"></i></a>
+				<h2><a href="<?php echo $areaurl . lang_prefix() . 'categories/movies/1/latest/'; ?>"><?php echo $templatefields["txtlatestvideos"]; ?></a></h2>
+				<a href="<?php echo $areaurl . lang_prefix() . 'categories/movies/1/latest/'; ?>"><?php echo $templatefields["txtviewall"]; ?>&nbsp;<i class="fa-solid fa-arrow-right-long"></i></a>
 			</div>
 		</div>
 		<div class="grid grid-videos">
@@ -88,13 +88,13 @@ LoadTemplate("template_sections/header.tpl", ["pagename" => "index", "title" => 
 			?>
 		</div>
 		<div class="button-centered">
-			<a href="<?php echo $areaurl; ?>categories/movies/1/latest/" class="button button-load-more button-outline"><?php echo $templatefields["txtloadmore"]; ?></a>
+			<a href="<?php echo $areaurl . lang_prefix(); ?>categories/movies/1/latest/" class="button button-load-more button-outline"><?php echo $templatefields["txtloadmore"]; ?></a>
 		</div>
 		<?php if (array_not_empty($comingsoon[0]["sets"]) > 0) { ?>
 		<div class="main-header-title">
 			<div class="holder">
 				<h2><?php echo $templatefields["txtupcoming"]; ?></h2>
-				<a href="<?php echo $areaurl . 'categories/movies/1/latest/'; ?>"><?php echo $templatefields["txtviewall"]; ?>&nbsp;<i class="fa-solid fa-arrow-right-long"></i></a>
+				<a href="<?php echo $areaurl . lang_prefix() . 'categories/movies/1/latest/'; ?>"><?php echo $templatefields["txtviewall"]; ?>&nbsp;<i class="fa-solid fa-arrow-right-long"></i></a>
 			</div>
 		</div>
 		<div class="grid grid-videos">

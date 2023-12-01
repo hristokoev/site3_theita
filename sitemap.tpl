@@ -1,8 +1,4 @@
 <?php
-$prefix = $current_language == 0 ? '' : 'it';
-if ($prefix) {
-$GLOBALS["areaurl"] = $GLOBALS["areaurl"] . "" . $prefix . "/";
-}
 function esc($string) {
 return htmlentities($string, ENT_XML1, 'UTF-8');
 }
@@ -15,7 +11,7 @@ echo '<' . '?xml version="1.0" encoding="UTF-8"?' . '>' . "\n"; ?>
 <?php if (isset($sitemap["tour"]) && $enable_tour_pages) { ?>
 <?php for ($pageno = 1; $pageno <= $sitemap["tour"]["numpages"]; $pageno++) { ?>
 <url>
-<loc><?= $areaurl ?></loc>
+<loc><?= $areaurl . lang_prefix() ?></loc>
 <changefreq>monthly</changefreq>
 <priority>1</priority>
 </url>

@@ -38,5 +38,5 @@
 	</div>
 </section>
 <div class="button-centered">
-	<a href="<?php echo $areaurl; ?>categories/movies/1/latest/" class="button button-load-more button-outline"><?php echo $templatefields["txtloadmore"]; ?></a>
+	<a href="<?php echo $areaurl . lang_prefix(); ?>categories/movies/1/latest/" class="button button-load-more button-outline"><?php echo $templatefields["txtloadmore"]; ?></a>
 </div>

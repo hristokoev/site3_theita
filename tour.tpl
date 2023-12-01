@@ -26,8 +26,8 @@ $bitrates = array();
 <?php
 // Get total videos
 $link = mysqli_connect("localhost", "vangoren", "j90a930rfe", "vangoren");
-$sqlvids = "SELECT `Num` FROM `totals` WHERE `MajorType` = 'types' AND `MinorType` = 'vids' AND `siteid` = 1 LIMIT 1";
-$sqlhighres = "SELECT `Num` FROM `totals` WHERE `MajorType` = 'types' AND `MinorType` = 'highres' AND `siteid` = 1 LIMIT 1";
+$sqlvids = "SELECT `Num` FROM `totals` WHERE `MajorType` = 'setcount' AND `MinorType` = 'vids' AND `siteid` IS NULL LIMIT 1";
+$sqlhighres = "SELECT `Num` FROM `totals` WHERE `MajorType` = 'types' AND `MinorType` = 'highres' AND `siteid` IS NULL LIMIT 1";
 $sqlmodels = "SELECT `Num` FROM `totals` WHERE `MajorType` = 'models' AND `siteid` IS NULL LIMIT 1";
 $resultvids = mysqli_query($link, $sqlvids);
 while($row = mysqli_fetch_array($resultvids)) {
@@ -55,14 +55,14 @@ if (strpos( $_SERVER['HTTP_ACCEPT'], 'image/webp') !== false) {
 <div class="main">
 	<section class="container">
 		<div class="usps-icons">
-			<a href="<?php echo $areaurl . 'categories/movies/1/latest/'; ?>"><i class="fa-solid fa-clapperboard"></i><span class="count"><?php echo $totalVideos; ?></span><span class="text"><?php echo $templatefields["txtvideos"]; ?></a>
-			<a href="<?php echo $areaurl . 'categories/photos/1/latest/'; ?>"><i class="fa-solid fa-camera"></i><span class="count"><?php echo $totalPhotos; ?></span><span class="text"><?php echo $templatefields["txtphotos"]; ?></a>
-			<a href="<?php echo $areaurl . 'categories/models/1/latest/'; ?>"><i class="fa-solid fa-venus-mars"></i><span class="count"><?php echo $totalModels; ?></span><span class="text"><?php echo $templatefields["txtmodels"]; ?></a>
+			<a href="<?php echo $areaurl . lang_prefix() . 'categories/movies/1/latest/'; ?>"><i class="fa-solid fa-clapperboard"></i><span class="count"><?php echo $totalVideos; ?></span><span class="text"><?php echo $templatefields["txtvideos"]; ?></a>
+			<a href="<?php echo $areaurl . lang_prefix() . 'categories/photos/1/latest/'; ?>"><i class="fa-solid fa-camera"></i><span class="count"><?php echo $totalPhotos; ?></span><span class="text"><?php echo $templatefields["txtphotos"]; ?></a>
+			<a href="<?php echo $areaurl . lang_prefix() . 'models/1/latest/'; ?>"><i class="fa-solid fa-venus-mars"></i><span class="count"><?php echo $totalModels; ?></span><span class="text"><?php echo $templatefields["txtmodels"]; ?></a>
 		</div>
 		<div class="main-header-title">
 			<div class="holder">
-				<h1><a href="<?php echo $areaurl . 'categories/movies/1/latest/'; ?>"><?php echo $templatefields["txtlatestvideos"]; ?></a></h1>
-				<a href="<?php echo $areaurl . 'categories/movies/1/latest/'; ?>"><?php echo $templatefields["txtviewall"]; ?>&nbsp;<i class="fa-solid fa-arrow-right-long"></i></a>
+				<h1><a href="<?php echo $areaurl . lang_prefix() . 'categories/movies/1/latest/'; ?>"><?php echo $templatefields["txtlatestvideos"]; ?></a></h1>
+				<a href="<?php echo $areaurl . lang_prefix() . 'categories/movies/1/latest/'; ?>"><?php echo $templatefields["txtviewall"]; ?>&nbsp;<i class="fa-solid fa-arrow-right-long"></i></a>
 			</div>
 		</div>
 		<div class="grid grid-videos" id="req">
@@ -97,13 +97,14 @@ if (strpos( $_SERVER['HTTP_ACCEPT'], 'image/webp') !== false) {
 		</div>
 	</section>
 	<div class="button-centered">
-		<a href="<?php echo $areaurl; ?>categories/movies/1/latest/" class="button button-load-more button-outline"><?php echo $templatefields["txtloadmore"]; ?></a>
-	</div>	
+		<a href="<?php echo $areaurl . lang_prefix(); ?>categories/movies/1/latest/" class="button button-load-more button-outline"><?php echo $templatefields["txtloadmore"]; ?></a>
+	</div>
+	<?php if (array_not_empty($whatshot)) { ?>
 	<section class="container">
 		<div class="main-header-title">
 			<div class="holder">
-				<h2><a href="<?php echo $areaurl; ?>categories/movies/1/popular/"><?php echo $templatefields["txtfeaturedvideos"]; ?></a></h2>
-				<a href="<?php echo $areaurl; ?>categories/movies/1/popular/"><?php echo $templatefields["txtviewall"]; ?>&nbsp;<i class="fa-solid fa-arrow-right-long"></i></a>
+				<h2><a href="<?php echo $areaurl . lang_prefix(); ?>categories/movies/1/popular/"><?php echo $templatefields["txtfeaturedvideos"]; ?></a></h2>
+				<a href="<?php echo $areaurl . lang_prefix(); ?>categories/movies/1/popular/"><?php echo $templatefields["txtviewall"]; ?>&nbsp;<i class="fa-solid fa-arrow-right-long"></i></a>
 			</div>
 		</div>
 		<div class="swiper myCarousel">
@@ -143,15 +144,16 @@ if (strpos( $_SERVER['HTTP_ACCEPT'], 'image/webp') !== false) {
 		</div>
 	</section>	
 	<div class="button-lined">
-		<a href="<?php echo $areaurl; ?>categories/movies/1/popular/" class="button button-load-more button-outline"><?php echo $templatefields["txtloadmore"]; ?></a>
+		<a href="<?php echo $areaurl . lang_prefix(); ?>categories/movies/1/popular/" class="button button-load-more button-outline"><?php echo $templatefields["txtloadmore"]; ?></a>
 	</div>	
+	<?php } ?>
 	<?php // Middle banner ?>
 	<?php // include "tour/template_sections/slider_secondary.tpl"; ?>	
 	<section class="container">
 		<div class="main-header-title">
 			<div class="holder">
-				<h2><a href="<?php echo $areaurl; ?>models/1/latest/"><?php echo $templatefields["txtourmodels"]; ?></a></h2>
-				<a href="<?php echo $areaurl; ?>models/1/latest/"><?php echo $templatefields["txtviewall"]; ?>&nbsp;<i class="fa-solid fa-arrow-right-long"></i></a>
+				<h2><a href="<?php echo $areaurl . lang_prefix(); ?>models/1/latest/"><?php echo $templatefields["txtourmodels"]; ?></a></h2>
+				<a href="<?php echo $areaurl . lang_prefix(); ?>models/1/latest/"><?php echo $templatefields["txtviewall"]; ?>&nbsp;<i class="fa-solid fa-arrow-right-long"></i></a>
 			</div>
 		</div>
 		<div class="grid grid-models-main">
@@ -159,7 +161,7 @@ if (strpos( $_SERVER['HTTP_ACCEPT'], 'image/webp') !== false) {
 		</div>
 	</section>
 	<div class="button-lined">
-		<a href="<?php echo $areaurl; ?>models/1/latest/" class="button button-load-more button-outline"><?php echo $templatefields["txtloadmore"]; ?></a>
+		<a href="<?php echo $areaurl . lang_prefix(); ?>models/1/latest/" class="button button-load-more button-outline"><?php echo $templatefields["txtloadmore"]; ?></a>
 	</div>
 </div>
 <script>

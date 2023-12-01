@@ -27,8 +27,8 @@ if (Filter_SFW()) {
 	<?php } ?>
 </video>
 <div class="promo" style="opacity: 0; pointer-events: none;">
-	<a href="<?php echo $tour['JoinUrl']; ?>">
-		<img src="<?php echo $areaurl . 'images/promo_tour.png'; ?>" alt="">
+	<a href="<?php echo $tour["JoinUrl"] . lang_join_suffix(); ?>">
+		<img src="<?php echo $areaurl . 'images/promo_tour_' . lang_prefix(0) . ".png"; ?>" alt="">
 	</a>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/video.js@7/dist/video.min.js"></script>
@@ -64,10 +64,10 @@ if (Filter_SFW()) {
 				if (hasPlayed == false) tlimit();
 				hasPlayed = true;
 			} else {
-				window.location.href = "<?php echo $tour["JoinUrl"]; ?>";
+				window.location.href = "<?php echo $tour["JoinUrl"] . lang_join_suffix(); ?>";
 			}
 			if ($("#trailer source").attr("data-fake") == 1) {
-				window.location.href = "<?php echo $tour["JoinUrl"]; ?>";
+				window.location.href = "<?php echo $tour["JoinUrl"] . lang_join_suffix(); ?>";
 			}
 		});	   
 	})	

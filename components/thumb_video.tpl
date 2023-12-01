@@ -9,7 +9,7 @@ if (!isset($usepriority)) {
 		$usepriority = "14,20,21,22,23,24,25";
 	}
 }
-$url = ($url) ? $url : $areaurl;
+$url = ($url) ? $url : $GLOBALS["areaurl"];
 $hType = (isset($set["info"]["totals"]["types"]["highres"])) ? 1 : 0;
 $vType = (isset($set["info"]["totals"]["types"]["vids"])) ? 1 : 0;
 $usetype = "";
@@ -29,16 +29,44 @@ if (isset($GLOBALS["tour"])) {
 	if ($today > $set["AppearDate"]) {
 		if (isset($trial)) {
 			if (in_array($set["Id"], $trial['allowrecent']) || empty($trial['allowrecent'])) {
-				$ahref = $url . Gallery_URL(["type" => $usetype, "id" => $set["Id"], "seoname" => $set["SEOname"], "set" => $set]);
+				$ahref = Gallery_URL(["type" => $usetype, "id" => $set["Id"], "seoname" => $set["SEOname"], "set" => $set]);
 			} else {
 				$ahref = GET_Username($trial['videourl']);
 			}
 		} else {
-			$ahref = $url . Gallery_URL(["type" => $usetype, "id" => $set["Id"], "seoname" => $set["SEOname"], "set" => $set]);
+			$ahref = Gallery_URL(["type" => $usetype, "id" => $set["Id"], "seoname" => $set["SEOname"], "set" => $set]);
 		}
 	} else {
 		$ahref = "";
-		$onclick = "javascript:(Popup.fire('" . $templatefields["txtcoming"] . '&nbsp;' . date("j F Y", strtotime($set["AppearDate"])) . "'))";
+		$day = date("j", strtotime($set["AppearDate"])); 
+		$month = date("m", strtotime($set["AppearDate"])); 
+		$year = date("Y", strtotime($set["AppearDate"])); 
+		if ($month==1) {
+			$month = $templatefields["txtjanuary"];
+		} else if ($month==2) {
+			$month = $templatefields["txtfebruary"];
+		} else if ($month==3) {
+			$month = $templatefields["txtmarch"];
+		} else if ($month==4) {
+			$month = $templatefields["txtapril"];
+		} else if ($month==5) {
+			$month = $templatefields["txtmay"];
+		} else if ($month==6) {
+			$month = $templatefields["txtjune"];
+		} else if ($month==7) {
+			$month = $templatefields["txtjuly"];
+		} else if ($month==8) {
+			$month = $templatefields["txtaugust"];
+		} else if ($month==9) {
+			$month = $templatefields["txtseptember"];
+		} else if ($month==10) {
+			$month = $templatefields["txtoctober"];
+		} else if ($month==11) {
+			$month = $templatefields["txtnovember"];
+		} else if ($month==12) {
+			$month = $templatefields["txtdecember"];
+		}
+		$onclick = "javascript:(Popup.fire('" . $templatefields["txtcoming"] . '&nbsp;</br>' . $day . '-' . $month . '-' . $year . "'))";
 	}
 }
 ?>
@@ -83,7 +111,39 @@ if (isset($GLOBALS["tour"])) {
 					<?php if (in_array("date", $layout["info"]) || in_array("stars", $layout["info"])) { ?>
 						<div class="info">
 							<?php if (in_array("date", $layout["info"])) { ?>
-								<div class="date"><?php echo date("j F Y", strtotime($set["AppearDate"])); ?></div>
+								<div class="date">
+									<?php 
+										$day = date("j", strtotime($set["AppearDate"])); 
+										$month = date("m", strtotime($set["AppearDate"])); 
+										$year = date("Y", strtotime($set["AppearDate"])); 
+										if ($month==1) {
+											$month = $templatefields["txtjanuary"];
+										} else if ($month==2) {
+											$month = $templatefields["txtfebruary"];
+										} else if ($month==3) {
+											$month = $templatefields["txtmarch"];
+										} else if ($month==4) {
+											$month = $templatefields["txtapril"];
+										} else if ($month==5) {
+											$month = $templatefields["txtmay"];
+										} else if ($month==6) {
+											$month = $templatefields["txtjune"];
+										} else if ($month==7) {
+											$month = $templatefields["txtjuly"];
+										} else if ($month==8) {
+											$month = $templatefields["txtaugust"];
+										} else if ($month==9) {
+											$month = $templatefields["txtseptember"];
+										} else if ($month==10) {
+											$month = $templatefields["txtoctober"];
+										} else if ($month==11) {
+											$month = $templatefields["txtnovember"];
+										} else if ($month==12) {
+											$month = $templatefields["txtdecember"];
+										}
+										echo "$day-$month-$year";
+									?> 
+								</div>
 							<?php } ?>
 							<?php if (in_array("stars", $layout["info"])) { ?>
 								<div class="stars">

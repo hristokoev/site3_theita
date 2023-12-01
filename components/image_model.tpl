@@ -25,11 +25,11 @@ if (isset($priority)) {
 	// cdn_hook($cdir . '/contentthumbs/' . $model["info"]["thumbs"][$priority][$prefix . "3x_filename"]) . ' 3x'   .			
 	// '" ';
 	if ($model["info"]["thumbs"][$priority]["filename"]) echo 'src="' . cdn_hook($cdir . '/contentthumbs/' . $model["info"]["thumbs"][$priority][$prefix . "1x_filename"]) . '" ';
-	echo 'v="0" />';
+	echo 'v="0" alt="' . $model["ModelName"] . '" />';
 } else {
 	echo '<img ';
 	if (isset($class)) {
 		echo 'class="' . $class;
 	}
-	echo ' src="images/p' . $priority . '.jpg" />';
+	echo ' src="images/p' . $priority . '.jpg" alt="' . $model["ModelName"] . '" />';
 }

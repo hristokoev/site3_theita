@@ -45,7 +45,7 @@ $file_name = $match[0];
 $url_action = $p["action"];
 $fp = $p["file"];
 if ($url_action == "download") {
-    $exp = "~([^\/]+(?=\/[^\/]+\/?$))\/([\w]*)(\.\w*)~";
+    $exp = "~([^\/]+(?=\/[^\/]+\/?$))\/([\w-]*)(\.\w*)~";
     preg_match($exp, $fp, $match);
     $fn = $match[2] . "_" . $match[1] . $match[3];
 	$file_url = cdn_download($fp);

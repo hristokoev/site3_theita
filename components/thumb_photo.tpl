@@ -8,7 +8,7 @@ if (!isset($usepriority)) {
 	}
 }
 if (isset($GLOBALS["tour"])) {
-	$ahref = $tour["JoinUrl"];
+	$ahref = $tour["JoinUrl"] . lang_join_suffix();
 } else {
 	if (isset($trial)) {
 		if (in_array($set["Id"], $trial['allowrecent']) || empty($trial['allowrecent'])) {

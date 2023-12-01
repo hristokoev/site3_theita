@@ -95,7 +95,7 @@ $templatefields = $GLOBALS["templatefields"];
 		if (!empty($GLOBALS['tour'])) {
 			$plusOnePage = $numberofpages + 1;
 			for ($iPage = $plusOnePage; $iPage <= 5; $iPage++) {
-				echo '<a href="' . $tour["JoinUrl"] . '" class="button button-outline">' . $iPage . '</a>';
+				echo '<a href="' . $tour["JoinUrl"] . lang_join_suffix() . '" class="button button-outline">' . $iPage . '</a>';
 			}
 		}
 		?></div>
