@@ -7,7 +7,7 @@ if (!empty($GLOBALS["tour"])) {
 }
 if (isset($priority)) {
 	$prefix = "";
-	if (strpos($_SERVER['HTTP_ACCEPT'], 'image/webp') !== false) {
+	if (isset($_SERVER['HTTP_ACCEPT']) && is_string($_SERVER['HTTP_ACCEPT']) && strpos($_SERVER['HTTP_ACCEPT'], 'image/webp') !== false) {
 		$prefix = "webp_";
 	}
 	echo "<picture>";

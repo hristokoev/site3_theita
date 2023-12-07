@@ -436,7 +436,7 @@ function StdImage($arr) {
 	}
 	if ($pexists && $pelement["hasmp4"]) {
 		$prefix = "";
-		if (strpos($_SERVER['HTTP_ACCEPT'], 'image/webp') !== false ) {
+		if (isset($_SERVER['HTTP_ACCEPT']) && is_string($_SERVER['HTTP_ACCEPT']) && strpos($_SERVER['HTTP_ACCEPT'], 'image/webp') !== false) {
 			$prefix = "webp_";
 		}
 		echo "<video loop=\"\" muted=\"\" playsinline=\"\" preload=\"none\" ";
@@ -463,7 +463,7 @@ function StdImage($arr) {
 		echo '</video>';
 	} else if ($pexists) {
 		$prefix = "";
-		if (strpos($_SERVER['HTTP_ACCEPT'], 'image/webp') !== false ) {
+		if (isset($_SERVER['HTTP_ACCEPT']) && is_string($_SERVER['HTTP_ACCEPT']) && strpos($_SERVER['HTTP_ACCEPT'], 'image/webp') !== false) {
 			$prefix = "webp_";
 		}
 		echo "<picture class='stdimage'>";
@@ -516,7 +516,7 @@ function StdCatImage($arr) {
 	}
 	if ($pexists) {
 		$prefix = "";
-		if (strpos($_SERVER['HTTP_ACCEPT'], 'image/webp') !== false ) {
+		if (isset($_SERVER['HTTP_ACCEPT']) && is_string($_SERVER['HTTP_ACCEPT']) && strpos($_SERVER['HTTP_ACCEPT'], 'image/webp') !== false) {
 			$prefix = "webp_";
 		}
 		echo "<picture class='stdimage'>";

@@ -49,11 +49,6 @@ mysqli_free_result($resultmodels);
 mysqli_close($link);
 ?>
 <?php LoadTemplate("tour/template_sections/header.tpl", ["pagename" => "tour"]); ?>
-<?php
-if (strpos( $_SERVER['HTTP_ACCEPT'], 'image/webp') !== false) {
-
-}
-?>
 <div class="main">
 	<section class="container">
 		<div class="usps-icons">
