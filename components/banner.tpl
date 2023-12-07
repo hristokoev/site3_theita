@@ -33,17 +33,22 @@
 
 	<?php foreach ($banners as $banner) {
 
-		$text;
+		$text = "";
+		$title = "OUR BIGGEST SALE";	// DEFAULT TITLE
+		$button = "JOIN NOW"; 				// DEFAULT TEXT
+		
 		if ($current_language == 0) {
 			$text = $banner["Title"];
 		} else {
 			$languages = unserialize($banner["langs"]);
 			$text = $languages[$current_language]["Title"];
 		}
-
-		$textParts = explode(" | ", $text);
-		$title = $textParts[0];
-		$button = $textParts[1];
+		
+		if ($text !== null) {
+			$textParts = explode(" | ", $text);
+			$title = $textParts[0];
+			$button = $textParts[1];
+		}
 
 		if ($banner['ZoneId'] == $zonename)
 		{
