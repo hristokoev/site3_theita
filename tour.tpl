@@ -1,7 +1,9 @@
 <?php
 $site_url = $_SERVER['REQUEST_URI'];
 $parameters = parse_url($site_url);
-parse_str($parameters['query'], $p);
+if ($parameters['query'] !== null) {
+	parse_str($parameters['query'], $p);
+}
 if (isset($p['cat']) && $p['n'] && $p["s"] && $p["p"]) {
 	header('Content-type: Application/JSON');
 	$sets = get_from_scheduled_updates($p['cat'], $p['n'], $p["s"], $p["p"]);

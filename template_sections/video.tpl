@@ -59,7 +59,7 @@ if (isset($set['info']['thumbs'][14]["webp_1x_filename"])) {
 					if (isset($tmp1[$mediatype["Name"] . ":" . "vids"])) {
 						$parr = $tmp1[$mediatype["Name"] . ":" . "vids"];
 						if ($mediatype["ShowPlay"] != 2 || $mediatype["ShowDownload"] != 2) {
-							echo '<source src="' . cdn_hook($GLOBALS["contentdir"] . "/upload/" . $tmp1[$mediatype["Name"] . ":" . "vids"]["fullpath"]) . '" type="video/mp4" label="' . $mediatype["Name"] . '"/>';
+							echo '<source src="' . cdn_hook($GLOBALS["contentdir"] . "upload/" . $tmp1[$mediatype["Name"] . ":" . "vids"]["fullpath"]) . '" type="video/mp4" label="' . $mediatype["Name"] . '"/>';
 						}
 						$vtt = (!empty($parr["vtt_file"])) ? 'https://' . $_SERVER['SERVER_NAME'] . cdn_hook($GLOBALS["contentdir"] . "upload/" . $parr["vtt_file"]) : "";
 					}

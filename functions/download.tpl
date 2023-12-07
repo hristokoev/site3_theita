@@ -7,7 +7,7 @@
     */
 function cdn_download($file) {
     $config = array(
-        'zone'    => 'v6u3r8e3', // hwcdn zone hash
+        'zone'    => 'c773fdff60', // cdn77 zone hash
         'secret'  => 'oTICQQcLEkPXdXoUCxOoePTstIV9HzoQ', // secret key
         'enabled' => true, // enable cdn urls
         'delay'   => '7200', // delay
@@ -29,7 +29,7 @@ function cdn_download($file) {
         $message = $uri . "?expires=" . $ttl . "&l=" . $urilen . "&secret=" . $config['secret'];
         $digest = md5($message);
         $token_value = "?expires=" . $ttl . '&l=' . $urilen . '&token=' . $digest;
-        $file = 'https://' . $config['zone'] . '.ssl.hwcdn.net' . $file . '' . $token_value . '';
+        $file = 'https://' . $config['zone'] . '.mjedge.net' . $file . '' . $token_value . '';
         return $file;
     } else {
         return $file;
@@ -38,9 +38,13 @@ function cdn_download($file) {
 $site_url = $_SERVER['REQUEST_URI'];
 $site_url = str_replace('?e=', "&e=", $site_url);
 $parameters = parse_url($site_url);
-parse_str($parameters['query'], $p);
+if ($parameters['query'] !== null) {
+	parse_str($parameters['query'], $p);
+}
 $exp = "~(?<=\/)[^\/\?#]+(?=[^\/]*$)~";
-preg_match($exp, $p["file"], $match);
+if ($p["file"] !== null) {
+	preg_match($exp, $p["file"], $match);
+}
 $file_name = $match[0];
 $url_action = $p["action"];
 $fp = $p["file"];
