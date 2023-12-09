@@ -110,9 +110,10 @@ $url = "https://" . $parse['host'] . '/';
 								<div class="sub-image"><a href="<?php echo $siteurl . lang_prefix(); ?>"><img id="banner" src="<?php echo 'https://' . $site["Name"] . '.com/images/banners/banner_992x155.jpg'; ?>" alt="" width="992" height="155"></a></div>
 								<h3 class="subsite-title"><span><?php echo $templatefields["txtlatestvideos"]; ?>&nbsp;&#8212;&nbsp;</span><span class="sitename"><?php echo $area['Sitename']; ?></span></h3>
 								<div class="sub-videos"><?php
-														$$site = get_from_scheduled_updates(5, 4, 'DESC', 1, false, false, $site["Id"]);
+														$siteName = strval($site["Name"]);
+														$$siteName = get_from_scheduled_updates(5, 4, 'DESC', 1, false, false, $site["Id"]);
 														$i = 0;
-														foreach ($$site as $set) {
+														foreach ($$siteName as $set) {
 															LoadTemplate("components/thumb_video.tpl", ["set" => $set, "prefer" => 'vids', "counter" => $i, "layout" => $layout, "url" => $siteurl]);
 															$i++;
 														}
