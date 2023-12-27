@@ -22,7 +22,7 @@ $bitrates = array();
 					<h1><?php echo $model['ModelName']; ?></h1>
 					<div class="genres">
 						<?php
-						LoadTemplate("components/list_model_genres.tpl", ["m_sets" => array_unique($m_sets)]);
+						LoadTemplate("components/list_model_genres.tpl", ["m_sets" => implode(", ", array_unique($m_sets))]);
 						?>
 					</div>
 				</div>
@@ -80,7 +80,7 @@ $bitrates = array();
 						<span class="tags-title"><?php echo $templatefields["txttags"]; ?>: </span>
 						<span class="tags-list">
 							<?php
-							LoadTemplate("components/list_model_tags.tpl", ["cats" => array_unique($mcats), "m_sets" => array_unique($m_sets)]);
+							LoadTemplate("components/list_model_tags.tpl", ["cats" => implode(", ", array_unique($mcats)), "m_sets" => implode(", ", array_unique($m_sets))]);
 							?>
 						</span>
 					</div>
