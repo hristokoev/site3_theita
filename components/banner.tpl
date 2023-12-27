@@ -36,6 +36,11 @@
 		$text = "";
 		$title = "OUR BIGGEST SALE";	// DEFAULT TITLE
 		$button = "JOIN NOW"; 				// DEFAULT TEXT
+
+		$params = explode(",", $banner["Description"]);
+		$colorBackground = $params[0] ?? "#000000";
+		$colorText = $params[1] ?? "#ffffff";
+		$imageHeight = $params[2] ?? "45px";
 		
 		if ($current_language == 0) {
 			$text = $banner["Title"];
@@ -54,20 +59,22 @@
 		{
 			if ($banner["FileExt"] != "") { ?>
 			
-				<div class="promo-bar-container animate sticky-promo" id="promo-bar-ref" style="background-color: <?= $banner["Description"] ?>;" id="<?= $zonename; ?>">
+			<a href="<?php echo $tour["JoinUrl"] . lang_join_suffix(); ?>">
+				<div class="promo-bar-container animate sticky-promo" id="promo-bar-ref" style="background-color: <?= $colorBackground ?>;" id="<?= $zonename; ?>">
 					<div class="promo-bar-contents custom" id="promo-bar-countdown-id">
 						<div href="<?php echo $tour["JoinUrl"] . lang_join_suffix(); ?>" class="promo-text-content">
-							<img src="<?= cdn_hook($GLOBALS["contentdir"] . "/contentthumbs/" . $banner["Id"] . "-banner." . $banner["FileExt"]) ?>" id="product-logo-promobar" style="padding: 0px 10px 0px 0px;">
+							<img src="<?php echo $GLOBALS["contentdir"] . "contentthumbs/" . $banner["Id"] . "-banner." . $banner["FileExt"]; ?>" id="product-logo-promobar" style="padding: 0px 10px 0px 0px; max-height: <?= $imageHeight ?>"/>
 							<div id="promobar-container">
-								<div class="promo-desc" style="color: rgb(0, 0, 0);"><?= $title ?></div>
-								<div class="learnmore" style="color: rgb(0, 0, 0);"><?= $button ?></div>
+								<div class="promo-desc" style="color: <?= $colorText ?>;"><?= $title ?></div>
+								<div class="learnmore" style="color: <?= $colorText ?>;"><?= $button ?></div>
 							</div>
-							<a class="promo-link" href="<?php echo $tour["JoinUrl"] . lang_join_suffix(); ?>">
+							<span class="promo-link">
 								<span class="desktop"><?= $button ?></span>
-							</a>
+							</span>
 						</div>
 					</div>
 				</div>
+			</a>
 	
 			<?php }
 	
@@ -175,13 +182,9 @@
 }
 
 .promo-text-content .promo-link:hover {
-    background: #333;
+    background: #000;
     color: #fff;
     border: 2px solid #000
-}
-
-.promo-text-content #product-logo-promobar {
-    max-height: 45px
 }
 
 #promo-bar-countdown-id .mobile {
