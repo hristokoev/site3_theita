@@ -10,15 +10,13 @@ foreach ($cats as $cat) {
 	$set_cats_title[] = $cat['Title'];
 	$set_cats_seoName[] = $cat['SEOname'];
 }
-foreach ($m_sets as $info_cates) {
-	foreach ($info_cates as $catitem) {
-		if (!$taglimit || sizeof($tl) < $taglimit) {
-			if (in_array($catitem, $set_cats_id)) {
-				$indx = array_search($catitem, $set_cats_id);
-				$tl1['id'][] = $set_cats_id[$indx];
-				$tl1['title'][] = $set_cats_title[$indx];
-				$tl1['seoName'][] = $set_cats_seoName[$indx];
-			}
+foreach ($msets as $catitem) {
+	if (!$taglimit || sizeof($tl) < $taglimit) {
+		if (in_array($catitem, $set_cats_id)) {
+			$indx = array_search($catitem, $set_cats_id);
+			$tl1['id'][] = $set_cats_id[$indx];
+			$tl1['title'][] = $set_cats_title[$indx];
+			$tl1['seoName'][] = $set_cats_seoName[$indx];
 		}
 	}
 }

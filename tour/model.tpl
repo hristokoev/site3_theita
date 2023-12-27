@@ -2,16 +2,30 @@
 LoadTemplate("tour/template_sections/header.tpl", ["pagename" => "models", "seokey" => $model["SEOkey"], "seodesc" => $model["SEOdesc"]]);
 $modelSets = $api->getSets(["model_filter" => [$model['Id']]]);
 $mcats = array();
-$m_sets = array();
+$msets = array();
 foreach ($modelSets->sets as $set) {
-	$m_sets[] = $set["info"]["categories"];
+	$msets[] = $set["info"]["categories"];
 	foreach ($set["info"]["categories"] as $catitem) {
 		$mcats[] = $catitem;
 	}
 }
+
+// Unique elements
+$mergedMSets = array();
+foreach ($msets as $mset) {
+	foreach ($mset as $element) {
+			if (!in_array($element, $mergedMSets)) {
+					$mergedMSets[] = $element;
+			}
+	}
+}
+
 $bitrates = array();
 ?>
 <div class="main">
+	<div style="display:none;">
+		<?php print_r($mcats); ?>
+	</div>
 	<section class="container">
 		<div class="model-bio">
 			<div class="model-image">
@@ -22,7 +36,7 @@ $bitrates = array();
 					<h1><?php echo $model['ModelName']; ?></h1>
 					<div class="genres">
 						<?php
-						LoadTemplate("components/list_model_genres.tpl", ["m_sets" => implode(", ", array_unique($m_sets))]);
+						LoadTemplate("components/list_model_genres.tpl", ["msets" => $mergedMSets]);
 						?>
 					</div>
 				</div>
@@ -80,7 +94,7 @@ $bitrates = array();
 						<span class="tags-title"><?php echo $templatefields["txttags"]; ?>: </span>
 						<span class="tags-list">
 							<?php
-							LoadTemplate("components/list_model_tags.tpl", ["cats" => implode(", ", array_unique($mcats)), "m_sets" => implode(", ", array_unique($m_sets))]);
+							LoadTemplate("components/list_model_tags.tpl", ["cats" => array_unique($mcats), "msets" => $mergedMSets]);
 							?>
 						</span>
 					</div>
